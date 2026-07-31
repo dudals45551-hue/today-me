@@ -1,7 +1,7 @@
 {
   "name": "오늘의 나",
   "short_name": "오늘의 나",
-  "start_url": "./?v=46",
+  "start_url": "./?v=47",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -9,7 +9,7 @@
   "theme_color": "#f6b5ce",
   "icons": [
     {
-      "src": "./icons/icon.svg?v=46",
+      "src": "./icons/icon.svg?v=47",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
