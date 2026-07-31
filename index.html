@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=521">
-<link rel="icon" href="./icons/icon.svg?v=521" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=522">
+<link rel="icon" href="./icons/icon.svg?v=522" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -162,7 +162,7 @@ background:linear-gradient(180deg,rgba(159,207,255,.18),rgba(255,255,255,.74) 58
 .dress-stage{position:relative;width:min(88vw,430px);aspect-ratio:3/4;margin:auto;border-radius:28px;overflow:hidden;border:7px solid white;box-shadow:0 16px 36px rgba(0,0,0,.16);background:#ddd;touch-action:none}
 .dress-stage>img{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .sticker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:96px;height:auto;user-select:none;touch-action:none;filter:drop-shadow(0 5px 5px rgba(0,0,0,.25));display:none}
-.sticker img{display:block;width:100%;height:auto;pointer-events:none}
+.sticker svg{display:block;width:100%;height:auto;pointer-events:none}
 .sticker.active{display:block}
 .sticker.selected{outline:3px dashed #ff5f9b;outline-offset:7px;border-radius:18px}
 .sticker-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
@@ -170,7 +170,7 @@ background:linear-gradient(180deg,rgba(159,207,255,.18),rgba(255,255,255,.74) 58
 .sticker-tab.active{background:#7d69dc;color:white}
 .sticker-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
 .sticker-btn{border:0;background:white;border-radius:18px;min-height:90px;box-shadow:0 7px 16px rgba(0,0,0,.08);padding:8px}
-.sticker-btn img{width:54px;height:54px;object-fit:contain;display:block;margin:auto}
+.sticker-btn svg{width:54px;height:54px;display:block;margin:auto;pointer-events:none}
 .sticker-btn span{display:block;font-size:11px;font-weight:900;margin-top:4px}
 .sticker-btn.locked{filter:grayscale(1);opacity:.48;position:relative}
 .sticker-btn.locked::after{content:"🔒";position:absolute;right:5px;top:4px;font-size:16px}
@@ -346,17 +346,17 @@ font-weight:900
 </div>
 
 <section id="decoratePanel" class="panel">
-<div class="panel-head"><button data-close-panel>←</button><h2>스티커 옷 입히기</h2></div>
+<div class="panel-head"><button data-close-panel>←</button><h2>벡터 스티커 꾸미기</h2></div>
 <div class="panel-body">
 <div class="dress-stage" id="dressStage"><img id="dressPhoto" alt="꾸미기 사진">
-<div class="sticker" id="sticker-crown"><img src="./assets/stickers/crown.png" alt="왕관"></div>
-<div class="sticker" id="sticker-dress"><img src="./assets/stickers/dress.png" alt="드레스"></div>
-<div class="sticker" id="sticker-cape"><img src="./assets/stickers/cape.png" alt="히어로 망토"></div>
-<div class="sticker" id="sticker-glasses"><img src="./assets/stickers/glasses.png" alt="안경"></div>
-<div class="sticker" id="sticker-hat"><img src="./assets/stickers/hat.png" alt="모자"></div>
-<div class="sticker" id="sticker-wings"><img src="./assets/stickers/wings.png" alt="날개"></div>
-<div class="sticker" id="sticker-heart"><img src="./assets/stickers/heart.png" alt="하트"></div>
-<div class="sticker" id="sticker-star"><img src="./assets/stickers/star.png" alt="별"></div>
+<div class="sticker" id="sticker-crown"><svg viewBox="0 0 512 512"><path d="M76 322L126 114l112 144 76-164 78 164 92-140-42 204z" fill="#FFD84A" stroke="#A56B12" stroke-width="18" stroke-linejoin="round"/><rect x="78" y="316" width="356" height="92" rx="30" fill="#FFC232" stroke="#A56B12" stroke-width="18"/><circle cx="150" cy="352" r="24" fill="#FF5E8F"/><circle cx="256" cy="352" r="24" fill="#6DB7FF"/><circle cx="362" cy="352" r="24" fill="#6FD69C"/></svg></div>
+<div class="sticker" id="sticker-dress"><svg viewBox="0 0 512 512"><path d="M190 78h132l-30 112 104 252H116l104-252z" fill="#FFB4D3" stroke="#C84D86" stroke-width="16" stroke-linejoin="round"/><path d="M190 92l-80 120 52 50 76-94M322 92l80 120-52 50-76-94" fill="#FFC7DE" stroke="#C84D86" stroke-width="16" stroke-linecap="round"/><rect x="204" y="150" width="104" height="130" rx="24" fill="#F76FA9"/><circle cx="256" cy="210" r="22" fill="#FFE46B"/></svg></div>
+<div class="sticker" id="sticker-cape"><svg viewBox="0 0 512 512"><path d="M158 72h196l78 374H80z" fill="#4A78DE" stroke="#274BA6" stroke-width="18" stroke-linejoin="round"/><path d="M180 88h152l-42 154h-68z" fill="#EC4057" stroke="#A91933" stroke-width="16"/><circle cx="256" cy="126" r="42" fill="#FFD653" stroke="#A56B12" stroke-width="14"/><path d="M256 103l14 29 32 5-23 22 6 31-29-15-29 15 6-31-23-22 32-5z" fill="#FFF"/></svg></div>
+<div class="sticker" id="sticker-glasses"><svg viewBox="0 0 512 512"><rect x="54" y="164" width="172" height="136" rx="48" fill="#262637" stroke="#11111A" stroke-width="22"/><rect x="286" y="164" width="172" height="136" rx="48" fill="#262637" stroke="#11111A" stroke-width="22"/><path d="M226 220h60M54 188L8 150M458 188l46-38" stroke="#11111A" stroke-width="22" stroke-linecap="round"/></svg></div>
+<div class="sticker" id="sticker-hat"><svg viewBox="0 0 512 512"><ellipse cx="256" cy="396" rx="190" ry="54" fill="#3E285C" stroke="#17101F" stroke-width="18"/><rect x="142" y="76" width="228" height="300" rx="34" fill="#5A3B80" stroke="#17101F" stroke-width="18"/><rect x="142" y="282" width="228" height="76" fill="#EE4F91"/><ellipse cx="256" cy="132" rx="86" ry="36" fill="#8B6BB2"/></svg></div>
+<div class="sticker" id="sticker-wings"><svg viewBox="0 0 512 512"><path d="M244 92C126 58 18 146 28 286c8 112 96 160 216 154z" fill="#E8F7FF" stroke="#79BDEB" stroke-width="16"/><path d="M268 92c118-34 226 54 216 194-8 112-96 160-216 154z" fill="#E8F7FF" stroke="#79BDEB" stroke-width="16"/></svg></div>
+<div class="sticker" id="sticker-heart"><svg viewBox="0 0 512 512"><path d="M256 440L74 256C-18 166 50 62 146 82c44 9 78 37 110 78 32-41 66-69 110-78 96-20 164 84 72 174z" fill="#FF5D9C" stroke="#B92068" stroke-width="18"/></svg></div>
+<div class="sticker" id="sticker-star"><svg viewBox="0 0 512 512"><path d="M256 40l62 128 141 20-102 99 24 140-125-66-125 66 24-140-102-99 141-20z" fill="#FFD84A" stroke="#B77812" stroke-width="18"/><circle cx="214" cy="226" r="16"/><circle cx="298" cy="226" r="16"/></svg></div>
 </div>
 <div class="sticker-tabs">
 <button class="sticker-tab active" data-category="all">전체</button>
@@ -365,14 +365,14 @@ font-weight:900
 <button class="sticker-tab" data-category="decor">장식</button>
 </div>
 <div class="sticker-list">
-<button class="sticker-btn" data-add="crown" data-paid="1" data-cat="head"><img src="./assets/stickers/crown.png" alt=""><span>왕관</span></button>
-<button class="sticker-btn" data-add="hat" data-paid="1" data-cat="head"><img src="./assets/stickers/hat.png" alt=""><span>모자</span></button>
-<button class="sticker-btn" data-add="glasses" data-paid="1" data-cat="head"><img src="./assets/stickers/glasses.png" alt=""><span>안경</span></button>
-<button class="sticker-btn" data-add="dress" data-paid="1" data-cat="outfit"><img src="./assets/stickers/dress.png" alt=""><span>드레스</span></button>
-<button class="sticker-btn" data-add="cape" data-paid="1" data-cat="outfit"><img src="./assets/stickers/cape.png" alt=""><span>히어로</span></button>
-<button class="sticker-btn" data-add="wings" data-paid="1" data-cat="outfit"><img src="./assets/stickers/wings.png" alt=""><span>날개</span></button>
-<button class="sticker-btn" data-add="heart" data-cat="decor"><img src="./assets/stickers/heart.png" alt=""><span>하트</span></button>
-<button class="sticker-btn" data-add="star" data-cat="decor"><img src="./assets/stickers/star.png" alt=""><span>별</span></button>
+<button class="sticker-btn" data-add="crown" data-paid="1" data-cat="head"><svg viewBox="0 0 512 512"><path d="M76 322L126 114l112 144 76-164 78 164 92-140-42 204z" fill="#FFD84A" stroke="#A56B12" stroke-width="18" stroke-linejoin="round"/><rect x="78" y="316" width="356" height="92" rx="30" fill="#FFC232" stroke="#A56B12" stroke-width="18"/><circle cx="150" cy="352" r="24" fill="#FF5E8F"/><circle cx="256" cy="352" r="24" fill="#6DB7FF"/><circle cx="362" cy="352" r="24" fill="#6FD69C"/></svg><span>왕관</span></button>
+<button class="sticker-btn" data-add="hat" data-paid="1" data-cat="head"><svg viewBox="0 0 512 512"><ellipse cx="256" cy="396" rx="190" ry="54" fill="#3E285C" stroke="#17101F" stroke-width="18"/><rect x="142" y="76" width="228" height="300" rx="34" fill="#5A3B80" stroke="#17101F" stroke-width="18"/><rect x="142" y="282" width="228" height="76" fill="#EE4F91"/><ellipse cx="256" cy="132" rx="86" ry="36" fill="#8B6BB2"/></svg><span>모자</span></button>
+<button class="sticker-btn" data-add="glasses" data-paid="1" data-cat="head"><svg viewBox="0 0 512 512"><rect x="54" y="164" width="172" height="136" rx="48" fill="#262637" stroke="#11111A" stroke-width="22"/><rect x="286" y="164" width="172" height="136" rx="48" fill="#262637" stroke="#11111A" stroke-width="22"/><path d="M226 220h60M54 188L8 150M458 188l46-38" stroke="#11111A" stroke-width="22" stroke-linecap="round"/></svg><span>안경</span></button>
+<button class="sticker-btn" data-add="dress" data-paid="1" data-cat="outfit"><svg viewBox="0 0 512 512"><path d="M190 78h132l-30 112 104 252H116l104-252z" fill="#FFB4D3" stroke="#C84D86" stroke-width="16" stroke-linejoin="round"/><path d="M190 92l-80 120 52 50 76-94M322 92l80 120-52 50-76-94" fill="#FFC7DE" stroke="#C84D86" stroke-width="16" stroke-linecap="round"/><rect x="204" y="150" width="104" height="130" rx="24" fill="#F76FA9"/><circle cx="256" cy="210" r="22" fill="#FFE46B"/></svg><span>드레스</span></button>
+<button class="sticker-btn" data-add="cape" data-paid="1" data-cat="outfit"><svg viewBox="0 0 512 512"><path d="M158 72h196l78 374H80z" fill="#4A78DE" stroke="#274BA6" stroke-width="18" stroke-linejoin="round"/><path d="M180 88h152l-42 154h-68z" fill="#EC4057" stroke="#A91933" stroke-width="16"/><circle cx="256" cy="126" r="42" fill="#FFD653" stroke="#A56B12" stroke-width="14"/><path d="M256 103l14 29 32 5-23 22 6 31-29-15-29 15 6-31-23-22 32-5z" fill="#FFF"/></svg><span>히어로</span></button>
+<button class="sticker-btn" data-add="wings" data-paid="1" data-cat="outfit"><svg viewBox="0 0 512 512"><path d="M244 92C126 58 18 146 28 286c8 112 96 160 216 154z" fill="#E8F7FF" stroke="#79BDEB" stroke-width="16"/><path d="M268 92c118-34 226 54 216 194-8 112-96 160-216 154z" fill="#E8F7FF" stroke="#79BDEB" stroke-width="16"/></svg><span>날개</span></button>
+<button class="sticker-btn" data-add="heart" data-cat="decor"><svg viewBox="0 0 512 512"><path d="M256 440L74 256C-18 166 50 62 146 82c44 9 78 37 110 78 32-41 66-69 110-78 96-20 164 84 72 174z" fill="#FF5D9C" stroke="#B92068" stroke-width="18"/></svg><span>하트</span></button>
+<button class="sticker-btn" data-add="star" data-cat="decor"><svg viewBox="0 0 512 512"><path d="M256 40l62 128 141 20-102 99 24 140-125-66-125 66 24-140-102-99 141-20z" fill="#FFD84A" stroke="#B77812" stroke-width="18"/><circle cx="214" cy="226" r="16"/><circle cx="298" cy="226" r="16"/></svg><span>별</span></button>
 </div>
 <div class="controls">
 <button id="bigger">크게 ＋</button><button id="smaller">작게 －</button><button id="rotateLeft">↶ 왼쪽 회전</button><button id="rotateRight">↷ 오른쪽 회전</button><button id="removeSticker">삭제</button>
@@ -946,8 +946,13 @@ const stage=document.getElementById('dressStage'), rect=stage.getBoundingClientR
 const img=document.getElementById('dressPhoto');ctx.drawImage(img,0,0,900,1200);
 for(const s of currentOutfit()){const e=stickerEl(s.id),er=e.getBoundingClientRect();const cx=(e.offsetLeft/rect.width)*900,cy=(e.offsetTop/rect.height)*1200;
 const displayW=parseFloat(getComputedStyle(e).width)/rect.width*900;
-const stickerImg=e.querySelector('img');
-const ratio=(stickerImg.naturalHeight||1)/(stickerImg.naturalWidth||1);
+const stickerSvg=e.querySelector('svg');
+const svgText=new XMLSerializer().serializeToString(stickerSvg);
+const svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svgText);
+const stickerImg=new Image();
+await new Promise((resolve,reject)=>{stickerImg.onload=resolve;stickerImg.onerror=reject;stickerImg.src=svgUrl});
+const vb=stickerSvg.viewBox.baseVal;
+const ratio=(vb&&vb.width)?vb.height/vb.width:1;
 const displayH=displayW*ratio;
 ctx.save();ctx.translate(cx,cy);ctx.rotate(rotationOf(e)*Math.PI/180);
 ctx.drawImage(stickerImg,-displayW/2,-displayH/2,displayW,displayH);ctx.restore()}
@@ -1083,7 +1088,7 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=521').catch(()=>{
+migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=522').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
