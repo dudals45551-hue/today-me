@@ -1,1 +1,19 @@
-{"name":"오늘의 나","short_name":"오늘의 나","start_url":"./","display":"standalone","background_color":"#ffffff","theme_color":"#ffb6d5","icons":[]}
+{
+  "name": "오늘의 나",
+  "short_name": "오늘의 나",
+  "description": "아이들의 오늘을 사진으로 기록하는 가족 앱",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffd6e7",
+  "theme_color": "#ffd6e7",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
