@@ -1,0 +1,6 @@
+body{margin:0;font-family:sans-serif;background:linear-gradient(90deg,#ffd6e7 50%,#d8ebff 50%);}
+header{display:flex;justify-content:space-between;padding:16px;font-size:24px}
+h1{text-align:center}
+main{display:flex;gap:16px;justify-content:center;padding:20px;flex-wrap:wrap}
+.card{background:#fff;border-radius:20px;padding:20px;min-width:240px;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+button{display:block;width:100%;padding:14px;margin-top:10px;font-size:18px;border:none;border-radius:12px}
