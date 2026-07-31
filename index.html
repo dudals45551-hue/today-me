@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=50">
-<link rel="icon" href="./icons/icon.svg?v=50" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=501">
+<link rel="icon" href="./icons/icon.svg?v=501" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -138,6 +138,9 @@ button,input{font:inherit} button{cursor:pointer}
 .parent-lock-box p{margin:0 0 16px;color:#75636c;font-weight:800}
 .parent-lock-box input{width:100%;min-height:55px;border:2px solid #eadde4;border-radius:17px;text-align:center;font-size:24px;font-weight:900;padding:10px}
 .settings-list{display:grid;gap:11px;margin-top:18px}
+.settings-select-row{background:white;border-radius:18px;padding:13px;box-shadow:0 7px 16px rgba(0,0,0,.08)}
+.settings-select-row label{display:block;font-weight:900;margin-bottom:8px}
+.settings-select-row select{width:100%;border:2px solid #eadde4;border-radius:14px;padding:11px;background:white;font-weight:900}
 .settings-list button{border:0;border-radius:18px;min-height:56px;font-weight:900;font-size:16px;background:white;box-shadow:0 7px 16px rgba(0,0,0,.08)}
 .settings-list button.danger{background:#ffedf1;color:#b23d5f}
 .hold-ring{position:relative;overflow:hidden}
@@ -292,6 +295,15 @@ font-weight:900
 </div>
 </div>
 <div class="settings-list">
+<div class="settings-select-row">
+<label for="resetAlbumChild">📚 초기화할 성장앨범</label>
+<select id="resetAlbumChild">
+<option value="harin">박하린 성장앨범</option>
+<option value="seoyul">박서율 성장앨범</option>
+<option value="all">두 아이 성장앨범 전체</option>
+</select>
+</div>
+<button id="resetGrowthAlbum">📚 성장앨범 초기화</button>
 <button id="resetPhotos">📷 저장 사진 초기화</button>
 <button id="resetStars">⭐ 별과 출석 초기화</button>
 <button id="resetCloset">👗 옷장 초기화</button>
@@ -823,6 +835,22 @@ function removeKeys(predicate){
  Object.keys(localStorage).filter(predicate).forEach(k=>localStorage.removeItem(k));
  refresh();
 }
+
+document.getElementById('resetGrowthAlbum').onclick=()=>{
+ const target=document.getElementById('resetAlbumChild').value;
+ const label=target==='harin'?'하린이':target==='seoyul'?'서율이':'두 아이';
+ if(!confirm(`${label} 성장앨범의 사진과 월별 기록을 초기화할까요?`))return;
+ if(!confirm('성장앨범 기록은 되돌릴 수 없어요. 정말 초기화할까요?'))return;
+
+ const targets=target==='all'?['harin','seoyul']:[target];
+ targets.forEach(c=>{
+   localStorage.removeItem(`todayme-album-photos-${c}`);
+   Object.keys(localStorage)
+     .filter(k=>k.startsWith(`todayme-activity-${c}-`))
+     .forEach(k=>localStorage.removeItem(k));
+ });
+ say(`${label} 성장앨범을 초기화했어요`);
+};
 document.getElementById('resetPhotos').onclick=()=>{
  if(confirm('저장된 사진만 초기화할까요?')){
    removeKeys(k=>k.startsWith('todayme-photo-')||k.startsWith('todayme-album-photos-')||k.includes('-photos'));
@@ -861,7 +889,7 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=50').catch(()=>{
+migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=501').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
