@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=49">
-<link rel="icon" href="./icons/icon.svg?v=49" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=491">
+<link rel="icon" href="./icons/icon.svg?v=491" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -331,7 +331,14 @@ function migrateSharedData(){
  localStorage.setItem('todayme-v49-migrated','1');
 }
 
-function setChildStars(value,c=activeChild){localStorage.setItem(childKey('todayme-stars',c),String(Math.max(0,value)))}
+function setChildStars(value,c=activeChild){
+ const next=Math.max(0,Number(value)||0);
+ localStorage.setItem(childKey('todayme-stars',c),String(next));
+ if(c===activeChild){
+   const counter=document.getElementById('starCount');
+   if(counter)counter.textContent=String(next);
+ }
+}
 function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2200)}
 function showScreen(id){
  screens.forEach(s=>s.classList.toggle('active',s.id===id));
@@ -461,7 +468,7 @@ function renderDailyMissions(){
    btn.onclick=()=>{
      if(localStorage.getItem(key))return;
      localStorage.setItem(key,'1');
-     localStorage.setItem('todayme-stars',String(Number(childStars())+m.stars));
+     setChildStars(childStars()+m.stars);
      refresh();renderDailyMissions();say(`별 ${m.stars}개를 받았어요 ⭐`);
    };
    list.appendChild(row);
@@ -480,7 +487,7 @@ document.getElementById('openChest').onclick=()=>{
  if(localStorage.getItem(key))return;
  const roll=Math.random(),stars=1+Math.floor(Math.random()*5);
  let message=`별 ${stars}개`;
- localStorage.setItem('todayme-stars',String(Number(childStars())+stars));
+ setChildStars(childStars()+stars);
  if(roll<0.08){
    const rare=['crown','wings','hat'],locked=rare.filter(x=>!isOwned(x));
    if(locked.length){
@@ -641,7 +648,8 @@ document.querySelectorAll('[data-shop] button').forEach(btn=>btn.onclick=()=>{
  refresh();say('새 아이템을 구입했어요! 🎉')
 });
 
-document.getElementById('starsTop').onclick=()=>{refreshDailyRewards();openPanel('starsPanel')};
+document.getElementById('starsTop').onclick=()=>{refresh();refreshDailyRewards();openPanel('starsPanel')};
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
 
 const settingsBtn=document.getElementById('settings');
 let holdTimer=null;
@@ -743,7 +751,7 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=49').catch(()=>{
+migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=491').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
