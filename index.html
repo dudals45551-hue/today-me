@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=512">
-<link rel="icon" href="./icons/icon.svg?v=512" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=521">
+<link rel="icon" href="./icons/icon.svg?v=521" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -161,11 +161,16 @@ background:linear-gradient(180deg,rgba(159,207,255,.18),rgba(255,255,255,.74) 58
 .panel-body{max-width:620px;margin:22px auto}
 .dress-stage{position:relative;width:min(88vw,430px);aspect-ratio:3/4;margin:auto;border-radius:28px;overflow:hidden;border:7px solid white;box-shadow:0 16px 36px rgba(0,0,0,.16);background:#ddd;touch-action:none}
 .dress-stage>img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.sticker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:72px;line-height:1;user-select:none;touch-action:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.25));display:none}
+.sticker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:96px;height:auto;user-select:none;touch-action:none;filter:drop-shadow(0 5px 5px rgba(0,0,0,.25));display:none}
+.sticker img{display:block;width:100%;height:auto;pointer-events:none}
 .sticker.active{display:block}
 .sticker.selected{outline:3px dashed #ff5f9b;outline-offset:7px;border-radius:18px}
-.sticker-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
-.sticker-btn{border:0;background:white;border-radius:18px;min-height:72px;font-size:34px;box-shadow:0 7px 16px rgba(0,0,0,.08)}
+.sticker-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.sticker-tab{border:0;border-radius:15px;min-height:45px;background:white;font-weight:900;box-shadow:0 5px 12px rgba(0,0,0,.07)}
+.sticker-tab.active{background:#7d69dc;color:white}
+.sticker-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.sticker-btn{border:0;background:white;border-radius:18px;min-height:90px;box-shadow:0 7px 16px rgba(0,0,0,.08);padding:8px}
+.sticker-btn img{width:54px;height:54px;object-fit:contain;display:block;margin:auto}
 .sticker-btn span{display:block;font-size:11px;font-weight:900;margin-top:4px}
 .sticker-btn.locked{filter:grayscale(1);opacity:.48;position:relative}
 .sticker-btn.locked::after{content:"🔒";position:absolute;right:5px;top:4px;font-size:16px}
@@ -344,24 +349,30 @@ font-weight:900
 <div class="panel-head"><button data-close-panel>←</button><h2>스티커 옷 입히기</h2></div>
 <div class="panel-body">
 <div class="dress-stage" id="dressStage"><img id="dressPhoto" alt="꾸미기 사진">
-<div class="sticker" id="sticker-crown">👑</div>
-<div class="sticker" id="sticker-dress">👗</div>
-<div class="sticker" id="sticker-cape">🦸</div>
-<div class="sticker" id="sticker-glasses">🕶️</div>
-<div class="sticker" id="sticker-hat">🎩</div>
-<div class="sticker" id="sticker-wings">🪽</div>
-<div class="sticker" id="sticker-heart">💖</div>
-<div class="sticker" id="sticker-star">⭐</div>
+<div class="sticker" id="sticker-crown"><img src="./assets/stickers/crown.png" alt="왕관"></div>
+<div class="sticker" id="sticker-dress"><img src="./assets/stickers/dress.png" alt="드레스"></div>
+<div class="sticker" id="sticker-cape"><img src="./assets/stickers/cape.png" alt="히어로 망토"></div>
+<div class="sticker" id="sticker-glasses"><img src="./assets/stickers/glasses.png" alt="안경"></div>
+<div class="sticker" id="sticker-hat"><img src="./assets/stickers/hat.png" alt="모자"></div>
+<div class="sticker" id="sticker-wings"><img src="./assets/stickers/wings.png" alt="날개"></div>
+<div class="sticker" id="sticker-heart"><img src="./assets/stickers/heart.png" alt="하트"></div>
+<div class="sticker" id="sticker-star"><img src="./assets/stickers/star.png" alt="별"></div>
+</div>
+<div class="sticker-tabs">
+<button class="sticker-tab active" data-category="all">전체</button>
+<button class="sticker-tab" data-category="head">모자</button>
+<button class="sticker-tab" data-category="outfit">의상</button>
+<button class="sticker-tab" data-category="decor">장식</button>
 </div>
 <div class="sticker-list">
-<button class="sticker-btn" data-add="crown" data-paid="1">👑<span>왕관</span></button>
-<button class="sticker-btn" data-add="dress" data-paid="1">👗<span>드레스</span></button>
-<button class="sticker-btn" data-add="cape" data-paid="1">🦸<span>히어로</span></button>
-<button class="sticker-btn" data-add="glasses" data-paid="1">🕶️<span>안경</span></button>
-<button class="sticker-btn" data-add="hat" data-paid="1">🎩<span>모자</span></button>
-<button class="sticker-btn" data-add="wings" data-paid="1">🪽<span>날개</span></button>
-<button class="sticker-btn" data-add="heart">💖<span>하트</span></button>
-<button class="sticker-btn" data-add="star">⭐<span>별</span></button>
+<button class="sticker-btn" data-add="crown" data-paid="1" data-cat="head"><img src="./assets/stickers/crown.png" alt=""><span>왕관</span></button>
+<button class="sticker-btn" data-add="hat" data-paid="1" data-cat="head"><img src="./assets/stickers/hat.png" alt=""><span>모자</span></button>
+<button class="sticker-btn" data-add="glasses" data-paid="1" data-cat="head"><img src="./assets/stickers/glasses.png" alt=""><span>안경</span></button>
+<button class="sticker-btn" data-add="dress" data-paid="1" data-cat="outfit"><img src="./assets/stickers/dress.png" alt=""><span>드레스</span></button>
+<button class="sticker-btn" data-add="cape" data-paid="1" data-cat="outfit"><img src="./assets/stickers/cape.png" alt=""><span>히어로</span></button>
+<button class="sticker-btn" data-add="wings" data-paid="1" data-cat="outfit"><img src="./assets/stickers/wings.png" alt=""><span>날개</span></button>
+<button class="sticker-btn" data-add="heart" data-cat="decor"><img src="./assets/stickers/heart.png" alt=""><span>하트</span></button>
+<button class="sticker-btn" data-add="star" data-cat="decor"><img src="./assets/stickers/star.png" alt=""><span>별</span></button>
 </div>
 <div class="controls">
 <button id="bigger">크게 ＋</button><button id="smaller">작게 －</button><button id="rotateLeft">↶ 왼쪽 회전</button><button id="rotateRight">↷ 오른쪽 회전</button><button id="removeSticker">삭제</button>
@@ -867,13 +878,22 @@ function rotationOf(el){return Number(el.dataset.rotation||0)}
 function applyRotation(el){el.style.transform='translate(-50%,-50%) rotate('+rotationOf(el)+'deg)'}
 function pointerDistance(a,b){return Math.hypot(b.x-a.x,b.y-a.y)}
 function pointerAngle(a,b){return Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI}
-function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{const el=stickerEl(id);el.className='sticker';el.style.cssText='';});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.fontSize=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
+function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{const el=stickerEl(id);el.className='sticker';el.style.cssText='';});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.width=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
 function selectSticker(el){document.querySelectorAll('.sticker').forEach(x=>x.classList.remove('selected'));selectedSticker=el;el.classList.add('selected')}
+
+document.querySelectorAll('[data-category]').forEach(tab=>tab.onclick=()=>{
+ document.querySelectorAll('[data-category]').forEach(x=>x.classList.toggle('active',x===tab));
+ const cat=tab.dataset.category;
+ document.querySelectorAll('.sticker-btn[data-cat]').forEach(btn=>{
+   btn.style.display=(cat==='all'||btn.dataset.cat===cat)?'block':'none';
+ });
+});
+
 document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
  const id=b.dataset.add;
  if(b.dataset.paid && !isOwned(id)){say('옷장에서 먼저 구입해 주세요 🔒');return}
  const el=stickerEl(id);el.classList.add('active');
- if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.fontSize='72px';el.dataset.rotation='0';applyRotation(el)}
+ if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.width='96px';el.dataset.rotation='0';applyRotation(el)}
  selectSticker(el)
 });
 document.querySelectorAll('.sticker').forEach(el=>{
@@ -887,7 +907,7 @@ el.addEventListener('pointerdown',e=>{
     gesture=null;
   }else if(activePointers.size===2){
     const pts=[...activePointers.values()];
-    gesture={startDistance:pointerDistance(pts[0],pts[1]),startAngle:pointerAngle(pts[0],pts[1]),startSize:parseFloat(getComputedStyle(el).fontSize),startRotation:rotationOf(el)};
+    gesture={startDistance:pointerDistance(pts[0],pts[1]),startAngle:pointerAngle(pts[0],pts[1]),startSize:parseFloat(getComputedStyle(el).width),startRotation:rotationOf(el)};
     drag=null;
   }
 });
@@ -898,7 +918,7 @@ el.addEventListener('pointermove',e=>{
     const pts=[...activePointers.values()].slice(0,2);
     const distance=pointerDistance(pts[0],pts[1]);
     const angle=pointerAngle(pts[0],pts[1]);
-    el.style.fontSize=Math.max(24,Math.min(260,gesture.startSize*(distance/Math.max(1,gesture.startDistance))))+'px';
+    el.style.width=Math.max(36,Math.min(320,gesture.startSize*(distance/Math.max(1,gesture.startDistance))))+'px';
     el.dataset.rotation=String(gesture.startRotation+(angle-gesture.startAngle));
     applyRotation(el);
     return;
@@ -914,17 +934,23 @@ function endPointer(e){activePointers.delete(e.pointerId);if(activePointers.size
 el.addEventListener('pointerup',endPointer);
 el.addEventListener('pointercancel',endPointer);
 });
-document.getElementById('bigger').onclick=()=>{if(selectedSticker)selectedSticker.style.fontSize=(parseInt(getComputedStyle(selectedSticker).fontSize)+10)+'px'};
-document.getElementById('smaller').onclick=()=>{if(selectedSticker)selectedSticker.style.fontSize=Math.max(24,parseInt(getComputedStyle(selectedSticker).fontSize)-10)+'px'};
+document.getElementById('bigger').onclick=()=>{if(selectedSticker)selectedSticker.style.width=(parseInt(getComputedStyle(selectedSticker).width)+12)+'px'};
+document.getElementById('smaller').onclick=()=>{if(selectedSticker)selectedSticker.style.width=Math.max(36,parseInt(getComputedStyle(selectedSticker).width)-12)+'px'};
 document.getElementById('rotateLeft').onclick=()=>{if(selectedSticker){selectedSticker.dataset.rotation=String(rotationOf(selectedSticker)-15);applyRotation(selectedSticker)}};
 document.getElementById('rotateRight').onclick=()=>{if(selectedSticker){selectedSticker.dataset.rotation=String(rotationOf(selectedSticker)+15);applyRotation(selectedSticker)}};
 document.getElementById('removeSticker').onclick=()=>{if(selectedSticker){selectedSticker.className='sticker';selectedSticker.dataset.rotation='0';applyRotation(selectedSticker);selectedSticker=null}};
-function currentOutfit(){return stickerIds.map(id=>{const e=stickerEl(id);if(!e.classList.contains('active'))return null;return{id,left:e.style.left||'50%',top:e.style.top||'50%',size:e.style.fontSize||'72px',rotation:rotationOf(e)}}).filter(Boolean)}
+function currentOutfit(){return stickerIds.map(id=>{const e=stickerEl(id);if(!e.classList.contains('active'))return null;return{id,left:e.style.left||'50%',top:e.style.top||'50%',size:e.style.width||'96px',rotation:rotationOf(e)}}).filter(Boolean)}
 document.getElementById('saveOutfit').onclick=()=>{localStorage.setItem('todayme-outfit-'+activeChild,JSON.stringify(currentOutfit()));say('꾸미기를 저장했어요 ✨')};
 document.getElementById('downloadImage').onclick=async()=>{
 const stage=document.getElementById('dressStage'), rect=stage.getBoundingClientRect(), canvas=document.createElement('canvas');canvas.width=900;canvas.height=1200;const ctx=canvas.getContext('2d');
 const img=document.getElementById('dressPhoto');ctx.drawImage(img,0,0,900,1200);
-for(const s of currentOutfit()){const e=stickerEl(s.id),er=e.getBoundingClientRect();const cx=(e.offsetLeft/rect.width)*900,cy=(e.offsetTop/rect.height)*1200;const fs=parseInt(getComputedStyle(e).fontSize)/rect.width*900;ctx.save();ctx.translate(cx,cy);ctx.rotate(rotationOf(e)*Math.PI/180);ctx.font=fs+'px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(e.textContent,0,0);ctx.restore()}
+for(const s of currentOutfit()){const e=stickerEl(s.id),er=e.getBoundingClientRect();const cx=(e.offsetLeft/rect.width)*900,cy=(e.offsetTop/rect.height)*1200;
+const displayW=parseFloat(getComputedStyle(e).width)/rect.width*900;
+const stickerImg=e.querySelector('img');
+const ratio=(stickerImg.naturalHeight||1)/(stickerImg.naturalWidth||1);
+const displayH=displayW*ratio;
+ctx.save();ctx.translate(cx,cy);ctx.rotate(rotationOf(e)*Math.PI/180);
+ctx.drawImage(stickerImg,-displayW/2,-displayH/2,displayW,displayH);ctx.restore()}
 const a=document.createElement('a');a.download='오늘의나-'+names[activeChild]+'.png';a.href=canvas.toDataURL('image/png');a.click();say('완성 이미지를 저장했어요')
 };
 
@@ -1057,7 +1083,7 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=512').catch(()=>{
+migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=521').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
