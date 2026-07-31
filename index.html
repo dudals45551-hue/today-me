@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=47">
-<link rel="icon" href="./icons/icon.svg?v=47" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=48">
+<link rel="icon" href="./icons/icon.svg?v=48" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -89,6 +89,20 @@ button,input{font:inherit} button{cursor:pointer}
 
 .task{background:white;border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 7px 18px rgba(0,0,0,.08);display:flex;justify-content:space-between;align-items:center;gap:10px}
 .task button{border:0;border-radius:999px;padding:10px 14px;background:#ffd04f;font-weight:900}
+
+.letter-date{font-size:13px;color:#8a747e;font-weight:900;margin-bottom:12px}
+.letter-editor-card{background:white;border-radius:24px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,.08);margin-top:15px}
+.letter-editor-card label{display:block;font-weight:900;margin:0 0 8px}
+.letter-editor-card select,.letter-editor-card textarea{
+ width:100%;border:2px solid #eadde4;border-radius:17px;padding:13px;font:inherit;background:white
+}
+.letter-editor-card textarea{min-height:220px;resize:vertical;line-height:1.65}
+.letter-editor-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.letter-editor-actions button{border:0;border-radius:17px;min-height:52px;font-weight:900}
+.letter-save{background:linear-gradient(135deg,#ed6097,#708fdf);color:white}
+.letter-default{background:#f4edf1;color:#68545e}
+.readonly-note{text-align:center;font-size:13px;color:#89737e;font-weight:800;margin-top:12px}
+
 .letter{background:white;border-radius:25px;padding:22px;line-height:1.75;font-size:17px;box-shadow:0 10px 25px rgba(0,0,0,.1)}
 .closet-list{display:grid;grid-template-columns:1fr 1fr;gap:13px}
 .outfit{background:white;border-radius:22px;padding:17px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,.08);font-weight:900;position:relative}
@@ -250,17 +264,39 @@ font-weight:900
 <button class="primary" id="unlockParent">설정 열기</button>
 </div>
 <div id="parentSettings" style="display:none">
+<div class="letter-editor-card">
+<label for="letterChild">💌 아빠의 편지 작성</label>
+<select id="letterChild">
+<option value="harin">박하린에게</option>
+<option value="seoyul">박서율에게</option>
+</select>
+<label for="letterEditor" style="margin-top:13px">편지 내용</label>
+<textarea id="letterEditor" placeholder="아이에게 전하고 싶은 말을 적어주세요."></textarea>
+<div class="letter-editor-actions">
+<button class="letter-default" id="loadDefaultLetter">기본 문구</button>
+<button class="letter-save" id="saveLetter">편지 저장</button>
+</div>
+</div>
 <div class="settings-list">
 <button id="resetPhotos">📷 저장 사진 초기화</button>
 <button id="resetStars">⭐ 별과 출석 초기화</button>
 <button id="resetCloset">👗 옷장 초기화</button>
-<button id="resetDecorations">✨ 꾸미기 초기화</button>
+<button id="resetDecorations">✨ 꾸미기 초기화</button><button id="resetLetters">💌 편지 초기화</button>
 <button class="danger" id="resetAll">🗑️ 전체 초기화</button>
 </div>
 </div>
 </div>
 </section>
-<section id="letterPanel" class="panel"><div class="panel-head"><button data-close-panel>←</button><h2>아빠의 편지</h2></div><div class="panel-body"><div class="letter" id="letterText"></div></div></section>
+<section id="letterPanel" class="panel">
+<div class="panel-head"><button data-close-panel>←</button><h2>아빠의 편지</h2></div>
+<div class="panel-body">
+<div class="letter">
+<div class="letter-date" id="letterDate"></div>
+<div id="letterText"></div>
+</div>
+<p class="readonly-note">이 화면에서는 편지를 읽기만 할 수 있어요 💌</p>
+</div>
+</section>
 
 <input id="cameraInput" class="hidden" type="file" accept="image/*" capture="environment"><input id="albumInput" class="hidden" type="file" accept="image/*"><div id="toast" class="toast"></div>
 
@@ -285,6 +321,23 @@ function showScreen(id){screens.forEach(s=>s.classList.toggle('active',s.id===id
 function openPanel(id){panels.forEach(p=>p.classList.toggle('active',p.id===id));document.body.style.overflow='hidden'}
 function closePanels(){panels.forEach(p=>p.classList.remove('active'));document.body.style.overflow=''}
 function photoFor(c){return localStorage.getItem('todayme-photo-'+c)||defaults[c]}
+function defaultLetter(c){
+ return `사랑하는 ${names[c]}아,
+
+오늘도 건강하게 웃어줘서 고마워.
+아빠는 언제나 ${names[c]} 편이야.
+
+사랑하는 아빠가 💌`
+}
+function letterFor(c){return localStorage.getItem('todayme-letter-'+c)||defaultLetter(c)}
+function escapeHtml(text){
+ return text.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]))
+}
+function showLetter(c){
+ const text=letterFor(c);
+ document.getElementById('letterText').innerHTML=escapeHtml(text).replace(/\n/g,'<br>');
+ document.getElementById('letterDate').textContent=new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'long',day:'numeric'}).format(new Date());
+}
 function ownedItems(){return JSON.parse(localStorage.getItem('todayme-owned')||'["heart","star"]')}
 function isOwned(id){return ownedItems().includes(id)}
 function updateShop(){
@@ -417,7 +470,7 @@ if(f==='photo'){pendingPhoto=photoFor(activeChild);document.getElementById('phot
 else if(f==='decorate'){openDress()}
 else if(f==='stars'){refreshDailyRewards();openPanel('starsPanel')}
 else if(f==='closet'){openPanel('closetPanel')}
-else{document.getElementById('letterText').innerHTML=`사랑하는 ${names[activeChild]}아,<br><br>오늘도 건강하게 웃어줘서 고마워. 아빠는 언제나 ${names[activeChild]} 편이야.<br><br><strong>사랑하는 아빠가 💌</strong>`;openPanel('letterPanel')}});
+else{showLetter(activeChild);openPanel('letterPanel')}});
 
 const camera=document.getElementById('cameraInput'),album=document.getElementById('albumInput');
 document.getElementById('takeCamera').onclick=()=>{camera.value='';camera.click()};document.getElementById('openAlbum').onclick=()=>{album.removeAttribute('capture');album.value='';album.click()};
@@ -598,8 +651,26 @@ document.getElementById('unlockParent').onclick=()=>{
  if(answer!==parentAnswerValue){say('정답이 아니에요');makeParentQuestion();return}
  document.getElementById('parentGate').style.display='none';
  document.getElementById('parentSettings').style.display='block';
+ loadLetterEditor();
  say('부모님 설정이 열렸어요');
 };
+const letterChild=document.getElementById('letterChild');
+const letterEditor=document.getElementById('letterEditor');
+function loadLetterEditor(){
+ letterEditor.value=letterFor(letterChild.value);
+}
+letterChild.onchange=loadLetterEditor;
+document.getElementById('loadDefaultLetter').onclick=()=>{
+ letterEditor.value=defaultLetter(letterChild.value);
+ say('기본 문구를 불러왔어요');
+};
+document.getElementById('saveLetter').onclick=()=>{
+ const text=letterEditor.value.trim();
+ if(!text){say('편지 내용을 입력해 주세요');return}
+ localStorage.setItem('todayme-letter-'+letterChild.value,text);
+ say(names[letterChild.value]+'에게 보내는 편지를 저장했어요 💌');
+};
+
 function removeKeys(predicate){
  Object.keys(localStorage).filter(predicate).forEach(k=>localStorage.removeItem(k));
  refresh();
@@ -626,6 +697,14 @@ document.getElementById('resetDecorations').onclick=()=>{
    removeKeys(k=>k.startsWith('todayme-outfit-'));say('꾸미기를 초기화했어요');
  }
 };
+
+document.getElementById('resetLetters').onclick=()=>{
+ if(confirm('저장한 편지를 기본 문구로 되돌릴까요?')){
+   removeKeys(k=>k.startsWith('todayme-letter-'));
+   loadLetterEditor();
+   say('편지를 기본 문구로 되돌렸어요');
+ }
+};
 document.getElementById('resetAll').onclick=()=>{
  if(confirm('사진, 별, 옷장, 꾸미기를 모두 초기화할까요?')){
    if(confirm('정말 전체 초기화할까요? 되돌릴 수 없어요.')){
@@ -634,7 +713,7 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-refresh();updateAttendance();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=47').catch(()=>{
+refresh();updateAttendance();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=48').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
