@@ -1,100 +1,118 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#ffd4e6">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <title>오늘의 나</title>
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#ffd6e7">
+<title>오늘의 나</title>
+<link rel="manifest" href="./manifest.json?v=411">
+<link rel="icon" href="./icons/icon.svg?v=411" type="image/svg+xml">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Arial,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#2d2630}
+body{background:linear-gradient(90deg,#ffd6e7 0 50%,#d9edff 50% 100%)}
+button{font:inherit}
+.app{min-height:100svh;padding:calc(12px + env(safe-area-inset-top)) 18px calc(16px + env(safe-area-inset-bottom))}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:680px;margin:auto}
+.pill{border:0;background:rgba(255,255,255,.72);border-radius:999px;min-height:52px;padding:8px 17px;font-size:24px;box-shadow:0 8px 24px rgba(60,50,65,.12)}
+.hero{text-align:center;padding:34px 0 22px}
+.hero small{display:inline-block;background:rgba(255,255,255,.62);border-radius:999px;padding:7px 13px;font-weight:700}
+.hero h1{font-size:48px;line-height:1;margin:16px 0 10px;letter-spacing:-2px}
+.hero p{margin:0;font-weight:700}
+.cards{display:grid;gap:16px;max-width:680px;margin:auto}
+.card{background:rgba(255,255,255,.92);border-radius:28px;padding:18px;display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:center;box-shadow:0 15px 38px rgba(70,55,72,.17)}
+.avatar{width:88px;height:100px;border-radius:45px 45px 25px 25px;display:grid;place-items:center;font-size:55px;box-shadow:inset 0 0 0 5px rgba(255,255,255,.7)}
+.girl{background:linear-gradient(145deg,#ffd1e3,#ff9fc3)}
+.boy{background:linear-gradient(145deg,#d7edff,#91c8ff)}
+.copy .label{font-size:12px;font-weight:800;background:#fff;border-radius:999px;padding:4px 9px}
+.copy h2{font-size:31px;margin:8px 0 4px}
+.copy p{font-size:13px;margin:0;color:#716675;font-weight:700}
+.actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.action{border:0;border-radius:18px;min-height:58px;font-weight:900;font-size:18px}
+.pink1{background:linear-gradient(135deg,#ff82ad,#ff9fc0);color:#fff}
+.pink2{background:#fff0f6;color:#9a3158}
+.blue1{background:linear-gradient(135deg,#5fa9f5,#82c2ff);color:#fff}
+.blue2{background:#edf7ff;color:#2e6fae}
+.version{text-align:center;font-size:11px;font-weight:700;opacity:.55;margin:15px 0 0}
+.hidden{position:fixed!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important}
+.modal[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:end center;padding:16px}
+.backdrop{position:absolute;inset:0;background:rgba(30,25,32,.58)}
+.sheet{position:relative;z-index:1;background:#fff;width:min(100%,520px);border-radius:28px;padding:20px}
+.close{position:absolute;right:13px;top:11px;width:40px;height:40px;border:0;border-radius:50%;font-size:25px}
+.sheet h2{margin:0 0 14px;font-size:28px}
+.preview{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#eee}
+.preview img{width:100%;height:100%;object-fit:cover}
+.msg{text-align:center;font-weight:800}
+.confirm{width:100%;min-height:56px;border:0;border-radius:18px;background:linear-gradient(135deg,#ff79a8,#6db5ff);color:#fff;font-size:18px;font-weight:900}
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);opacity:0;background:#2e2930;color:#fff;padding:12px 16px;border-radius:999px;font-weight:800;transition:.2s;white-space:nowrap;z-index:30}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar" aria-label="상단 메뉴">
-      <button class="icon-button star-button" type="button" aria-label="별 개수">
-        <span class="star">⭐</span>
-        <span id="starCount">0</span>
-      </button>
-      <button class="icon-button profile-button" type="button" aria-label="프로필">👤</button>
-    </header>
+<div class="app">
+<header class="top">
+<button class="pill" id="stars">⭐ 0</button>
+<button class="pill" id="profile">👤</button>
+</header>
+<section class="hero">
+<small>오늘도 반짝이는 우리 아이</small>
+<h1>오늘의 나</h1>
+<p>사진을 골라 오늘의 모습을 남겨보세요</p>
+</section>
+<main class="cards">
+<article class="card">
+<div class="avatar girl">👧🏻</div>
+<div class="copy"><span class="label">우리 딸</span><h2>박하린</h2><p>하린이의 오늘을 예쁘게 기록해요</p></div>
+<div class="actions">
+<button class="action pink1" data-child="박하린" data-mode="camera">📷 카메라</button>
+<button class="action pink2" data-child="박하린" data-mode="album">🖼️ 앨범</button>
+</div>
+</article>
+<article class="card">
+<div class="avatar boy">👦🏻</div>
+<div class="copy"><span class="label">우리 아들</span><h2>박서율</h2><p>서율이의 오늘을 멋지게 기록해요</p></div>
+<div class="actions">
+<button class="action blue1" data-child="박서율" data-mode="camera">📷 카메라</button>
+<button class="action blue2" data-child="박서율" data-mode="album">🖼️ 앨범</button>
+</div>
+</article>
+</main>
+<p class="version">오늘의 나 V4.1.1</p>
+</div>
 
-    <main class="home">
-      <section class="hero" aria-labelledby="appTitle">
-        <p class="eyebrow">오늘도 반짝이는 우리 아이</p>
-        <h1 id="appTitle">오늘의 나</h1>
-        <p class="subtitle">사진을 골라 오늘의 모습을 남겨보세요</p>
-      </section>
+<input id="camera" class="hidden" type="file" accept="image/*" capture="environment">
+<input id="album" class="hidden" type="file" accept="image/*">
 
-      <section class="children" aria-label="아이 선택">
-        <article class="child-card daughter-card">
-          <div class="decor decor-one">✦</div>
-          <div class="decor decor-two">♡</div>
-          <div class="avatar daughter-avatar" aria-hidden="true">
-            <div class="avatar-face">👧🏻</div>
-          </div>
-          <div class="child-copy">
-            <span class="child-label">우리 딸</span>
-            <h2>박하린</h2>
-            <p>하린이의 오늘을 예쁘게 기록해요</p>
-          </div>
-          <div class="actions">
-            <button class="action-button camera" type="button" data-child="박하린" data-mode="camera">
-              <span>📷</span><strong>카메라</strong>
-            </button>
-            <button class="action-button album" type="button" data-child="박하린" data-mode="album">
-              <span>🖼️</span><strong>앨범</strong>
-            </button>
-          </div>
-        </article>
+<div class="modal" id="modal" hidden>
+<div class="backdrop" data-close></div>
+<section class="sheet">
+<button class="close" data-close>×</button>
+<h2 id="title">오늘의 사진</h2>
+<div class="preview"><img id="photo" alt="선택한 사진"></div>
+<p class="msg" id="message"></p>
+<button class="confirm" id="confirm">이 사진으로 시작하기</button>
+</section>
+</div>
+<div class="toast" id="toast"></div>
 
-        <article class="child-card son-card">
-          <div class="decor decor-one">✦</div>
-          <div class="decor decor-two">☆</div>
-          <div class="avatar son-avatar" aria-hidden="true">
-            <div class="avatar-face">👦🏻</div>
-          </div>
-          <div class="child-copy">
-            <span class="child-label">우리 아들</span>
-            <h2>박서율</h2>
-            <p>서율이의 오늘을 멋지게 기록해요</p>
-          </div>
-          <div class="actions">
-            <button class="action-button camera" type="button" data-child="박서율" data-mode="camera">
-              <span>📷</span><strong>카메라</strong>
-            </button>
-            <button class="action-button album" type="button" data-child="박서율" data-mode="album">
-              <span>🖼️</span><strong>앨범</strong>
-            </button>
-          </div>
-        </article>
-      </section>
-    </main>
-
-    <p class="version">오늘의 나 V4.1</p>
-  </div>
-
-  <input id="cameraInput" class="hidden-input" type="file" accept="image/*" capture="environment">
-  <input id="albumInput" class="hidden-input" type="file" accept="image/*">
-
-  <div id="previewModal" class="modal" hidden>
-    <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
-      <button class="modal-close" type="button" aria-label="닫기" data-close-modal>×</button>
-      <p class="modal-kicker">사진 선택 완료</p>
-      <h2 id="previewTitle">오늘의 사진</h2>
-      <div class="preview-frame">
-        <img id="previewImage" alt="선택한 사진 미리보기">
-      </div>
-      <p id="previewMessage" class="preview-message"></p>
-      <button id="confirmPhoto" class="confirm-button" type="button">이 사진으로 시작하기</button>
-    </section>
-  </div>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <script src="./script.js"></script>
+<script>
+(()=>{
+const camera=document.getElementById('camera'),album=document.getElementById('album');
+const modal=document.getElementById('modal'),photo=document.getElementById('photo');
+const title=document.getElementById('title'),message=document.getElementById('message'),toast=document.getElementById('toast');
+let child='',mode='',url='';
+function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2000)}
+document.querySelectorAll('[data-child]').forEach(b=>b.onclick=()=>{child=b.dataset.child;mode=b.dataset.mode;const i=mode==='camera'?camera:album;i.value='';i.click()})
+function chosen(e){const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/'))return say('사진 파일만 선택해 주세요');if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(f);photo.src=url;title.textContent=child+'의 오늘';message.textContent=mode==='camera'?'카메라 사진이 잘 들어왔어요!':'앨범 사진이 잘 들어왔어요!';modal.hidden=false}
+camera.onchange=chosen;album.onchange=chosen;
+document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>modal.hidden=true);
+document.getElementById('confirm').onclick=()=>{modal.hidden=true;say(child+' 사진 등록 완료!')};
+document.getElementById('stars').onclick=()=>say('별 기능은 다음 버전에서 연결해요 ⭐');
+document.getElementById('profile').onclick=()=>say('프로필 기능은 준비 중이에요');
+if('serviceWorker'in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=411').catch(()=>{}))}
+})();
+</script>
 </body>
 </html>
