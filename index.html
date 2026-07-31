@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=442">
-<link rel="icon" href="./icons/icon.svg?v=442" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=45">
+<link rel="icon" href="./icons/icon.svg?v=45" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -71,6 +71,8 @@ button,input{font:inherit} button{cursor:pointer}
 .sticker-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
 .sticker-btn{border:0;background:white;border-radius:18px;min-height:72px;font-size:34px;box-shadow:0 7px 16px rgba(0,0,0,.08)}
 .sticker-btn span{display:block;font-size:11px;font-weight:900;margin-top:4px}
+.sticker-btn.locked{filter:grayscale(1);opacity:.48;position:relative}
+.sticker-btn.locked::after{content:"🔒";position:absolute;right:5px;top:4px;font-size:16px}
 .controls{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.controls button:last-child{grid-column:1/-1}
 .controls button{border:0;border-radius:16px;min-height:48px;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.08);font-weight:900}
 .primary{width:100%;border:0;border-radius:20px;min-height:58px;background:linear-gradient(135deg,#ee679b,#698fe4);color:white;font-weight:900;font-size:18px;margin-top:14px}
@@ -79,7 +81,12 @@ button,input{font:inherit} button{cursor:pointer}
 .task button{border:0;border-radius:999px;padding:10px 14px;background:#ffd04f;font-weight:900}
 .letter{background:white;border-radius:25px;padding:22px;line-height:1.75;font-size:17px;box-shadow:0 10px 25px rgba(0,0,0,.1)}
 .closet-list{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.outfit{background:white;border-radius:22px;padding:19px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,.08);font-weight:900}
+.outfit{background:white;border-radius:22px;padding:17px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,.08);font-weight:900;position:relative}
+.outfit .price{display:block;margin-top:8px;font-size:13px;color:#856f7a}
+.outfit button{margin-top:10px;border:0;border-radius:999px;padding:9px 13px;font-weight:900;background:#ffd04f}
+.outfit button.owned{background:#64c6ad;color:white}
+.outfit.locked{opacity:.9}
+.outfit .badge{position:absolute;right:9px;top:9px;background:#fff0a8;border-radius:999px;padding:4px 8px;font-size:11px}
 .outfit .emoji{font-size:55px;display:block;margin-bottom:8px}
 .big-preview{aspect-ratio:3/4;max-width:360px;margin:auto;border-radius:30px;overflow:hidden;border:7px solid white;box-shadow:0 16px 36px rgba(0,0,0,.16);background:#eee}
 .big-preview img{width:100%;height:100%;object-fit:cover}
@@ -161,12 +168,12 @@ font-weight:900
 <div class="sticker" id="sticker-star">⭐</div>
 </div>
 <div class="sticker-list">
-<button class="sticker-btn" data-add="crown">👑<span>왕관</span></button>
-<button class="sticker-btn" data-add="dress">👗<span>드레스</span></button>
-<button class="sticker-btn" data-add="cape">🦸<span>히어로</span></button>
-<button class="sticker-btn" data-add="glasses">🕶️<span>안경</span></button>
-<button class="sticker-btn" data-add="hat">🎩<span>모자</span></button>
-<button class="sticker-btn" data-add="wings">🪽<span>날개</span></button>
+<button class="sticker-btn" data-add="crown" data-paid="1">👑<span>왕관</span></button>
+<button class="sticker-btn" data-add="dress" data-paid="1">👗<span>드레스</span></button>
+<button class="sticker-btn" data-add="cape" data-paid="1">🦸<span>히어로</span></button>
+<button class="sticker-btn" data-add="glasses" data-paid="1">🕶️<span>안경</span></button>
+<button class="sticker-btn" data-add="hat" data-paid="1">🎩<span>모자</span></button>
+<button class="sticker-btn" data-add="wings" data-paid="1">🪽<span>날개</span></button>
 <button class="sticker-btn" data-add="heart">💖<span>하트</span></button>
 <button class="sticker-btn" data-add="star">⭐<span>별</span></button>
 </div>
@@ -180,7 +187,20 @@ font-weight:900
 
 <section id="photoPanel" class="panel"><div class="panel-head"><button data-close-panel>←</button><h2>오늘의 사진</h2></div><div class="panel-body"><div class="big-preview"><img id="photoPreview" alt="사진 미리보기"></div><div class="photo-actions"><button class="camera-btn" id="takeCamera">📷 카메라</button><button class="album-btn" id="openAlbum">🖼️ 앨범</button></div><button class="primary" id="savePhoto">이 사진 저장하기</button></div></section>
 <section id="starsPanel" class="panel"><div class="panel-head"><button data-close-panel>←</button><h2>별 모으기</h2></div><div class="panel-body"><div class="task"><span>🪥 양치 잘하기</span><button data-task="brush">+1 별</button></div><div class="task"><span>🧸 장난감 정리하기</span><button data-task="clean">+1 별</button></div><div class="task"><span>💛 사랑한다고 말하기</span><button data-task="love">+1 별</button></div></div></section>
-<section id="closetPanel" class="panel"><div class="panel-head"><button data-close-panel>←</button><h2>나의 옷장</h2></div><div class="panel-body"><div class="closet-list"><div class="outfit"><span class="emoji">👗</span>공주 드레스</div><div class="outfit"><span class="emoji">🦸</span>히어로 옷</div><div class="outfit"><span class="emoji">🪽</span>천사 날개</div><div class="outfit"><span class="emoji">🎩</span>마법 모자</div></div></div></section>
+<section id="closetPanel" class="panel">
+<div class="panel-head"><button data-close-panel>←</button><h2>나의 옷장</h2></div>
+<div class="panel-body">
+<p style="text-align:center;font-weight:900">별을 모아 꾸미기 아이템을 열어보세요 ⭐</p>
+<div class="closet-list" id="closetList">
+<div class="outfit" data-shop="dress" data-cost="3"><span class="badge">3⭐</span><span class="emoji">👗</span>공주 드레스<span class="price">꾸미기에서 사용</span><button>구입하기</button></div>
+<div class="outfit" data-shop="cape" data-cost="3"><span class="badge">3⭐</span><span class="emoji">🦸</span>히어로 옷<span class="price">꾸미기에서 사용</span><button>구입하기</button></div>
+<div class="outfit" data-shop="wings" data-cost="4"><span class="badge">4⭐</span><span class="emoji">🪽</span>천사 날개<span class="price">꾸미기에서 사용</span><button>구입하기</button></div>
+<div class="outfit" data-shop="hat" data-cost="2"><span class="badge">2⭐</span><span class="emoji">🎩</span>마법 모자<span class="price">꾸미기에서 사용</span><button>구입하기</button></div>
+<div class="outfit" data-shop="glasses" data-cost="2"><span class="badge">2⭐</span><span class="emoji">🕶️</span>멋쟁이 안경<span class="price">꾸미기에서 사용</span><button>구입하기</button></div>
+<div class="outfit" data-shop="crown" data-cost="5"><span class="badge">5⭐</span><span class="emoji">👑</span>황금 왕관<span class="price">꾸미기에서 사용</span><button>구입하기</button></div>
+</div>
+</div>
+</section>
 <section id="letterPanel" class="panel"><div class="panel-head"><button data-close-panel>←</button><h2>아빠의 편지</h2></div><div class="panel-body"><div class="letter" id="letterText"></div></div></section>
 
 <input id="cameraInput" class="hidden" type="file" accept="image/*" capture="environment"><input id="albumInput" class="hidden" type="file" accept="image/*"><div id="toast" class="toast"></div>
@@ -206,7 +226,24 @@ function showScreen(id){screens.forEach(s=>s.classList.toggle('active',s.id===id
 function openPanel(id){panels.forEach(p=>p.classList.toggle('active',p.id===id));document.body.style.overflow='hidden'}
 function closePanels(){panels.forEach(p=>p.classList.remove('active'));document.body.style.overflow=''}
 function photoFor(c){return localStorage.getItem('todayme-photo-'+c)||defaults[c]}
-function refresh(){['harin','seoyul'].forEach(c=>{const p=photoFor(c);document.getElementById('main-'+c).src=p;document.getElementById('selector-'+c).src=p});document.getElementById('starCount').textContent=localStorage.getItem('todayme-stars')||'0'}
+function ownedItems(){return JSON.parse(localStorage.getItem('todayme-owned')||'["heart","star"]')}
+function isOwned(id){return ownedItems().includes(id)}
+function updateShop(){
+ const owned=ownedItems();
+ document.querySelectorAll('[data-shop]').forEach(card=>{
+   const id=card.dataset.shop,btn=card.querySelector('button'),yes=owned.includes(id);
+   card.classList.toggle('locked',!yes);
+   btn.textContent=yes?'보유 중 ✓':'구입하기';
+   btn.classList.toggle('owned',yes);
+ });
+ document.querySelectorAll('[data-paid]').forEach(btn=>{
+   const locked=!owned.includes(btn.dataset.add);
+   btn.classList.toggle('locked',locked);
+   btn.disabled=false;
+   btn.title=locked?'옷장에서 먼저 구입하세요':'';
+ });
+}
+function refresh(){['harin','seoyul'].forEach(c=>{const p=photoFor(c);document.getElementById('main-'+c).src=p;document.getElementById('selector-'+c).src=p});document.getElementById('starCount').textContent=localStorage.getItem('todayme-stars')||'0';updateShop()}
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{activeChild=b.dataset.open;showScreen(activeChild)});
 document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>showScreen('selector'));document.querySelectorAll('[data-close-panel]').forEach(b=>b.onclick=closePanels);
 
@@ -230,7 +267,13 @@ function pointerDistance(a,b){return Math.hypot(b.x-a.x,b.y-a.y)}
 function pointerAngle(a,b){return Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI}
 function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{const el=stickerEl(id);el.className='sticker';el.style.cssText='';});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.fontSize=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
 function selectSticker(el){document.querySelectorAll('.sticker').forEach(x=>x.classList.remove('selected'));selectedSticker=el;el.classList.add('selected')}
-document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const el=stickerEl(b.dataset.add);el.classList.add('active');if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.fontSize='72px';el.dataset.rotation='0';applyRotation(el)}selectSticker(el)});
+document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
+ const id=b.dataset.add;
+ if(b.dataset.paid && !isOwned(id)){say('옷장에서 먼저 구입해 주세요 🔒');return}
+ const el=stickerEl(id);el.classList.add('active');
+ if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.fontSize='72px';el.dataset.rotation='0';applyRotation(el)}
+ selectSticker(el)
+});
 document.querySelectorAll('.sticker').forEach(el=>{
 el.addEventListener('pointerdown',e=>{
   selectSticker(el);
@@ -283,10 +326,19 @@ for(const s of currentOutfit()){const e=stickerEl(s.id),er=e.getBoundingClientRe
 const a=document.createElement('a');a.download='오늘의나-'+names[activeChild]+'.png';a.href=canvas.toDataURL('image/png');a.click();say('완성 이미지를 저장했어요')
 };
 
+document.querySelectorAll('[data-shop] button').forEach(btn=>btn.onclick=()=>{
+ const card=btn.closest('[data-shop]'),id=card.dataset.shop,cost=Number(card.dataset.cost),owned=ownedItems();
+ if(owned.includes(id)){say('이미 가지고 있는 아이템이에요');return}
+ const stars=Number(localStorage.getItem('todayme-stars')||0);
+ if(stars<cost){say('별이 '+(cost-stars)+'개 더 필요해요 ⭐');return}
+ localStorage.setItem('todayme-stars',String(stars-cost));
+ owned.push(id);localStorage.setItem('todayme-owned',JSON.stringify(owned));
+ refresh();say('새 아이템을 구입했어요! 🎉')
+});
 document.querySelectorAll('[data-task]').forEach(b=>b.onclick=()=>{const key='todayme-task-'+new Date().toISOString().slice(0,10)+'-'+b.dataset.task;if(localStorage.getItem(key))return;localStorage.setItem(key,'1');localStorage.setItem('todayme-stars',String(Number(localStorage.getItem('todayme-stars')||0)+1));refresh();b.disabled=true;b.textContent='완료 ✓';say('별 1개를 받았어요 ⭐')});
 document.getElementById('starsTop').onclick=()=>openPanel('starsPanel');
 document.getElementById('settings').onclick=()=>{if(confirm('저장된 내용을 모두 초기화할까요?')){Object.keys(localStorage).filter(k=>k.startsWith('todayme-')).forEach(k=>localStorage.removeItem(k));refresh();say('초기화했어요')}};
-refresh();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=442').catch(()=>{
+refresh();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=45').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
