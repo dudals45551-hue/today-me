@@ -1,15 +1,15 @@
 {
   "name": "오늘의 나",
   "short_name": "오늘의 나",
-  "start_url": "./?v=421",
+  "start_url": "./?v=43",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f8eef3",
-  "theme_color": "#f8b6cf",
+  "background_color": "#faeef3",
+  "theme_color": "#f6b5ce",
   "icons": [
     {
-      "src": "./icons/icon.svg?v=421",
+      "src": "./icons/icon.svg?v=43",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
