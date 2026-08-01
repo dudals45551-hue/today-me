@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
-<title>오늘의 나</title>
-<link rel="manifest" href="./manifest.json?v=580">
-<link rel="icon" href="./icon.svg?v=580" type="image/svg+xml">
+<title>오늘의 나 V5.8.1</title>
+<link rel="manifest" href="./manifest.json?v=581">
+<link rel="icon" href="./icon.svg?v=581" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -431,6 +431,57 @@ font-weight:900
 .emoji-outfit .emoji{font-size:72px;line-height:1.2;min-height:92px;display:grid;place-items:center;margin-bottom:8px;filter:drop-shadow(0 9px 9px rgba(54,36,48,.18))}
 .sticker-list{max-height:310px;overflow-y:auto;padding:3px 2px 9px;scrollbar-width:thin}
 .closet-list{padding-bottom:25px}
+
+/* V5.8.1 sticker size and screen stability fix */
+.sticker-list{
+  contain:layout paint;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.sticker-btn{
+  contain:layout paint;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+/* Emoji items now occupy the same visual area as the original SVG stickers. */
+.emoji-preview{
+  width:68px;
+  height:68px;
+  margin:0 auto 4px!important;
+  display:grid!important;
+  place-items:center;
+  font-size:62px;
+  line-height:1;
+  transform:none!important;
+  filter:none!important;
+  overflow:visible;
+}
+.emoji-sticker{
+  width:112px;
+  height:112px;
+  display:none;
+  place-items:center;
+  font-size:96px;
+  line-height:1;
+  transform-origin:center center;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.22));
+  will-change:transform,left,top,width;
+  backface-visibility:hidden;
+}
+.emoji-sticker.active{display:grid}
+.sticker.active{visibility:visible}
+/* Avoid Android WebView repaint flashes while scrolling/selecting. */
+.panel,.panel-body,.dress-stage,.sticker-list,.closet-list{
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+.sticker-btn,.sticker-btn:active,.sticker-btn.just-unlocked{
+  animation:none!important;
+  transition:none!important;
+}
+@media(max-width:380px){
+  .emoji-preview{width:64px;height:64px;font-size:58px}
+}
 
 </style>
 </head>
@@ -1356,7 +1407,7 @@ function rotationOf(el){return Number(el.dataset.rotation||0)}
 function applyRotation(el){el.style.transform='translate(-50%,-50%) rotate('+rotationOf(el)+'deg)'}
 function pointerDistance(a,b){return Math.hypot(b.x-a.x,b.y-a.y)}
 function pointerAngle(a,b){return Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI}
-function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{const el=stickerEl(id);el.className='sticker';el.style.cssText='';});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.width=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
+function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{const el=stickerEl(id);el.classList.remove('active','selected');el.style.left='';el.style.top='';el.style.width='';el.style.transform='';el.dataset.rotation='0';});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);if(!el)return;el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.width=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
 function selectSticker(el){document.querySelectorAll('.sticker').forEach(x=>x.classList.remove('selected'));selectedSticker=el;el.classList.add('selected')}
 
 document.querySelectorAll('[data-category]').forEach(tab=>tab.onclick=()=>{
@@ -1373,7 +1424,7 @@ document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
  document.querySelectorAll('.sticker-btn').forEach(x=>x.classList.remove('selected-sticker'));
  b.classList.add('selected-sticker');
  const el=stickerEl(id);el.classList.add('active');
- if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.width=el.classList.contains('emoji-sticker')?'84px':'96px';el.dataset.rotation='0';applyRotation(el)}
+ if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.width=el.classList.contains('emoji-sticker')?'112px':'96px';el.dataset.rotation='0';applyRotation(el)}
  selectSticker(el)
 });
 document.querySelectorAll('.sticker').forEach(el=>{
