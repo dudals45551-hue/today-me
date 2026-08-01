@@ -139,13 +139,13 @@ button:active{transform:scale(.97)}
   margin-top:2px;
 }
 .action-button{
-  min-height:58px;
+  min-height:46px;
   border:0;
   border-radius:19px;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:8px;
+  gap:6px;
   font-size:18px;
   box-shadow:0 8px 18px rgba(64,55,66,.09);
   cursor:pointer;
@@ -188,7 +188,7 @@ button:active{transform:scale(.97)}
 .preview-frame img{width:100%;height:100%;object-fit:cover}
 .preview-message{text-align:center;font-weight:800;margin:14px 0}
 .confirm-button{
-  width:100%;min-height:58px;border:0;border-radius:18px;
+  width:100%;min-height:46px;border:0;border-radius:18px;
   color:white;font-size:18px;font-weight:900;
   background:linear-gradient(135deg,#ff79a8,#6db5ff)
 }
@@ -217,10 +217,10 @@ button:active{transform:scale(.97)}
 
 /* V5.8.2: 사진 바로 아래에 스티커 조작 버튼 배치 */
 .controls-under-photo{
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(5,minmax(0,1fr));
   gap:8px;
   margin:14px 0 4px;
-  padding:10px;
+  padding:8px;
   border:2px solid rgba(127,88,224,.18);
   border-radius:20px;
   background:rgba(255,255,255,.55);
@@ -228,14 +228,14 @@ button:active{transform:scale(.97)}
   -webkit-backdrop-filter:blur(8px);
 }
 .controls-under-photo button{
-  min-height:58px;
-  padding:8px 4px;
-  font-size:clamp(11px,3.1vw,15px);
+  min-height:46px;
+  padding:4px 2px;
+  font-size:clamp(10px,2.6vw,13px);
   line-height:1.2;
 }
 .controls-under-photo button:last-child{
   grid-column:1/-1;
-  min-height:48px;
+  min-height:42px;
 }
 @media (max-width:380px){
   .controls-under-photo{gap:6px;padding:8px}
