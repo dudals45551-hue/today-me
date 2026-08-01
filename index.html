@@ -281,6 +281,43 @@ background:linear-gradient(135deg,#ed6097,#6d8fe3);color:white;font-weight:900;f
 .sticker-btn.just-unlocked{animation:unlockGlow .8s ease}
 @keyframes unlockGlow{0%,100%{box-shadow:0 7px 16px rgba(0,0,0,.08)}50%{box-shadow:0 0 0 6px rgba(255,214,74,.45),0 10px 22px rgba(0,0,0,.12);transform:scale(1.04)}}
 
+
+.decorate-head{min-height:52px;justify-content:flex-start}
+#decoratePanel .panel-body{margin-top:8px}
+.sticker-btn.locked{
+filter:none!important;
+opacity:.74!important;
+background:linear-gradient(180deg,#fff,#f7f3f6)!important
+}
+.sticker-btn.locked svg{opacity:.76}
+.sticker-btn.locked::before{
+content:"";position:absolute;inset:0;border-radius:18px;
+background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(91,75,99,.10));
+pointer-events:none
+}
+.sticker-btn.locked::after{
+content:"🔒";position:absolute;left:7px;top:6px;font-size:15px;
+filter:drop-shadow(0 2px 2px rgba(0,0,0,.18))
+}
+.sticker-btn{
+transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+overflow:hidden
+}
+.sticker-btn:active{transform:scale(.96)}
+.sticker-btn.unlocked{
+border-color:rgba(215,137,179,.65);
+box-shadow:0 8px 18px rgba(193,112,158,.16)
+}
+.sticker-btn.selected-sticker{
+outline:3px solid #7d64e5;
+box-shadow:0 0 0 5px rgba(125,100,229,.16),0 10px 22px rgba(80,55,135,.18)
+}
+.sticker-btn svg,.outfit svg{filter:drop-shadow(0 7px 7px rgba(66,44,61,.18))}
+.sticker-cost{
+box-shadow:0 3px 8px rgba(119,83,17,.13);
+border:1px solid rgba(235,190,68,.38)
+}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -379,7 +416,7 @@ font-weight:900
 </div>
 
 <section id="decoratePanel" class="panel">
-<div class="panel-head"><button data-close-panel>←</button><h2>벡터 스티커 꾸미기</h2></div>
+<div class="panel-head decorate-head"><button data-close-panel aria-label="뒤로">←</button></div>
 <div class="panel-body">
 <div class="dress-stage" id="dressStage"><img id="dressPhoto" alt="꾸미기 사진">
 <div class="sticker" id="sticker-crown"><svg viewBox="0 0 512 512"><path d="M76 322L126 114l112 144 76-164 78 164 92-140-42 204z" fill="#FFD84A" stroke="#A56B12" stroke-width="18" stroke-linejoin="round"/><rect x="78" y="316" width="356" height="92" rx="30" fill="#FFC232" stroke="#A56B12" stroke-width="18"/><circle cx="150" cy="352" r="24" fill="#FF5E8F"/><circle cx="256" cy="352" r="24" fill="#6DB7FF"/><circle cx="362" cy="352" r="24" fill="#6FD69C"/></svg></div>
@@ -1037,6 +1074,8 @@ document.querySelectorAll('[data-category]').forEach(tab=>tab.onclick=()=>{
 document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
  const id=b.dataset.add;
  if(!isStickerUnlocked(id)){showUnlockModal(id,false);return}
+ document.querySelectorAll('.sticker-btn').forEach(x=>x.classList.remove('selected-sticker'));
+ b.classList.add('selected-sticker');
  const el=stickerEl(id);el.classList.add('active');
  if(!el.style.left){el.style.left='50%';el.style.top='50%';el.style.width='96px';el.dataset.rotation='0';applyRotation(el)}
  selectSticker(el)
