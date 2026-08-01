@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
 
-<link rel="manifest" href="./manifest-v564.json">
+<link rel="manifest" href="./manifest-v565.json">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmOGZiYyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3NzBlOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8cGF0aCBkPSJNMjU2IDU0bDQ0IDg5IDk4IDE0LTcxIDY5IDE3IDk4LTg4LTQ2LTg4IDQ2IDE3LTk4LTcxLTY5IDk4LTE0eiIgZmlsbD0iI2ZmZGU0NiIvPgo8Y2lyY2xlIGN4PSIxOTAiIGN5PSIyODYiIHI9IjM0IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzIyIiBjeT0iMjg2IiByPSIzNCIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTUwIDQxOGwxOC05Nmg0NGwyMCA5NnpNMjgwIDQxOGwyMC05Nmg0NGwxOCA5NnoiIGZpbGw9IiNmZmYiLz4KPHBhdGggZD0iTTE5MCAzMjJsNDItODZNMzIyIDMyMmwtNDItODYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icons/icon-180-v564.png">
 
@@ -430,6 +430,19 @@ background:linear-gradient(180deg,rgba(252,246,250,.98),rgba(252,246,250,.90))
 }
 #decoratePanel .sticker-list{margin-bottom:14px}
 
+
+/* V5.6.5 Samsung Internet SVG rendering fix */
+.sticker-btn svg,.outfit svg,.sticker svg{
+display:block!important;
+visibility:visible!important;
+opacity:1!important;
+overflow:visible!important
+}
+.sticker-btn svg *,.outfit svg *,.sticker svg *{
+vector-effect:non-scaling-stroke
+}
+.sticker-btn.locked svg,.outfit.locked svg{opacity:.72!important}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -534,15 +547,11 @@ font-weight:900
 <div class="panel-body">
 <div class="dress-stage" id="dressStage"><img id="dressPhoto" alt="꾸미기 사진">
 <div class="sticker" id="sticker-crown"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="crownGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7B8"/><stop offset=".28" stop-color="#FFD85B"/><stop offset=".7" stop-color="#F2B62B"/><stop offset="1" stop-color="#C88710"/></linearGradient>
-<linearGradient id="crownBand" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFE98B"/><stop offset="1" stop-color="#EAAA22"/></linearGradient>
-<filter id="crownShadow"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#553A10" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#crownShadow)">
-<path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="url(#crownGold)" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
+
+<g>
+<path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="#FFD45A" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
 <path d="M93 307l58-73 75 66 82-75 69 72 70-71-9 82z" fill="#FFE678" opacity=".62"/>
-<rect x="72" y="309" width="368" height="110" rx="34" fill="url(#crownBand)" stroke="#9B650D" stroke-width="16"/>
+<rect x="72" y="309" width="368" height="110" rx="34" fill="#F4B92E" stroke="#9B650D" stroke-width="16"/>
 <path d="M102 329h308" stroke="#FFF6C8" stroke-width="10" stroke-linecap="round" opacity=".85"/>
 <ellipse cx="145" cy="360" rx="31" ry="25" fill="#FF6A9E" stroke="#FFF" stroke-width="7"/>
 <ellipse cx="256" cy="360" rx="32" ry="26" fill="#68B7FF" stroke="#FFF" stroke-width="7"/>
@@ -551,14 +560,10 @@ font-weight:900
 <path d="M126 147l18-16M306 120l20-20M410 145l17-17" stroke="#FFF" stroke-width="9" stroke-linecap="round" opacity=".75"/>
 </g></svg></div>
 <div class="sticker" id="sticker-dress"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="dressMain" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFD4E7"/><stop offset=".45" stop-color="#FA91BC"/><stop offset="1" stop-color="#E75B99"/></linearGradient>
-<linearGradient id="dressLight" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF9FD"/><stop offset="1" stop-color="#FFD6E7"/></linearGradient>
-<filter id="dressShadow"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#6B2448" flood-opacity=".28"/></filter>
-</defs>
-<g filter="url(#dressShadow)">
-<path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="url(#dressMain)" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
-<path d="M190 91l-89 128 57 55 83-108M322 91l89 128-57 55-83-108" fill="url(#dressLight)" stroke="#B93B73" stroke-width="16" stroke-linecap="round"/>
+
+<g>
+<path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="#F27EAF" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
+<path d="M190 91l-89 128 57 55 83-108M322 91l89 128-57 55-83-108" fill="#FFE2EE" stroke="#B93B73" stroke-width="16" stroke-linecap="round"/>
 <path d="M188 166h136v119H188z" fill="#F06CA5" opacity=".92"/>
 <path d="M119 388c86-44 188-44 274 0" fill="none" stroke="#FFD9E9" stroke-width="17" stroke-linecap="round"/>
 <path d="M165 344c56-24 126-24 182 0" fill="none" stroke="#FFF1F7" stroke-width="11" stroke-linecap="round" opacity=".78"/>
@@ -568,81 +573,60 @@ font-weight:900
 <path d="M215 108c25 12 57 12 82 0" fill="none" stroke="#FFF" stroke-width="9" stroke-linecap="round" opacity=".65"/>
 </g></svg></div>
 <div class="sticker" id="sticker-cape"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="capeBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6EA0FF"/><stop offset=".5" stop-color="#416FD7"/><stop offset="1" stop-color="#2446A5"/></linearGradient>
-<linearGradient id="capeRed" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF6A7B"/><stop offset="1" stop-color="#C72645"/></linearGradient>
-<filter id="capeShadow"><feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#19306F" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#capeShadow)">
-<path d="M153 72h206l78 377H75z" fill="url(#capeBlue)" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
-<path d="M179 88h154l-38 162h-78z" fill="url(#capeRed)" stroke="#98152F" stroke-width="16"/>
+
+<g>
+<path d="M153 72h206l78 377H75z" fill="#416FD7" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
+<path d="M179 88h154l-38 162h-78z" fill="#E5445E" stroke="#98152F" stroke-width="16"/>
 <circle cx="256" cy="128" r="45" fill="#FFD95C" stroke="#9E690E" stroke-width="14"/>
 <path d="M256 102l15 31 35 5-25 25 6 34-31-16-31 16 6-34-25-25 35-5z" fill="#FFF"/>
 <path d="M123 390c80-36 186-36 266 0" fill="none" stroke="#8EB0FF" stroke-width="13" opacity=".75"/>
 <path d="M184 126c46 22 98 22 144 0" fill="none" stroke="#FFACB6" stroke-width="9" opacity=".6"/>
 </g></svg></div>
 <div class="sticker" id="sticker-glasses"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="lens" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#BFE8FF" stop-opacity=".78"/><stop offset=".52" stop-color="#4F7DAA" stop-opacity=".42"/><stop offset="1" stop-color="#172234" stop-opacity=".78"/></linearGradient>
-<linearGradient id="frame" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#51546B"/><stop offset="1" stop-color="#11131D"/></linearGradient>
-<filter id="glassShadow"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#10131B" flood-opacity=".32"/></filter>
-</defs>
-<g filter="url(#glassShadow)">
-<rect x="45" y="160" width="185" height="149" rx="55" fill="url(#frame)" stroke="#090A0F" stroke-width="20"/>
-<rect x="282" y="160" width="185" height="149" rx="55" fill="url(#frame)" stroke="#090A0F" stroke-width="20"/>
-<rect x="71" y="184" width="133" height="100" rx="39" fill="url(#lens)"/>
-<rect x="308" y="184" width="133" height="100" rx="39" fill="url(#lens)"/>
+
+<g>
+<rect x="45" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
+<rect x="282" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
+<rect x="71" y="184" width="133" height="100" rx="39" fill="#5C7896"/>
+<rect x="308" y="184" width="133" height="100" rx="39" fill="#5C7896"/>
 <path d="M230 220h52M47 186L7 154M465 186l40-32" stroke="#090A0F" stroke-width="22" stroke-linecap="round"/>
 <path d="M89 205c31-18 59-20 86-10M326 205c31-18 59-20 86-10" stroke="#FFF" stroke-width="11" stroke-linecap="round" opacity=".72"/>
 <path d="M103 235l32-18M340 235l32-18" stroke="#DFF4FF" stroke-width="7" stroke-linecap="round" opacity=".55"/>
 </g></svg></div>
 <div class="sticker" id="sticker-hat"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="hatBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9A79C0"/><stop offset=".48" stop-color="#654487"/><stop offset="1" stop-color="#342143"/></linearGradient>
-<linearGradient id="hatRibbon" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF8CB8"/><stop offset=".55" stop-color="#ED5A97"/><stop offset="1" stop-color="#B93977"/></linearGradient>
-<filter id="hatShadow"><feDropShadow dx="0" dy="13" stdDeviation="11" flood-color="#211429" flood-opacity=".33"/></filter>
-</defs>
-<g filter="url(#hatShadow)">
+
+<g>
 <ellipse cx="256" cy="401" rx="205" ry="61" fill="#2D1B3A" stroke="#130D18" stroke-width="16"/>
-<path d="M145 344V96c0-34 27-61 61-61h100c34 0 61 27 61 61v248z" fill="url(#hatBody)" stroke="#130D18" stroke-width="16"/>
+<path d="M145 344V96c0-34 27-61 61-61h100c34 0 61 27 61 61v248z" fill="#654487" stroke="#130D18" stroke-width="16"/>
 <ellipse cx="256" cy="102" rx="93" ry="38" fill="#B394D1" opacity=".78"/>
-<rect x="145" y="278" width="222" height="74" fill="url(#hatRibbon)"/>
+<rect x="145" y="278" width="222" height="74" fill="#ED5A97"/>
 <path d="M178 300c48 19 108 19 156 0" fill="none" stroke="#FFD1E3" stroke-width="9" stroke-linecap="round" opacity=".8"/>
 <path d="M368 285l42-31 31 38-47 37z" fill="#FFD85A" stroke="#9B650D" stroke-width="8"/>
 <path d="M391 276l9 11 13-4-7 12 8 11-14-3-8 12-2-14-14-4 13-6z" fill="#FFF"/>
 <path d="M190 91c35-20 88-23 127-7" stroke="#E5D2F3" stroke-width="12" stroke-linecap="round" opacity=".58"/>
 </g></svg></div>
 <div class="sticker" id="sticker-wings"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="wingFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EAF8FF"/><stop offset="1" stop-color="#CDEBFA"/></linearGradient>
-<filter id="wingShadow"><feDropShadow dx="0" dy="11" stdDeviation="11" flood-color="#4D89AD" flood-opacity=".28"/></filter>
-</defs>
-<g filter="url(#wingShadow)">
-<path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="url(#wingFill)" stroke="#6FB5E5" stroke-width="16"/>
-<path d="M268 86c120-43 230 46 221 200-7 120-97 175-221 158z" fill="url(#wingFill)" stroke="#6FB5E5" stroke-width="16"/>
+
+<g>
+<path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
+<path d="M268 86c120-43 230 46 221 200-7 120-97 175-221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
 <path d="M56 170c50 5 101 35 151 91M52 253c56 2 104 24 156 68M456 170c-50 5-101 35-151 91M460 253c-56 2-104 24-156 68" fill="none" stroke="#92CEF0" stroke-width="13" stroke-linecap="round"/>
 <path d="M96 337c40-15 79-15 118 1M416 337c-40-15-79-15-118 1" fill="none" stroke="#C5E9FA" stroke-width="12" stroke-linecap="round"/>
 <path d="M84 214c30 11 59 29 86 54M428 214c-30 11-59 29-86 54" fill="none" stroke="#FFF" stroke-width="10" stroke-linecap="round" opacity=".78"/>
 <circle cx="256" cy="263" r="19" fill="#FFD7EF" stroke="#E68DB8" stroke-width="7"/>
 </g></svg></div>
 <div class="sticker" id="sticker-heart"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="heartFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFA6C8"/><stop offset=".46" stop-color="#FF5F9E"/><stop offset="1" stop-color="#D72D73"/></linearGradient>
-<filter id="heartShadow"><feDropShadow dx="0" dy="11" stdDeviation="10" flood-color="#8D204E" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#heartShadow)">
-<path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="url(#heartFill)" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
+
+<g>
+<path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="#F05294" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
 <path d="M108 139c30-33 76-39 112-14" fill="none" stroke="#FFF" stroke-width="16" stroke-linecap="round" opacity=".76"/>
 <circle cx="183" cy="187" r="14" fill="#FFF" opacity=".67"/>
 <path d="M327 333l15 31 34 5-25 24 6 34-30-16-31 16 6-34-24-24 34-5z" fill="#FFDFF0" opacity=".72"/>
 </g></svg></div>
 <div class="sticker" id="sticker-star"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="starFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7AA"/><stop offset=".44" stop-color="#FFD84D"/><stop offset="1" stop-color="#EDA91B"/></linearGradient>
-<filter id="starShadow"><feDropShadow dx="0" dy="11" stdDeviation="10" flood-color="#8A5D0B" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#starShadow)">
-<path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="url(#starFill)" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
+
+<g>
+<path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="#FFD84D" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
 <circle cx="210" cy="226" r="16" fill="#59431A"/>
 <circle cx="302" cy="226" r="16" fill="#59431A"/>
 <path d="M205 283c32 32 70 32 102 0" fill="none" stroke="#674717" stroke-width="14" stroke-linecap="round"/>
@@ -661,15 +645,11 @@ font-weight:900
 </div>
 <div class="sticker-list">
 <button class="sticker-btn" data-add="crown" data-paid="1" data-cat="head"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="crownGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7B8"/><stop offset=".28" stop-color="#FFD85B"/><stop offset=".7" stop-color="#F2B62B"/><stop offset="1" stop-color="#C88710"/></linearGradient>
-<linearGradient id="crownBand" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFE98B"/><stop offset="1" stop-color="#EAAA22"/></linearGradient>
-<filter id="crownShadow"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#553A10" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#crownShadow)">
-<path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="url(#crownGold)" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
+
+<g>
+<path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="#FFD45A" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
 <path d="M93 307l58-73 75 66 82-75 69 72 70-71-9 82z" fill="#FFE678" opacity=".62"/>
-<rect x="72" y="309" width="368" height="110" rx="34" fill="url(#crownBand)" stroke="#9B650D" stroke-width="16"/>
+<rect x="72" y="309" width="368" height="110" rx="34" fill="#F4B92E" stroke="#9B650D" stroke-width="16"/>
 <path d="M102 329h308" stroke="#FFF6C8" stroke-width="10" stroke-linecap="round" opacity=".85"/>
 <ellipse cx="145" cy="360" rx="31" ry="25" fill="#FF6A9E" stroke="#FFF" stroke-width="7"/>
 <ellipse cx="256" cy="360" rx="32" ry="26" fill="#68B7FF" stroke="#FFF" stroke-width="7"/>
@@ -678,45 +658,33 @@ font-weight:900
 <path d="M126 147l18-16M306 120l20-20M410 145l17-17" stroke="#FFF" stroke-width="9" stroke-linecap="round" opacity=".75"/>
 </g></svg><span>왕관</span></button>
 <button class="sticker-btn" data-add="hat" data-paid="1" data-cat="head"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="hatBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9A79C0"/><stop offset=".48" stop-color="#654487"/><stop offset="1" stop-color="#342143"/></linearGradient>
-<linearGradient id="hatRibbon" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF8CB8"/><stop offset=".55" stop-color="#ED5A97"/><stop offset="1" stop-color="#B93977"/></linearGradient>
-<filter id="hatShadow"><feDropShadow dx="0" dy="13" stdDeviation="11" flood-color="#211429" flood-opacity=".33"/></filter>
-</defs>
-<g filter="url(#hatShadow)">
+
+<g>
 <ellipse cx="256" cy="401" rx="205" ry="61" fill="#2D1B3A" stroke="#130D18" stroke-width="16"/>
-<path d="M145 344V96c0-34 27-61 61-61h100c34 0 61 27 61 61v248z" fill="url(#hatBody)" stroke="#130D18" stroke-width="16"/>
+<path d="M145 344V96c0-34 27-61 61-61h100c34 0 61 27 61 61v248z" fill="#654487" stroke="#130D18" stroke-width="16"/>
 <ellipse cx="256" cy="102" rx="93" ry="38" fill="#B394D1" opacity=".78"/>
-<rect x="145" y="278" width="222" height="74" fill="url(#hatRibbon)"/>
+<rect x="145" y="278" width="222" height="74" fill="#ED5A97"/>
 <path d="M178 300c48 19 108 19 156 0" fill="none" stroke="#FFD1E3" stroke-width="9" stroke-linecap="round" opacity=".8"/>
 <path d="M368 285l42-31 31 38-47 37z" fill="#FFD85A" stroke="#9B650D" stroke-width="8"/>
 <path d="M391 276l9 11 13-4-7 12 8 11-14-3-8 12-2-14-14-4 13-6z" fill="#FFF"/>
 <path d="M190 91c35-20 88-23 127-7" stroke="#E5D2F3" stroke-width="12" stroke-linecap="round" opacity=".58"/>
 </g></svg><span>모자</span></button>
 <button class="sticker-btn" data-add="glasses" data-paid="1" data-cat="head"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="lens" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#BFE8FF" stop-opacity=".78"/><stop offset=".52" stop-color="#4F7DAA" stop-opacity=".42"/><stop offset="1" stop-color="#172234" stop-opacity=".78"/></linearGradient>
-<linearGradient id="frame" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#51546B"/><stop offset="1" stop-color="#11131D"/></linearGradient>
-<filter id="glassShadow"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#10131B" flood-opacity=".32"/></filter>
-</defs>
-<g filter="url(#glassShadow)">
-<rect x="45" y="160" width="185" height="149" rx="55" fill="url(#frame)" stroke="#090A0F" stroke-width="20"/>
-<rect x="282" y="160" width="185" height="149" rx="55" fill="url(#frame)" stroke="#090A0F" stroke-width="20"/>
-<rect x="71" y="184" width="133" height="100" rx="39" fill="url(#lens)"/>
-<rect x="308" y="184" width="133" height="100" rx="39" fill="url(#lens)"/>
+
+<g>
+<rect x="45" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
+<rect x="282" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
+<rect x="71" y="184" width="133" height="100" rx="39" fill="#5C7896"/>
+<rect x="308" y="184" width="133" height="100" rx="39" fill="#5C7896"/>
 <path d="M230 220h52M47 186L7 154M465 186l40-32" stroke="#090A0F" stroke-width="22" stroke-linecap="round"/>
 <path d="M89 205c31-18 59-20 86-10M326 205c31-18 59-20 86-10" stroke="#FFF" stroke-width="11" stroke-linecap="round" opacity=".72"/>
 <path d="M103 235l32-18M340 235l32-18" stroke="#DFF4FF" stroke-width="7" stroke-linecap="round" opacity=".55"/>
 </g></svg><span>안경</span></button>
 <button class="sticker-btn" data-add="dress" data-paid="1" data-cat="outfit"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="dressMain" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFD4E7"/><stop offset=".45" stop-color="#FA91BC"/><stop offset="1" stop-color="#E75B99"/></linearGradient>
-<linearGradient id="dressLight" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF9FD"/><stop offset="1" stop-color="#FFD6E7"/></linearGradient>
-<filter id="dressShadow"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#6B2448" flood-opacity=".28"/></filter>
-</defs>
-<g filter="url(#dressShadow)">
-<path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="url(#dressMain)" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
-<path d="M190 91l-89 128 57 55 83-108M322 91l89 128-57 55-83-108" fill="url(#dressLight)" stroke="#B93B73" stroke-width="16" stroke-linecap="round"/>
+
+<g>
+<path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="#F27EAF" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
+<path d="M190 91l-89 128 57 55 83-108M322 91l89 128-57 55-83-108" fill="#FFE2EE" stroke="#B93B73" stroke-width="16" stroke-linecap="round"/>
 <path d="M188 166h136v119H188z" fill="#F06CA5" opacity=".92"/>
 <path d="M119 388c86-44 188-44 274 0" fill="none" stroke="#FFD9E9" stroke-width="17" stroke-linecap="round"/>
 <path d="M165 344c56-24 126-24 182 0" fill="none" stroke="#FFF1F7" stroke-width="11" stroke-linecap="round" opacity=".78"/>
@@ -726,50 +694,37 @@ font-weight:900
 <path d="M215 108c25 12 57 12 82 0" fill="none" stroke="#FFF" stroke-width="9" stroke-linecap="round" opacity=".65"/>
 </g></svg><span>드레스</span></button>
 <button class="sticker-btn" data-add="cape" data-paid="1" data-cat="outfit"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="capeBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6EA0FF"/><stop offset=".5" stop-color="#416FD7"/><stop offset="1" stop-color="#2446A5"/></linearGradient>
-<linearGradient id="capeRed" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF6A7B"/><stop offset="1" stop-color="#C72645"/></linearGradient>
-<filter id="capeShadow"><feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#19306F" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#capeShadow)">
-<path d="M153 72h206l78 377H75z" fill="url(#capeBlue)" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
-<path d="M179 88h154l-38 162h-78z" fill="url(#capeRed)" stroke="#98152F" stroke-width="16"/>
+
+<g>
+<path d="M153 72h206l78 377H75z" fill="#416FD7" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
+<path d="M179 88h154l-38 162h-78z" fill="#E5445E" stroke="#98152F" stroke-width="16"/>
 <circle cx="256" cy="128" r="45" fill="#FFD95C" stroke="#9E690E" stroke-width="14"/>
 <path d="M256 102l15 31 35 5-25 25 6 34-31-16-31 16 6-34-25-25 35-5z" fill="#FFF"/>
 <path d="M123 390c80-36 186-36 266 0" fill="none" stroke="#8EB0FF" stroke-width="13" opacity=".75"/>
 <path d="M184 126c46 22 98 22 144 0" fill="none" stroke="#FFACB6" stroke-width="9" opacity=".6"/>
 </g></svg><span>히어로</span></button>
 <button class="sticker-btn" data-add="wings" data-paid="1" data-cat="outfit"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="wingFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EAF8FF"/><stop offset="1" stop-color="#CDEBFA"/></linearGradient>
-<filter id="wingShadow"><feDropShadow dx="0" dy="11" stdDeviation="11" flood-color="#4D89AD" flood-opacity=".28"/></filter>
-</defs>
-<g filter="url(#wingShadow)">
-<path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="url(#wingFill)" stroke="#6FB5E5" stroke-width="16"/>
-<path d="M268 86c120-43 230 46 221 200-7 120-97 175-221 158z" fill="url(#wingFill)" stroke="#6FB5E5" stroke-width="16"/>
+
+<g>
+<path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
+<path d="M268 86c120-43 230 46 221 200-7 120-97 175-221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
 <path d="M56 170c50 5 101 35 151 91M52 253c56 2 104 24 156 68M456 170c-50 5-101 35-151 91M460 253c-56 2-104 24-156 68" fill="none" stroke="#92CEF0" stroke-width="13" stroke-linecap="round"/>
 <path d="M96 337c40-15 79-15 118 1M416 337c-40-15-79-15-118 1" fill="none" stroke="#C5E9FA" stroke-width="12" stroke-linecap="round"/>
 <path d="M84 214c30 11 59 29 86 54M428 214c-30 11-59 29-86 54" fill="none" stroke="#FFF" stroke-width="10" stroke-linecap="round" opacity=".78"/>
 <circle cx="256" cy="263" r="19" fill="#FFD7EF" stroke="#E68DB8" stroke-width="7"/>
 </g></svg><span>날개</span></button>
 <button class="sticker-btn" data-add="heart" data-cat="decor"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="heartFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFA6C8"/><stop offset=".46" stop-color="#FF5F9E"/><stop offset="1" stop-color="#D72D73"/></linearGradient>
-<filter id="heartShadow"><feDropShadow dx="0" dy="11" stdDeviation="10" flood-color="#8D204E" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#heartShadow)">
-<path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="url(#heartFill)" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
+
+<g>
+<path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="#F05294" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
 <path d="M108 139c30-33 76-39 112-14" fill="none" stroke="#FFF" stroke-width="16" stroke-linecap="round" opacity=".76"/>
 <circle cx="183" cy="187" r="14" fill="#FFF" opacity=".67"/>
 <path d="M327 333l15 31 34 5-25 24 6 34-30-16-31 16 6-34-24-24 34-5z" fill="#FFDFF0" opacity=".72"/>
 </g></svg><span>하트</span></button>
 <button class="sticker-btn" data-add="star" data-cat="decor"><svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="starFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7AA"/><stop offset=".44" stop-color="#FFD84D"/><stop offset="1" stop-color="#EDA91B"/></linearGradient>
-<filter id="starShadow"><feDropShadow dx="0" dy="11" stdDeviation="10" flood-color="#8A5D0B" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#starShadow)">
-<path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="url(#starFill)" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
+
+<g>
+<path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="#FFD84D" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
 <circle cx="210" cy="226" r="16" fill="#59431A"/>
 <circle cx="302" cy="226" r="16" fill="#59431A"/>
 <path d="M205 283c32 32 70 32 102 0" fill="none" stroke="#674717" stroke-width="14" stroke-linecap="round"/>
@@ -808,12 +763,9 @@ font-weight:900
 <div class="outfit" data-shop="heart">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="heartFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFA6C8"/><stop offset=".46" stop-color="#FF5F9E"/><stop offset="1" stop-color="#D72D73"/></linearGradient>
-<filter id="heartShadow"><feDropShadow dx="0" dy="11" stdDeviation="10" flood-color="#8D204E" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#heartShadow)">
-<path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="url(#heartFill)" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
+
+<g>
+<path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="#F05294" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
 <path d="M108 139c30-33 76-39 112-14" fill="none" stroke="#FFF" stroke-width="16" stroke-linecap="round" opacity=".76"/>
 <circle cx="183" cy="187" r="14" fill="#FFF" opacity=".67"/>
 <path d="M327 333l15 31 34 5-25 24 6 34-30-16-31 16 6-34-24-24 34-5z" fill="#FFDFF0" opacity=".72"/>
@@ -824,12 +776,9 @@ font-weight:900
 </div><div class="outfit" data-shop="star">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="starFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7AA"/><stop offset=".44" stop-color="#FFD84D"/><stop offset="1" stop-color="#EDA91B"/></linearGradient>
-<filter id="starShadow"><feDropShadow dx="0" dy="11" stdDeviation="10" flood-color="#8A5D0B" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#starShadow)">
-<path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="url(#starFill)" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
+
+<g>
+<path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="#FFD84D" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
 <circle cx="210" cy="226" r="16" fill="#59431A"/>
 <circle cx="302" cy="226" r="16" fill="#59431A"/>
 <path d="M205 283c32 32 70 32 102 0" fill="none" stroke="#674717" stroke-width="14" stroke-linecap="round"/>
@@ -842,15 +791,11 @@ font-weight:900
 </div><div class="outfit" data-shop="crown">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="crownGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7B8"/><stop offset=".28" stop-color="#FFD85B"/><stop offset=".7" stop-color="#F2B62B"/><stop offset="1" stop-color="#C88710"/></linearGradient>
-<linearGradient id="crownBand" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFE98B"/><stop offset="1" stop-color="#EAAA22"/></linearGradient>
-<filter id="crownShadow"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#553A10" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#crownShadow)">
-<path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="url(#crownGold)" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
+
+<g>
+<path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="#FFD45A" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
 <path d="M93 307l58-73 75 66 82-75 69 72 70-71-9 82z" fill="#FFE678" opacity=".62"/>
-<rect x="72" y="309" width="368" height="110" rx="34" fill="url(#crownBand)" stroke="#9B650D" stroke-width="16"/>
+<rect x="72" y="309" width="368" height="110" rx="34" fill="#F4B92E" stroke="#9B650D" stroke-width="16"/>
 <path d="M102 329h308" stroke="#FFF6C8" stroke-width="10" stroke-linecap="round" opacity=".85"/>
 <ellipse cx="145" cy="360" rx="31" ry="25" fill="#FF6A9E" stroke="#FFF" stroke-width="7"/>
 <ellipse cx="256" cy="360" rx="32" ry="26" fill="#68B7FF" stroke="#FFF" stroke-width="7"/>
@@ -864,16 +809,12 @@ font-weight:900
 </div><div class="outfit" data-shop="hat">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="hatBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9A79C0"/><stop offset=".48" stop-color="#654487"/><stop offset="1" stop-color="#342143"/></linearGradient>
-<linearGradient id="hatRibbon" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF8CB8"/><stop offset=".55" stop-color="#ED5A97"/><stop offset="1" stop-color="#B93977"/></linearGradient>
-<filter id="hatShadow"><feDropShadow dx="0" dy="13" stdDeviation="11" flood-color="#211429" flood-opacity=".33"/></filter>
-</defs>
-<g filter="url(#hatShadow)">
+
+<g>
 <ellipse cx="256" cy="401" rx="205" ry="61" fill="#2D1B3A" stroke="#130D18" stroke-width="16"/>
-<path d="M145 344V96c0-34 27-61 61-61h100c34 0 61 27 61 61v248z" fill="url(#hatBody)" stroke="#130D18" stroke-width="16"/>
+<path d="M145 344V96c0-34 27-61 61-61h100c34 0 61 27 61 61v248z" fill="#654487" stroke="#130D18" stroke-width="16"/>
 <ellipse cx="256" cy="102" rx="93" ry="38" fill="#B394D1" opacity=".78"/>
-<rect x="145" y="278" width="222" height="74" fill="url(#hatRibbon)"/>
+<rect x="145" y="278" width="222" height="74" fill="#ED5A97"/>
 <path d="M178 300c48 19 108 19 156 0" fill="none" stroke="#FFD1E3" stroke-width="9" stroke-linecap="round" opacity=".8"/>
 <path d="M368 285l42-31 31 38-47 37z" fill="#FFD85A" stroke="#9B650D" stroke-width="8"/>
 <path d="M391 276l9 11 13-4-7 12 8 11-14-3-8 12-2-14-14-4 13-6z" fill="#FFF"/>
@@ -885,16 +826,12 @@ font-weight:900
 </div><div class="outfit" data-shop="glasses">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="lens" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#BFE8FF" stop-opacity=".78"/><stop offset=".52" stop-color="#4F7DAA" stop-opacity=".42"/><stop offset="1" stop-color="#172234" stop-opacity=".78"/></linearGradient>
-<linearGradient id="frame" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#51546B"/><stop offset="1" stop-color="#11131D"/></linearGradient>
-<filter id="glassShadow"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#10131B" flood-opacity=".32"/></filter>
-</defs>
-<g filter="url(#glassShadow)">
-<rect x="45" y="160" width="185" height="149" rx="55" fill="url(#frame)" stroke="#090A0F" stroke-width="20"/>
-<rect x="282" y="160" width="185" height="149" rx="55" fill="url(#frame)" stroke="#090A0F" stroke-width="20"/>
-<rect x="71" y="184" width="133" height="100" rx="39" fill="url(#lens)"/>
-<rect x="308" y="184" width="133" height="100" rx="39" fill="url(#lens)"/>
+
+<g>
+<rect x="45" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
+<rect x="282" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
+<rect x="71" y="184" width="133" height="100" rx="39" fill="#5C7896"/>
+<rect x="308" y="184" width="133" height="100" rx="39" fill="#5C7896"/>
 <path d="M230 220h52M47 186L7 154M465 186l40-32" stroke="#090A0F" stroke-width="22" stroke-linecap="round"/>
 <path d="M89 205c31-18 59-20 86-10M326 205c31-18 59-20 86-10" stroke="#FFF" stroke-width="11" stroke-linecap="round" opacity=".72"/>
 <path d="M103 235l32-18M340 235l32-18" stroke="#DFF4FF" stroke-width="7" stroke-linecap="round" opacity=".55"/>
@@ -905,14 +842,10 @@ font-weight:900
 </div><div class="outfit" data-shop="dress">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="dressMain" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFD4E7"/><stop offset=".45" stop-color="#FA91BC"/><stop offset="1" stop-color="#E75B99"/></linearGradient>
-<linearGradient id="dressLight" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF9FD"/><stop offset="1" stop-color="#FFD6E7"/></linearGradient>
-<filter id="dressShadow"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#6B2448" flood-opacity=".28"/></filter>
-</defs>
-<g filter="url(#dressShadow)">
-<path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="url(#dressMain)" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
-<path d="M190 91l-89 128 57 55 83-108M322 91l89 128-57 55-83-108" fill="url(#dressLight)" stroke="#B93B73" stroke-width="16" stroke-linecap="round"/>
+
+<g>
+<path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="#F27EAF" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
+<path d="M190 91l-89 128 57 55 83-108M322 91l89 128-57 55-83-108" fill="#FFE2EE" stroke="#B93B73" stroke-width="16" stroke-linecap="round"/>
 <path d="M188 166h136v119H188z" fill="#F06CA5" opacity=".92"/>
 <path d="M119 388c86-44 188-44 274 0" fill="none" stroke="#FFD9E9" stroke-width="17" stroke-linecap="round"/>
 <path d="M165 344c56-24 126-24 182 0" fill="none" stroke="#FFF1F7" stroke-width="11" stroke-linecap="round" opacity=".78"/>
@@ -927,14 +860,10 @@ font-weight:900
 </div><div class="outfit" data-shop="cape">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="capeBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6EA0FF"/><stop offset=".5" stop-color="#416FD7"/><stop offset="1" stop-color="#2446A5"/></linearGradient>
-<linearGradient id="capeRed" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF6A7B"/><stop offset="1" stop-color="#C72645"/></linearGradient>
-<filter id="capeShadow"><feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#19306F" flood-opacity=".3"/></filter>
-</defs>
-<g filter="url(#capeShadow)">
-<path d="M153 72h206l78 377H75z" fill="url(#capeBlue)" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
-<path d="M179 88h154l-38 162h-78z" fill="url(#capeRed)" stroke="#98152F" stroke-width="16"/>
+
+<g>
+<path d="M153 72h206l78 377H75z" fill="#416FD7" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
+<path d="M179 88h154l-38 162h-78z" fill="#E5445E" stroke="#98152F" stroke-width="16"/>
 <circle cx="256" cy="128" r="45" fill="#FFD95C" stroke="#9E690E" stroke-width="14"/>
 <path d="M256 102l15 31 35 5-25 25 6 34-31-16-31 16 6-34-25-25 35-5z" fill="#FFF"/>
 <path d="M123 390c80-36 186-36 266 0" fill="none" stroke="#8EB0FF" stroke-width="13" opacity=".75"/>
@@ -946,13 +875,10 @@ font-weight:900
 </div><div class="outfit" data-shop="wings">
 <span class="badge"></span>
 <svg viewBox="0 0 512 512" aria-hidden="true">
-<defs>
-<linearGradient id="wingFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EAF8FF"/><stop offset="1" stop-color="#CDEBFA"/></linearGradient>
-<filter id="wingShadow"><feDropShadow dx="0" dy="11" stdDeviation="11" flood-color="#4D89AD" flood-opacity=".28"/></filter>
-</defs>
-<g filter="url(#wingShadow)">
-<path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="url(#wingFill)" stroke="#6FB5E5" stroke-width="16"/>
-<path d="M268 86c120-43 230 46 221 200-7 120-97 175-221 158z" fill="url(#wingFill)" stroke="#6FB5E5" stroke-width="16"/>
+
+<g>
+<path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
+<path d="M268 86c120-43 230 46 221 200-7 120-97 175-221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
 <path d="M56 170c50 5 101 35 151 91M52 253c56 2 104 24 156 68M456 170c-50 5-101 35-151 91M460 253c-56 2-104 24-156 68" fill="none" stroke="#92CEF0" stroke-width="13" stroke-linecap="round"/>
 <path d="M96 337c40-15 79-15 118 1M416 337c-40-15-79-15-118 1" fill="none" stroke="#C5E9FA" stroke-width="12" stroke-linecap="round"/>
 <path d="M84 214c30 11 59 29 86 54M428 214c-30 11-59 29-86 54" fill="none" stroke="#FFF" stroke-width="10" stroke-linecap="round" opacity=".78"/>
@@ -1057,7 +983,7 @@ font-weight:900
   }
   if(changed&&!sessionStorage.getItem('todayme-clean-reloaded')){
    sessionStorage.setItem('todayme-clean-reloaded','1');
-   location.replace(location.pathname+'?v=564&clean=1');
+   location.replace(location.pathname+'?v=565&clean=1');
   }
  }catch(e){}
 })();
