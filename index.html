@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
 
-<link rel="manifest" href="./manifest-v572.json">
+<link rel="manifest" href="./manifest-v580.json">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmOGZiYyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3NzBlOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8cGF0aCBkPSJNMjU2IDU0bDQ0IDg5IDk4IDE0LTcxIDY5IDE3IDk4LTg4LTQ2LTg4IDQ2IDE3LTk4LTcxLTY5IDk4LTE0eiIgZmlsbD0iI2ZmZGU0NiIvPgo8Y2lyY2xlIGN4PSIxOTAiIGN5PSIyODYiIHI9IjM0IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzIyIiBjeT0iMjg2IiByPSIzNCIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTUwIDQxOGwxOC05Nmg0NGwyMCA5NnpNMjgwIDQxOGwyMC05Nmg0NGwxOCA5NnoiIGZpbGw9IiNmZmYiLz4KPHBhdGggZD0iTTE5MCAzMjJsNDItODZNMzIyIDMyMmwtNDItODYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icons/icon-180-v564.png">
 
@@ -608,6 +608,13 @@ transform-origin:center!important;
 @keyframes dressSvgShimmerVisible{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.04)}}
 @keyframes capeSvgPulseVisible{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.08) rotate(2deg)}}
 
+
+.sticker img{display:block;width:100%;height:auto;pointer-events:none}
+.sticker-btn img{width:68px;height:68px;object-fit:contain;display:block;margin:auto;pointer-events:none;filter:drop-shadow(0 7px 7px rgba(50,35,45,.18))}
+.outfit img{width:102px;height:102px;object-fit:contain;display:block;margin:0 auto 8px;pointer-events:none;filter:drop-shadow(0 8px 8px rgba(50,35,45,.17))}
+.sticker-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:390px){.sticker-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -798,6 +805,30 @@ font-weight:900
 <path d="M151 149l43-13M356 136l39 14" stroke="#FFF9D2" stroke-width="12" stroke-linecap="round" opacity=".85"/>
 <circle cx="178" cy="187" r="9" fill="#FFF" opacity=".8"/>
 </g></svg></div>
+<div class="sticker" id="sticker-santa_hat"><img src="./assets/stickers/hats/santa_hat.svg" alt="산타 모자"></div>
+<div class="sticker" id="sticker-police_hat"><img src="./assets/stickers/hats/police_hat.svg" alt="경찰모"></div>
+<div class="sticker" id="sticker-fire_helmet"><img src="./assets/stickers/hats/fire_helmet.svg" alt="소방 헬멧"></div>
+<div class="sticker" id="sticker-space_helmet"><img src="./assets/stickers/hats/space_helmet.svg" alt="우주 헬멧"></div>
+<div class="sticker" id="sticker-dino_hat"><img src="./assets/stickers/hats/dino_hat.svg" alt="공룡 모자"></div>
+<div class="sticker" id="sticker-bunny_ears"><img src="./assets/stickers/hats/bunny_ears.svg" alt="토끼귀"></div>
+<div class="sticker" id="sticker-cat_ears"><img src="./assets/stickers/hats/cat_ears.svg" alt="고양이귀"></div>
+<div class="sticker" id="sticker-bear_ears"><img src="./assets/stickers/hats/bear_ears.svg" alt="곰귀"></div>
+<div class="sticker" id="sticker-prince"><img src="./assets/stickers/clothes/prince.svg" alt="왕자 의상"></div>
+<div class="sticker" id="sticker-spacesuit"><img src="./assets/stickers/clothes/spacesuit.svg" alt="우주복"></div>
+<div class="sticker" id="sticker-police_uniform"><img src="./assets/stickers/clothes/police_uniform.svg" alt="경찰복"></div>
+<div class="sticker" id="sticker-doctor_coat"><img src="./assets/stickers/clothes/doctor_coat.svg" alt="의사 가운"></div>
+<div class="sticker" id="sticker-fairy_dress"><img src="./assets/stickers/clothes/fairy_dress.svg" alt="요정 의상"></div>
+<div class="sticker" id="sticker-hanbok"><img src="./assets/stickers/clothes/hanbok.svg" alt="한복"></div>
+<div class="sticker" id="sticker-santa_suit"><img src="./assets/stickers/clothes/santa_suit.svg" alt="산타 의상"></div>
+<div class="sticker" id="sticker-dino_suit"><img src="./assets/stickers/clothes/dino_suit.svg" alt="공룡 의상"></div>
+<div class="sticker" id="sticker-flower"><img src="./assets/stickers/decorations/flower.svg" alt="꽃"></div>
+<div class="sticker" id="sticker-rainbow"><img src="./assets/stickers/decorations/rainbow.svg" alt="무지개"></div>
+<div class="sticker" id="sticker-balloon"><img src="./assets/stickers/decorations/balloon.svg" alt="풍선"></div>
+<div class="sticker" id="sticker-ribbon"><img src="./assets/stickers/decorations/ribbon.svg" alt="리본"></div>
+<div class="sticker" id="sticker-gem"><img src="./assets/stickers/decorations/gem.svg" alt="보석"></div>
+<div class="sticker" id="sticker-cloud"><img src="./assets/stickers/decorations/cloud.svg" alt="구름"></div>
+<div class="sticker" id="sticker-moon"><img src="./assets/stickers/decorations/moon.svg" alt="달"></div>
+<div class="sticker" id="sticker-magic_wand"><img src="./assets/stickers/decorations/magic_wand.svg" alt="마법봉"></div>
 </div>
 <div class="controls">
 <button id="bigger">크게 ＋</button><button id="smaller">작게 －</button><button id="rotateLeft">↶ 왼쪽 회전</button><button id="rotateRight">↷ 오른쪽 회전</button><button id="removeSticker">삭제</button>
@@ -1053,6 +1084,174 @@ font-weight:900
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
+<div class="outfit" data-shop="santa_hat">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/santa_hat.svg" alt="산타 모자">
+<strong>산타 모자</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="police_hat">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/police_hat.svg" alt="경찰모">
+<strong>경찰모</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="fire_helmet">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/fire_helmet.svg" alt="소방 헬멧">
+<strong>소방 헬멧</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="space_helmet">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/space_helmet.svg" alt="우주 헬멧">
+<strong>우주 헬멧</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="dino_hat">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/dino_hat.svg" alt="공룡 모자">
+<strong>공룡 모자</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="bunny_ears">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/bunny_ears.svg" alt="토끼귀">
+<strong>토끼귀</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="cat_ears">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/cat_ears.svg" alt="고양이귀">
+<strong>고양이귀</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="bear_ears">
+<span class="badge"></span>
+<img src="./assets/stickers/hats/bear_ears.svg" alt="곰귀">
+<strong>곰귀</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="prince">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/prince.svg" alt="왕자 의상">
+<strong>왕자 의상</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="spacesuit">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/spacesuit.svg" alt="우주복">
+<strong>우주복</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="police_uniform">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/police_uniform.svg" alt="경찰복">
+<strong>경찰복</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="doctor_coat">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/doctor_coat.svg" alt="의사 가운">
+<strong>의사 가운</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="fairy_dress">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/fairy_dress.svg" alt="요정 의상">
+<strong>요정 의상</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="hanbok">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/hanbok.svg" alt="한복">
+<strong>한복</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="santa_suit">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/santa_suit.svg" alt="산타 의상">
+<strong>산타 의상</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="dino_suit">
+<span class="badge"></span>
+<img src="./assets/stickers/clothes/dino_suit.svg" alt="공룡 의상">
+<strong>공룡 의상</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="flower">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/flower.svg" alt="꽃">
+<strong>꽃</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="rainbow">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/rainbow.svg" alt="무지개">
+<strong>무지개</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="balloon">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/balloon.svg" alt="풍선">
+<strong>풍선</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="ribbon">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/ribbon.svg" alt="리본">
+<strong>리본</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="gem">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/gem.svg" alt="보석">
+<strong>보석</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="cloud">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/cloud.svg" alt="구름">
+<strong>구름</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="moon">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/moon.svg" alt="달">
+<strong>달</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
+<div class="outfit" data-shop="magic_wand">
+<span class="badge"></span>
+<img src="./assets/stickers/decorations/magic_wand.svg" alt="마법봉">
+<strong>마법봉</strong>
+<span class="price">꾸미기에서 사용</span>
+<button type="button"></button>
+</div>
 </div>
 </div>
 </section>
@@ -1148,7 +1347,7 @@ font-weight:900
   }
   if(changed&&!sessionStorage.getItem('todayme-clean-reloaded')){
    sessionStorage.setItem('todayme-clean-reloaded','1');
-   location.replace(location.pathname+'?v=572&clean=1');
+   location.replace(location.pathname+'?v=580&clean=1');
   }
  }catch(e){}
 })();
@@ -1175,7 +1374,31 @@ const stickerUnlocks={
  glasses:{stars:7,label:'멋쟁이 안경',icon:'🕶️'},
  dress:{stars:9,label:'공주 드레스',icon:'👗'},
  cape:{stars:10,label:'히어로 망토',icon:'🦸'},
- wings:{stars:10,label:'천사 날개',icon:'🪽'}
+ wings:{stars:10,label:'천사 날개',icon:'🪽'},
+ santa_hat:{stars:12,label:'산타 모자',icon:'🎅'},
+ police_hat:{stars:14,label:'경찰모',icon:'👮'},
+ fire_helmet:{stars:16,label:'소방 헬멧',icon:'🧑‍🚒'},
+ space_helmet:{stars:18,label:'우주 헬멧',icon:'🧑‍🚀'},
+ dino_hat:{stars:20,label:'공룡 모자',icon:'🦖'},
+ bunny_ears:{stars:22,label:'토끼귀',icon:'🐰'},
+ cat_ears:{stars:24,label:'고양이귀',icon:'🐱'},
+ bear_ears:{stars:26,label:'곰귀',icon:'🐻'},
+ prince:{stars:13,label:'왕자 의상',icon:'🤴'},
+ spacesuit:{stars:15,label:'우주복',icon:'🚀'},
+ police_uniform:{stars:17,label:'경찰복',icon:'👮'},
+ doctor_coat:{stars:19,label:'의사 가운',icon:'🩺'},
+ fairy_dress:{stars:21,label:'요정 의상',icon:'🧚'},
+ hanbok:{stars:23,label:'한복',icon:'🎎'},
+ santa_suit:{stars:25,label:'산타 의상',icon:'🎅'},
+ dino_suit:{stars:27,label:'공룡 의상',icon:'🦕'},
+ flower:{stars:12,label:'꽃',icon:'🌸'},
+ rainbow:{stars:14,label:'무지개',icon:'🌈'},
+ balloon:{stars:16,label:'풍선',icon:'🎈'},
+ ribbon:{stars:18,label:'리본',icon:'🎀'},
+ gem:{stars:20,label:'보석',icon:'💎'},
+ cloud:{stars:22,label:'구름',icon:'☁️'},
+ moon:{stars:24,label:'달',icon:'🌙'},
+ magic_wand:{stars:26,label:'마법봉',icon:'🪄'}
 };
 function unlockedKey(c=activeChild){return childKey('todayme-unlocked-stickers',c)}
 function unlockedStickers(c=activeChild){
@@ -1657,7 +1880,7 @@ document.getElementById('savePhoto').onclick=async()=>{
 };
 
 
-const stickerIds=['crown','dress','cape','glasses','hat','wings','heart','star'];
+const stickerIds=['crown','dress','cape','glasses','hat','wings','heart','star','santa_hat','police_hat','fire_helmet','space_helmet','dino_hat','bunny_ears','cat_ears','bear_ears','prince','spacesuit','police_uniform','doctor_coat','fairy_dress','hanbok','santa_suit','dino_suit','flower','rainbow','balloon','ribbon','gem','cloud','moon','magic_wand'];
 function stickerEl(id){return document.getElementById('sticker-'+id)}
 function rotationOf(el){return Number(el.dataset.rotation||0)}
 function applyRotation(el){el.style.transform='translate(-50%,-50%) rotate('+rotationOf(el)+'deg)'}
@@ -1667,7 +1890,7 @@ function openDress(){document.getElementById('dressPhoto').src=photoFor(activeCh
  const el=stickerEl(id);
  const animationClass={
   crown:'anim-crown',star:'anim-star',heart:'anim-heart',wings:'anim-wings',
-  hat:'anim-hat',glasses:'anim-glasses',dress:'anim-dress',cape:'anim-cape'
+  hat:'anim-hat',glasses:'anim-glasses',dress:'anim-dress',cape:'anim-cape',flower:'anim-star',gem:'anim-star',magic_wand:'anim-star',balloon:'anim-heart',bunny_ears:'anim-wings'
  }[id]||'';
  el.className=('sticker '+animationClass).trim();
  el.style.cssText='';
@@ -1781,13 +2004,26 @@ async function renderDecoratedPhotoDataUrl(){
    const element=stickerEl(item.id);
    if(!element||!element.classList.contains('active'))continue;
    const stickerSvg=element.querySelector('svg');
-   if(!stickerSvg)continue;
-   const stickerImg=await svgElementToImage(stickerSvg);
+   const stickerAsset=element.querySelector('img');
+   if(!stickerSvg&&!stickerAsset)continue;
+   let stickerImg,ratio=1;
+   if(stickerSvg){
+     stickerImg=await svgElementToImage(stickerSvg);
+     const vb=stickerSvg.viewBox.baseVal;
+     ratio=(vb&&vb.width)?vb.height/vb.width:1;
+   }else{
+     stickerImg=stickerAsset;
+     if(!stickerImg.complete||!stickerImg.naturalWidth){
+       await new Promise((resolve,reject)=>{
+         stickerImg.addEventListener('load',resolve,{once:true});
+         stickerImg.addEventListener('error',reject,{once:true});
+       });
+     }
+     ratio=stickerImg.naturalHeight/stickerImg.naturalWidth;
+   }
    const cx=(element.offsetLeft/rect.width)*outputWidth;
    const cy=(element.offsetTop/rect.height)*outputHeight;
    const displayW=(parseFloat(getComputedStyle(element).width)/rect.width)*outputWidth;
-   const vb=stickerSvg.viewBox.baseVal;
-   const ratio=(vb&&vb.width)?vb.height/vb.width:1;
    const displayH=displayW*ratio;
    ctx.save();
    ctx.translate(cx,cy);
@@ -2140,6 +2376,30 @@ document.addEventListener('visibilitychange',()=>{
     <h3>저장 완료!</h3>
     <p>오늘의 모습이 예쁘게 저장됐어요.</p>
   </div>
+<button class="sticker-btn" data-add="santa_hat" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/santa_hat.svg" alt="산타 모자"><span>산타 모자</span></button>
+<button class="sticker-btn" data-add="police_hat" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/police_hat.svg" alt="경찰모"><span>경찰모</span></button>
+<button class="sticker-btn" data-add="fire_helmet" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/fire_helmet.svg" alt="소방 헬멧"><span>소방 헬멧</span></button>
+<button class="sticker-btn" data-add="space_helmet" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/space_helmet.svg" alt="우주 헬멧"><span>우주 헬멧</span></button>
+<button class="sticker-btn" data-add="dino_hat" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/dino_hat.svg" alt="공룡 모자"><span>공룡 모자</span></button>
+<button class="sticker-btn" data-add="bunny_ears" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/bunny_ears.svg" alt="토끼귀"><span>토끼귀</span></button>
+<button class="sticker-btn" data-add="cat_ears" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/cat_ears.svg" alt="고양이귀"><span>고양이귀</span></button>
+<button class="sticker-btn" data-add="bear_ears" data-paid="1" data-cat="head"><img src="./assets/stickers/hats/bear_ears.svg" alt="곰귀"><span>곰귀</span></button>
+<button class="sticker-btn" data-add="prince" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/prince.svg" alt="왕자 의상"><span>왕자 의상</span></button>
+<button class="sticker-btn" data-add="spacesuit" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/spacesuit.svg" alt="우주복"><span>우주복</span></button>
+<button class="sticker-btn" data-add="police_uniform" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/police_uniform.svg" alt="경찰복"><span>경찰복</span></button>
+<button class="sticker-btn" data-add="doctor_coat" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/doctor_coat.svg" alt="의사 가운"><span>의사 가운</span></button>
+<button class="sticker-btn" data-add="fairy_dress" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/fairy_dress.svg" alt="요정 의상"><span>요정 의상</span></button>
+<button class="sticker-btn" data-add="hanbok" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/hanbok.svg" alt="한복"><span>한복</span></button>
+<button class="sticker-btn" data-add="santa_suit" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/santa_suit.svg" alt="산타 의상"><span>산타 의상</span></button>
+<button class="sticker-btn" data-add="dino_suit" data-paid="1" data-cat="outfit"><img src="./assets/stickers/clothes/dino_suit.svg" alt="공룡 의상"><span>공룡 의상</span></button>
+<button class="sticker-btn" data-add="flower" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/flower.svg" alt="꽃"><span>꽃</span></button>
+<button class="sticker-btn" data-add="rainbow" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/rainbow.svg" alt="무지개"><span>무지개</span></button>
+<button class="sticker-btn" data-add="balloon" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/balloon.svg" alt="풍선"><span>풍선</span></button>
+<button class="sticker-btn" data-add="ribbon" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/ribbon.svg" alt="리본"><span>리본</span></button>
+<button class="sticker-btn" data-add="gem" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/gem.svg" alt="보석"><span>보석</span></button>
+<button class="sticker-btn" data-add="cloud" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/cloud.svg" alt="구름"><span>구름</span></button>
+<button class="sticker-btn" data-add="moon" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/moon.svg" alt="달"><span>달</span></button>
+<button class="sticker-btn" data-add="magic_wand" data-paid="1" data-cat="decor"><img src="./assets/stickers/decorations/magic_wand.svg" alt="마법봉"><span>마법봉</span></button>
 </div>
 
 </body></html>

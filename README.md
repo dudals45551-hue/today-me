@@ -1,14 +1,18 @@
-# 오늘의 나 V5.7.2 — 스티커 애니메이션 수정
+# 오늘의 나 V5.8.0 — 프리미엄 스티커팩 1차
 
-원인
-- 캐릭터 꾸미기 화면을 열 때 스티커 class를 초기화하면서 애니메이션 class도 함께 삭제되고 있었음
+추가 스티커 24종
+- 모자 8종: 산타모자, 경찰모, 소방헬멧, 우주헬멧, 공룡모자, 토끼귀, 고양이귀, 곰귀
+- 의상 8종: 왕자, 우주복, 경찰복, 의사가운, 요정, 한복, 산타복, 공룡옷
+- 장식 8종: 꽃, 무지개, 풍선, 리본, 보석, 구름, 달, 마법봉
 
-수정
-- 화면을 열어도 스티커별 애니메이션 class 유지
-- 삼성 인터넷용 transform-box / transform-origin 보강
-- 움직임이 눈에 보이도록 강도 조정
-- 드래그 중에는 멈추고 손을 떼면 다시 움직임
-- 저장 사진은 정적인 이미지로 저장
+구조 개선
+- assets/stickers/hats
+- assets/stickers/clothes
+- assets/stickers/decorations
+- assets/stickers/catalog.json
+- 꾸미기와 옷장에서 같은 이미지 파일 사용
+- 새 스티커도 이동, 확대축소, 회전, 저장, 성장앨범 반영
+- 별 해금과 하린/서율 독립 저장 유지
 
 확인:
-https://dudals45551-hue.github.io/today-me/?v=572
+https://dudals45551-hue.github.io/today-me/?v=580
