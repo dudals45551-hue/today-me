@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
 
-<link rel="manifest" href="./manifest-v565.json">
+<link rel="manifest" href="./manifest-v571.json">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmOGZiYyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3NzBlOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8cGF0aCBkPSJNMjU2IDU0bDQ0IDg5IDk4IDE0LTcxIDY5IDE3IDk4LTg4LTQ2LTg4IDQ2IDE3LTk4LTcxLTY5IDk4LTE0eiIgZmlsbD0iI2ZmZGU0NiIvPgo8Y2lyY2xlIGN4PSIxOTAiIGN5PSIyODYiIHI9IjM0IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzIyIiBjeT0iMjg2IiByPSIzNCIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTUwIDQxOGwxOC05Nmg0NGwyMCA5NnpNMjgwIDQxOGwyMC05Nmg0NGwxOCA5NnoiIGZpbGw9IiNmZmYiLz4KPHBhdGggZD0iTTE5MCAzMjJsNDItODZNMzIyIDMyMmwtNDItODYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icons/icon-180-v564.png">
 
@@ -443,6 +443,147 @@ vector-effect:non-scaling-stroke
 }
 .sticker-btn.locked svg,.outfit.locked svg{opacity:.72!important}
 
+
+/* V5.7.1 sticker animations: editor only */
+#dressStage .sticker{
+transform-origin:center center;
+will-change:transform,filter,opacity;
+}
+#dressStage .sticker.anim-crown.active{
+animation:crownGlow 2.2s ease-in-out infinite;
+}
+#dressStage .sticker.anim-star.active{
+animation:starTwinkle 1.8s ease-in-out infinite;
+}
+#dressStage .sticker.anim-heart.active{
+animation:heartBeat 1.65s ease-in-out infinite;
+}
+#dressStage .sticker.anim-wings.active{
+animation:wingFloat 2.4s ease-in-out infinite;
+}
+#dressStage .sticker.anim-hat.active{
+animation:hatMagic 2.8s ease-in-out infinite;
+}
+#dressStage .sticker.anim-glasses.active{
+animation:glassesShine 2.6s ease-in-out infinite;
+}
+#dressStage .sticker.anim-dress.active{
+animation:dressShimmer 2.9s ease-in-out infinite;
+}
+#dressStage .sticker.anim-cape.active{
+animation:capePulse 2.5s ease-in-out infinite;
+}
+
+/* Keep user-set translate/rotate intact by animating nested SVG only */
+#dressStage .sticker.active > svg{
+transform-origin:center center;
+}
+#dressStage .sticker.anim-crown.active > svg{
+animation:crownSvgGlow 2.2s ease-in-out infinite;
+}
+#dressStage .sticker.anim-star.active > svg{
+animation:starSvgTwinkle 1.8s ease-in-out infinite;
+}
+#dressStage .sticker.anim-heart.active > svg{
+animation:heartSvgBeat 1.65s ease-in-out infinite;
+}
+#dressStage .sticker.anim-wings.active > svg{
+animation:wingsSvgFloat 2.4s ease-in-out infinite;
+}
+#dressStage .sticker.anim-hat.active > svg{
+animation:hatSvgMagic 2.8s ease-in-out infinite;
+}
+#dressStage .sticker.anim-glasses.active > svg{
+animation:glassesSvgShine 2.6s ease-in-out infinite;
+}
+#dressStage .sticker.anim-dress.active > svg{
+animation:dressSvgShimmer 2.9s ease-in-out infinite;
+}
+#dressStage .sticker.anim-cape.active > svg{
+animation:capeSvgPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes crownGlow{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 12px rgba(255,221,76,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.2))}
+}
+@keyframes crownSvgGlow{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.045)}
+}
+@keyframes starTwinkle{
+0%,100%{opacity:1;filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{opacity:.76;filter:drop-shadow(0 0 14px rgba(255,216,77,.95))}
+}
+@keyframes starSvgTwinkle{
+0%,100%{transform:scale(1) rotate(0deg)}
+50%{transform:scale(1.08) rotate(3deg)}
+}
+@keyframes heartBeat{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 10px rgba(240,82,148,.72))}
+}
+@keyframes heartSvgBeat{
+0%,100%{transform:scale(1)}
+12%{transform:scale(1.09)}
+24%{transform:scale(1)}
+38%{transform:scale(1.06)}
+52%{transform:scale(1)}
+}
+@keyframes wingFloat{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 11px rgba(146,206,240,.72))}
+}
+@keyframes wingsSvgFloat{
+0%,100%{transform:translateY(0) rotate(-1deg)}
+50%{transform:translateY(-5px) rotate(1deg)}
+}
+@keyframes hatMagic{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 11px rgba(126,90,166,.75))}
+}
+@keyframes hatSvgMagic{
+0%,100%{transform:rotate(0deg) scale(1)}
+50%{transform:rotate(2deg) scale(1.035)}
+}
+@keyframes glassesShine{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 10px rgba(174,226,255,.78))}
+}
+@keyframes glassesSvgShine{
+0%,100%{transform:translateX(0)}
+50%{transform:translateX(2px)}
+}
+@keyframes dressShimmer{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 10px rgba(255,170,210,.72))}
+}
+@keyframes dressSvgShimmer{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-3px)}
+}
+@keyframes capePulse{
+0%,100%{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+50%{filter:drop-shadow(0 0 10px rgba(65,111,215,.72))}
+}
+@keyframes capeSvgPulse{
+0%,100%{transform:scale(1) rotate(-1deg)}
+50%{transform:scale(1.035) rotate(1deg)}
+}
+
+/* Animation is disabled while dragging/gesturing to keep controls smooth */
+#dressStage.interacting .sticker > svg{
+animation-play-state:paused!important;
+}
+
+/* Respect accessibility and save battery */
+@media (prefers-reduced-motion: reduce){
+#dressStage .sticker,
+#dressStage .sticker > svg{
+animation:none!important;
+}
+}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -546,7 +687,7 @@ font-weight:900
 <div class="panel-head decorate-head"><button data-close-panel aria-label="뒤로">←</button></div>
 <div class="panel-body">
 <div class="dress-stage" id="dressStage"><img id="dressPhoto" alt="꾸미기 사진">
-<div class="sticker" id="sticker-crown"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-crown" id="sticker-crown"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <path d="M69 321L115 112l111 139 83-175 79 176 105-150-49 219z" fill="#FFD45A" stroke="#9B650D" stroke-width="16" stroke-linejoin="round"/>
@@ -559,7 +700,7 @@ font-weight:900
 <circle cx="116" cy="122" r="18" fill="#FFF5B2"/><circle cx="310" cy="90" r="20" fill="#FFF5B2"/><circle cx="420" cy="119" r="18" fill="#FFF5B2"/>
 <path d="M126 147l18-16M306 120l20-20M410 145l17-17" stroke="#FFF" stroke-width="9" stroke-linecap="round" opacity=".75"/>
 </g></svg></div>
-<div class="sticker" id="sticker-dress"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-dress" id="sticker-dress"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <path d="M190 75h132l-22 86c-10 39 13 77 44 119l73 167H95l73-167c31-42 54-80 44-119z" fill="#F27EAF" stroke="#B93B73" stroke-width="16" stroke-linejoin="round"/>
@@ -572,7 +713,7 @@ font-weight:900
 <circle cx="167" cy="331" r="10" fill="#FFF"/><circle cx="345" cy="331" r="10" fill="#FFF"/>
 <path d="M215 108c25 12 57 12 82 0" fill="none" stroke="#FFF" stroke-width="9" stroke-linecap="round" opacity=".65"/>
 </g></svg></div>
-<div class="sticker" id="sticker-cape"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-cape" id="sticker-cape"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <path d="M153 72h206l78 377H75z" fill="#416FD7" stroke="#1D3B8F" stroke-width="18" stroke-linejoin="round"/>
@@ -582,7 +723,7 @@ font-weight:900
 <path d="M123 390c80-36 186-36 266 0" fill="none" stroke="#8EB0FF" stroke-width="13" opacity=".75"/>
 <path d="M184 126c46 22 98 22 144 0" fill="none" stroke="#FFACB6" stroke-width="9" opacity=".6"/>
 </g></svg></div>
-<div class="sticker" id="sticker-glasses"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-glasses" id="sticker-glasses"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <rect x="45" y="160" width="185" height="149" rx="55" fill="#20222E" stroke="#090A0F" stroke-width="20"/>
@@ -593,7 +734,7 @@ font-weight:900
 <path d="M89 205c31-18 59-20 86-10M326 205c31-18 59-20 86-10" stroke="#FFF" stroke-width="11" stroke-linecap="round" opacity=".72"/>
 <path d="M103 235l32-18M340 235l32-18" stroke="#DFF4FF" stroke-width="7" stroke-linecap="round" opacity=".55"/>
 </g></svg></div>
-<div class="sticker" id="sticker-hat"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-hat" id="sticker-hat"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <ellipse cx="256" cy="401" rx="205" ry="61" fill="#2D1B3A" stroke="#130D18" stroke-width="16"/>
@@ -605,7 +746,7 @@ font-weight:900
 <path d="M391 276l9 11 13-4-7 12 8 11-14-3-8 12-2-14-14-4 13-6z" fill="#FFF"/>
 <path d="M190 91c35-20 88-23 127-7" stroke="#E5D2F3" stroke-width="12" stroke-linecap="round" opacity=".58"/>
 </g></svg></div>
-<div class="sticker" id="sticker-wings"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-wings" id="sticker-wings"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <path d="M244 86C124 43 14 132 23 286c7 120 97 175 221 158z" fill="#EAF8FF" stroke="#6FB5E5" stroke-width="16"/>
@@ -615,7 +756,7 @@ font-weight:900
 <path d="M84 214c30 11 59 29 86 54M428 214c-30 11-59 29-86 54" fill="none" stroke="#FFF" stroke-width="10" stroke-linecap="round" opacity=".78"/>
 <circle cx="256" cy="263" r="19" fill="#FFD7EF" stroke="#E68DB8" stroke-width="7"/>
 </g></svg></div>
-<div class="sticker" id="sticker-heart"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-heart" id="sticker-heart"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <path d="M256 446L69 260C-22 170 43 60 145 78c47 8 81 37 111 81 30-44 64-73 111-81 102-18 167 92 76 182z" fill="#F05294" stroke="#AE1D5B" stroke-width="18" stroke-linejoin="round"/>
@@ -623,7 +764,7 @@ font-weight:900
 <circle cx="183" cy="187" r="14" fill="#FFF" opacity=".67"/>
 <path d="M327 333l15 31 34 5-25 24 6 34-30-16-31 16 6-34-24-24 34-5z" fill="#FFDFF0" opacity=".72"/>
 </g></svg></div>
-<div class="sticker" id="sticker-star"><svg viewBox="0 0 512 512" aria-hidden="true">
+<div class="sticker anim-star" id="sticker-star"><svg viewBox="0 0 512 512" aria-hidden="true">
 
 <g>
 <path d="M256 37l64 131 144 21-104 102 25 144-129-68-129 68 25-144-104-102 144-21z" fill="#FFD84D" stroke="#AC720E" stroke-width="18" stroke-linejoin="round"/>
@@ -983,7 +1124,7 @@ font-weight:900
   }
   if(changed&&!sessionStorage.getItem('todayme-clean-reloaded')){
    sessionStorage.setItem('todayme-clean-reloaded','1');
-   location.replace(location.pathname+'?v=565&clean=1');
+   location.replace(location.pathname+'?v=571&clean=1');
   }
  }catch(e){}
 })();
@@ -1902,6 +2043,19 @@ window.addEventListener('popstate',e=>{
  }
  handlingPopState=false;
 });
+
+
+(function(){
+ const stage=document.getElementById('dressStage');
+ if(!stage)return;
+ stage.addEventListener('pointerdown',e=>{
+   if(e.target.closest('.sticker'))stage.classList.add('interacting');
+ },{passive:true});
+ const stop=()=>stage.classList.remove('interacting');
+ stage.addEventListener('pointerup',stop,{passive:true});
+ stage.addEventListener('pointercancel',stop,{passive:true});
+ window.addEventListener('pointerup',stop,{passive:true});
+})();
 
 function bootTodayMe(){
  try{
