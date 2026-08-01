@@ -645,9 +645,13 @@ function showUnlockModal(id,isNew=false){
   document.getElementById('unlockModalText').textContent=isNew
     ? `${info.label}이 열렸어요! 이제 꾸미기에서 사용할 수 있어요.`
     : `별 ${info.stars}개를 모으면 ${info.label}이 열려요!`;
-  document.getElementById('unlockModal').classList.add('active');document.body.style.overflow='hidden';
+  document.getElementById('unlockModal').classList.add('active');
+  document.body.style.overflow='hidden';
+  if(!(history.state&&history.state.layer==='unlock-modal')){
+    history.pushState({layer:'unlock-modal'},'');
+  }
 }
-function closeUnlockModal(){document.getElementById('unlockModal').classList.remove('active');document.body.style.overflow=''}
+function closeUnlockModal(){dismissUnlockModal()}
 function checkNewUnlocks(c=activeChild){
   const before=JSON.parse(localStorage.getItem(unlockedKey(c))||'[]');
   const stars=childStars(c);
@@ -727,13 +731,28 @@ function setChildStars(value,c=activeChild){
  if(c===activeChild)checkNewUnlocks(c);
 }
 function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2200)}
-function showScreen(id){
+let handlingPopState=false;
+function currentPanelId(){
+ const panel=[...panels].find(p=>p.classList.contains('active'));
+ return panel?panel.id:null;
+}
+function showScreen(id,fromHistory=false){
  screens.forEach(s=>s.classList.toggle('active',s.id===id));
  document.getElementById('starsTop').classList.toggle('hidden-on-home',id==='selector');
  if(id!=='selector'&&(id==='harin'||id==='seoyul')){activeChild=id;refresh()}
+ if(!fromHistory&&!handlingPopState){
+   const layer=id==='selector'?'home':'child';
+   history.pushState({layer,screen:id},'');
+ }
  scrollTo(0,0)
 }
-function openPanel(id){panels.forEach(p=>p.classList.toggle('active',p.id===id));document.body.style.overflow='hidden'}
+function openPanel(id,fromHistory=false){
+ panels.forEach(p=>p.classList.toggle('active',p.id===id));
+ document.body.style.overflow='hidden';
+ if(!fromHistory&&!handlingPopState){
+   history.pushState({layer:'panel',panel:id,screen:activeChild},'');
+ }
+}
 function closePanels(){panels.forEach(p=>p.classList.remove('active'));document.body.style.overflow=''}
 function photoFor(c){return localStorage.getItem('todayme-photo-'+c)||defaults[c]}
 function defaultLetter(c){
@@ -791,7 +810,10 @@ document.querySelectorAll('[data-open]').forEach(card=>card.onclick=e=>{
  if(e.target.closest('[data-quick]'))return;
  activeChild=card.dataset.open;markActivity(activeChild);showScreen(activeChild)
 });
-document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>showScreen('selector'));document.querySelectorAll('[data-close-panel]').forEach(b=>b.onclick=closePanels);
+document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>showScreen('selector'));document.querySelectorAll('[data-close-panel]').forEach(b=>b.onclick=()=>{
+ if(history.state&&history.state.layer==='panel')history.back();
+ else closePanels();
+});
 
 
 const missionPool=[
@@ -1268,19 +1290,52 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-const unlockConfirmButton=document.getElementById('closeUnlockModal');
-const unlockModalElement=document.getElementById('unlockModal');
-function handleUnlockConfirm(e){
- if(e){e.preventDefault();e.stopPropagation()}
- closeUnlockModal();
+function dismissUnlockModal(){
+ const modal=document.getElementById('unlockModal');
+ if(!modal||!modal.classList.contains('active'))return;
+ modal.classList.remove('active');
+ document.body.style.overflow='';
 }
-['click','pointerup','touchend'].forEach(type=>{
- unlockConfirmButton.addEventListener(type,handleUnlockConfirm,{passive:false});
+document.addEventListener('click',e=>{
+ const confirmButton=e.target.closest('#closeUnlockModal,[data-close-unlock]');
+ if(confirmButton){
+   e.preventDefault();
+   e.stopPropagation();
+   if(history.state&&history.state.layer==='unlock-modal')history.back();
+   else dismissUnlockModal();
+   return;
+ }
+ const modal=e.target.closest('#unlockModal');
+ if(modal&&e.target===modal){
+   e.preventDefault();
+   if(history.state&&history.state.layer==='unlock-modal')history.back();
+   else dismissUnlockModal();
+ }
 });
-unlockModalElement.addEventListener('click',e=>{
- if(e.target===unlockModalElement)handleUnlockConfirm(e);
+if(!history.state)history.replaceState({layer:'home',screen:'selector'},'');
+window.addEventListener('popstate',e=>{
+ handlingPopState=true;
+ const modal=document.getElementById('unlockModal');
+ if(modal&&modal.classList.contains('active')){
+   dismissUnlockModal();
+   handlingPopState=false;
+   return;
+ }
+ const openPanelId=currentPanelId();
+ if(openPanelId){
+   closePanels();
+   handlingPopState=false;
+   return;
+ }
+ const active=[...screens].find(s=>s.classList.contains('active'));
+ if(active&&active.id!=='selector'){
+   showScreen('selector',true);
+   handlingPopState=false;
+   return;
+ }
+ handlingPopState=false;
 });
-migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();updateStickerUnlockUI();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=534').catch(()=>{
+migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();updateStickerUnlockUI();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=535').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
