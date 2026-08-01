@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
 
-<link rel="manifest" href="./manifest-v582.json">
+<link rel="manifest" href="./manifest-v583.json">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmOGZiYyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3NzBlOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8cGF0aCBkPSJNMjU2IDU0bDQ0IDg5IDk4IDE0LTcxIDY5IDE3IDk4LTg4LTQ2LTg4IDQ2IDE3LTk4LTcxLTY5IDk4LTE0eiIgZmlsbD0iI2ZmZGU0NiIvPgo8Y2lyY2xlIGN4PSIxOTAiIGN5PSIyODYiIHI9IjM0IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzIyIiBjeT0iMjg2IiByPSIzNCIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTUwIDQxOGwxOC05Nmg0NGwyMCA5NnpNMjgwIDQxOGwyMC05Nmg0NGwxOCA5NnoiIGZpbGw9IiNmZmYiLz4KPHBhdGggZD0iTTE5MCAzMjJsNDItODZNMzIyIDMyMmwtNDItODYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icons/icon-180-v564.png">
 
@@ -651,6 +651,40 @@ margin:0 auto!important
 #decoratePanel .sticker-list{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 }
 
+
+/* V5.8.3 Samsung Internet 렌더링 안정화 */
+#decoratePanel .sticker-btn img{
+width:68px!important;
+height:68px!important;
+object-fit:contain!important;
+display:block!important;
+margin:0 auto!important;
+transform:none!important;
+filter:drop-shadow(0 6px 6px rgba(55,38,48,.16))
+}
+#closetPanel .outfit img{
+width:102px!important;
+height:102px!important;
+object-fit:contain!important;
+display:block!important;
+margin:0 auto 8px!important;
+transform:none!important;
+filter:drop-shadow(0 7px 7px rgba(55,38,48,.16))
+}
+#dressStage .sticker img{
+display:block!important;
+width:100%!important;
+height:auto!important;
+object-fit:contain!important;
+transform-origin:center center!important;
+}
+#decoratePanel .sticker-btn,
+#closetPanel .outfit{
+contain:layout paint;
+backface-visibility:hidden;
+-webkit-backface-visibility:hidden
+}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -841,30 +875,30 @@ font-weight:900
 <path d="M151 149l43-13M356 136l39 14" stroke="#FFF9D2" stroke-width="12" stroke-linecap="round" opacity=".85"/>
 <circle cx="178" cy="187" r="9" fill="#FFF" opacity=".8"/>
 </g></svg></div>
-<div class="sticker" id="sticker-santa_hat"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="산타 모자"><path d="M95 330c45-185 180-250 310-120l-62 110z" fill="#e94560" stroke="#9b1830" stroke-width="18"/><rect x="82" y="312" width="350" height="80" rx="38" fill="#fff" stroke="#d9d9e2" stroke-width="15"/><circle cx="402" cy="177" r="45" fill="#fff" stroke="#d9d9e2" stroke-width="15"/></svg></div>
-<div class="sticker" id="sticker-police_hat"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="경찰모"><path d="M95 290c20-125 300-125 322 0z" fill="#3159a8" stroke="#17336e" stroke-width="18"/><rect x="82" y="280" width="348" height="82" rx="28" fill="#274a91" stroke="#17336e" stroke-width="18"/><path d="M256 167l30 45 53 8-38 37 9 52-54-28-54 28 9-52-38-37 53-8z" fill="#ffd75a"/></svg></div>
-<div class="sticker" id="sticker-fire_helmet"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="소방 헬멧"><path d="M86 315c5-150 72-235 170-235s165 85 170 235z" fill="#ef4c3e" stroke="#9f201c" stroke-width="18"/><rect x="65" y="300" width="382" height="80" rx="28" fill="#ffd85a" stroke="#b57912" stroke-width="16"/><path d="M256 122l42 60-42 70-42-70z" fill="#fff3b0"/></svg></div>
-<div class="sticker" id="sticker-space_helmet"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="우주 헬멧"><circle cx="256" cy="244" r="175" fill="#eef5ff" stroke="#7690ba" stroke-width="20"/><ellipse cx="256" cy="248" rx="125" ry="98" fill="#8dc8ef" stroke="#426f9d" stroke-width="16"/><path d="M170 225c55-35 126-38 184-5" stroke="#fff" stroke-width="16" stroke-linecap="round" opacity=".7"/><rect x="154" y="392" width="204" height="56" rx="26" fill="#d7e2f2" stroke="#7690ba" stroke-width="14"/></svg></div>
-<div class="sticker" id="sticker-dino_hat"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="공룡 모자"><path d="M105 370V205c0-85 68-145 151-145s151 60 151 145v165z" fill="#63c98f" stroke="#268456" stroke-width="18"/><path d="M170 95l34-58 38 64 38-67 40 72 38-58 18 96" fill="#ffcf58" stroke="#a96d16" stroke-width="14" stroke-linejoin="round"/><circle cx="205" cy="220" r="15"/><circle cx="306" cy="220" r="15"/></svg></div>
-<div class="sticker" id="sticker-bunny_ears"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="토끼귀"><ellipse cx="177" cy="160" rx="64" ry="130" fill="#fff5fa" stroke="#d98eaf" stroke-width="16"/><ellipse cx="335" cy="160" rx="64" ry="130" fill="#fff5fa" stroke="#d98eaf" stroke-width="16"/><ellipse cx="177" cy="160" rx="25" ry="88" fill="#ffb2d1"/><ellipse cx="335" cy="160" rx="25" ry="88" fill="#ffb2d1"/><rect x="120" y="280" width="272" height="76" rx="36" fill="#fff" stroke="#d98eaf" stroke-width="16"/></svg></div>
-<div class="sticker" id="sticker-cat_ears"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="고양이귀"><path d="M105 318l45-215 115 132 105-132 45 215z" fill="#6b547f" stroke="#352543" stroke-width="18"/><path d="M146 139l28 112 66-40zM366 139l-28 112-66-40z" fill="#ef91bc"/><rect x="106" y="302" width="300" height="70" rx="34" fill="#7b628e" stroke="#352543" stroke-width="16"/></svg></div>
-<div class="sticker" id="sticker-bear_ears"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="곰귀"><circle cx="152" cy="170" r="90" fill="#9c6a3f" stroke="#5d351e" stroke-width="18"/><circle cx="360" cy="170" r="90" fill="#9c6a3f" stroke="#5d351e" stroke-width="18"/><circle cx="152" cy="170" r="48" fill="#d69a67"/><circle cx="360" cy="170" r="48" fill="#d69a67"/><rect x="110" y="270" width="292" height="90" rx="42" fill="#a8784d" stroke="#5d351e" stroke-width="18"/></svg></div>
-<div class="sticker" id="sticker-prince"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="왕자 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#6f8ee8" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/></svg></div>
-<div class="sticker" id="sticker-spacesuit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="우주복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#e6edf7" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#7eb4e6" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#7eb4e6" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#7eb4e6" stroke-width="16" stroke-linecap="round"/><rect x="185" y="160" width="142" height="100" rx="22" fill="#1e3655"/><circle cx="222" cy="207" r="12" fill="#ef5f6c"/><circle cx="260" cy="207" r="12" fill="#ffd75a"/><circle cx="298" cy="207" r="12" fill="#69d09d"/></svg></div>
-<div class="sticker" id="sticker-police_uniform"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="경찰복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#3159a8" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/><path d="M256 100l34 50 60 9-43 42 10 59-61-32-61 32 10-59-43-42 60-9z" fill="#ffd85a"/></svg></div>
-<div class="sticker" id="sticker-doctor_coat"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="의사 가운"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#ffffff" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#74b9ff" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#74b9ff" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#74b9ff" stroke-width="16" stroke-linecap="round"/><path d="M256 170v180M210 190l46 35 46-35" stroke="#4c7fa8" stroke-width="12"/><circle cx="315" cy="275" r="23" fill="none" stroke="#e34d5e" stroke-width="10"/></svg></div>
-<div class="sticker" id="sticker-fairy_dress"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="요정 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#d995ef" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/><path d="M150 265C60 180 48 110 132 96c62-10 95 47 124 104M362 265c90-85 102-155 18-169-62-10-95 47-124 104" fill="#e7f8ff" stroke="#72b8df" stroke-width="14"/></svg></div>
-<div class="sticker" id="sticker-hanbok"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="한복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#f36f9f" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd3e1" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd3e1" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd3e1" stroke-width="16" stroke-linecap="round"/></svg></div>
-<div class="sticker" id="sticker-santa_suit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="산타 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#e94560" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#fff" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#fff" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/></svg></div>
-<div class="sticker" id="sticker-dino_suit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="공룡 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#63c98f" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffcf58" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffcf58" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffcf58" stroke-width="16" stroke-linecap="round"/></svg></div>
-<div class="sticker" id="sticker-flower"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="꽃"><circle cx="256" cy="256" r="62" fill="#ffd75a"/><circle cx="256" cy="120" r="78" fill="#ff89b8"/><circle cx="392" cy="256" r="78" fill="#ff89b8"/><circle cx="256" cy="392" r="78" fill="#ff89b8"/><circle cx="120" cy="256" r="78" fill="#ff89b8"/></svg></div>
-<div class="sticker" id="sticker-rainbow"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="무지개"><path d="M70 390a186 186 0 0 1 372 0" fill="none" stroke="#f15b6c" stroke-width="46"/><path d="M105 390a151 151 0 0 1 302 0" fill="none" stroke="#ffd65a" stroke-width="42"/><path d="M140 390a116 116 0 0 1 232 0" fill="none" stroke="#63c98f" stroke-width="38"/><path d="M175 390a81 81 0 0 1 162 0" fill="none" stroke="#6f8ee8" stroke-width="34"/></svg></div>
-<div class="sticker" id="sticker-balloon"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="풍선"><ellipse cx="256" cy="190" rx="125" ry="155" fill="#ff6f9f" stroke="#a62e5d" stroke-width="18"/><path d="M256 345l-22 34h44z" fill="#a62e5d"/><path d="M256 379c-70 40 70 70 0 115" fill="none" stroke="#7b5970" stroke-width="12"/></svg></div>
-<div class="sticker" id="sticker-ribbon"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="리본"><path d="M256 240c-90-120-200-120-184 0 15 110 145 80 184 0z" fill="#ff7cad" stroke="#aa2e64" stroke-width="18"/><path d="M256 240c90-120 200-120 184 0-15 110-145 80-184 0z" fill="#ff7cad" stroke="#aa2e64" stroke-width="18"/><circle cx="256" cy="240" r="58" fill="#ffd85a" stroke="#a96d16" stroke-width="16"/><path d="M225 290l-75 150 92-46 14 70 14-70 92 46-75-150" fill="#f45e97" stroke="#aa2e64" stroke-width="16"/></svg></div>
-<div class="sticker" id="sticker-gem"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="보석"><path d="M256 60l150 115-60 235H166l-60-235z" fill="#6ed3ff" stroke="#2d6f9c" stroke-width="18"/><path d="M106 175h300M166 410l90-235 90 235M106 175l60 235M406 175l-60 235" fill="none" stroke="#dff7ff" stroke-width="14"/></svg></div>
-<div class="sticker" id="sticker-cloud"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="구름"><circle cx="176" cy="276" r="95" fill="#fff" stroke="#a9c9df" stroke-width="16"/><circle cx="276" cy="220" r="120" fill="#fff" stroke="#a9c9df" stroke-width="16"/><circle cx="370" cy="286" r="82" fill="#fff" stroke="#a9c9df" stroke-width="16"/><rect x="118" y="275" width="325" height="120" rx="58" fill="#fff" stroke="#a9c9df" stroke-width="16"/></svg></div>
-<div class="sticker" id="sticker-moon"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="달"><path d="M340 60c-125 30-190 176-120 288 48 77 144 112 232 69-158 12-226-170-112-357z" fill="#ffd85a" stroke="#a96d16" stroke-width="18"/><circle cx="317" cy="180" r="18" fill="#f1b83a"/><circle cx="340" cy="286" r="26" fill="#f1b83a"/></svg></div>
-<div class="sticker" id="sticker-magic_wand"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="마법봉"><path d="M128 410L330 208" stroke="#7c5bc5" stroke-width="34" stroke-linecap="round"/><path d="M354 60l34 69 76 11-55 54 13 75-68-36-68 36 13-75-55-54 76-11z" fill="#ffd85a" stroke="#a96d16" stroke-width="16"/><circle cx="155" cy="170" r="15" fill="#ff81b2"/><circle cx="394" cy="350" r="18" fill="#71c9f1"/></svg></div>
+<div class="sticker" id="sticker-santa_hat"><img src="./stickers_png/santa_hat.png?v=583" alt="산타 모자"></div>
+<div class="sticker" id="sticker-police_hat"><img src="./stickers_png/police_hat.png?v=583" alt="경찰모"></div>
+<div class="sticker" id="sticker-fire_helmet"><img src="./stickers_png/fire_helmet.png?v=583" alt="소방 헬멧"></div>
+<div class="sticker" id="sticker-space_helmet"><img src="./stickers_png/space_helmet.png?v=583" alt="우주 헬멧"></div>
+<div class="sticker" id="sticker-dino_hat"><img src="./stickers_png/dino_hat.png?v=583" alt="공룡 모자"></div>
+<div class="sticker" id="sticker-bunny_ears"><img src="./stickers_png/bunny_ears.png?v=583" alt="토끼귀"></div>
+<div class="sticker" id="sticker-cat_ears"><img src="./stickers_png/cat_ears.png?v=583" alt="고양이귀"></div>
+<div class="sticker" id="sticker-bear_ears"><img src="./stickers_png/bear_ears.png?v=583" alt="곰귀"></div>
+<div class="sticker" id="sticker-prince"><img src="./stickers_png/prince.png?v=583" alt="왕자 의상"></div>
+<div class="sticker" id="sticker-spacesuit"><img src="./stickers_png/spacesuit.png?v=583" alt="우주복"></div>
+<div class="sticker" id="sticker-police_uniform"><img src="./stickers_png/police_uniform.png?v=583" alt="경찰복"></div>
+<div class="sticker" id="sticker-doctor_coat"><img src="./stickers_png/doctor_coat.png?v=583" alt="의사 가운"></div>
+<div class="sticker" id="sticker-fairy_dress"><img src="./stickers_png/fairy_dress.png?v=583" alt="요정 의상"></div>
+<div class="sticker" id="sticker-hanbok"><img src="./stickers_png/hanbok.png?v=583" alt="한복"></div>
+<div class="sticker" id="sticker-santa_suit"><img src="./stickers_png/santa_suit.png?v=583" alt="산타 의상"></div>
+<div class="sticker" id="sticker-dino_suit"><img src="./stickers_png/dino_suit.png?v=583" alt="공룡 의상"></div>
+<div class="sticker" id="sticker-flower"><img src="./stickers_png/flower.png?v=583" alt="꽃"></div>
+<div class="sticker" id="sticker-rainbow"><img src="./stickers_png/rainbow.png?v=583" alt="무지개"></div>
+<div class="sticker" id="sticker-balloon"><img src="./stickers_png/balloon.png?v=583" alt="풍선"></div>
+<div class="sticker" id="sticker-ribbon"><img src="./stickers_png/ribbon.png?v=583" alt="리본"></div>
+<div class="sticker" id="sticker-gem"><img src="./stickers_png/gem.png?v=583" alt="보석"></div>
+<div class="sticker" id="sticker-cloud"><img src="./stickers_png/cloud.png?v=583" alt="구름"></div>
+<div class="sticker" id="sticker-moon"><img src="./stickers_png/moon.png?v=583" alt="달"></div>
+<div class="sticker" id="sticker-magic_wand"><img src="./stickers_png/magic_wand.png?v=583" alt="마법봉"></div>
 </div>
 <div class="controls">
 <button id="bigger">크게 ＋</button><button id="smaller">작게 －</button><button id="rotateLeft">↶ 왼쪽 회전</button><button id="rotateRight">↷ 오른쪽 회전</button><button id="removeSticker">삭제</button>
@@ -965,30 +999,30 @@ font-weight:900
 <circle cx="178" cy="187" r="9" fill="#FFF" opacity=".8"/>
 </g></svg><span>별</span></button>
 
-<button class="sticker-btn" data-add="santa_hat" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="산타 모자"><path d="M95 330c45-185 180-250 310-120l-62 110z" fill="#e94560" stroke="#9b1830" stroke-width="18"/><rect x="82" y="312" width="350" height="80" rx="38" fill="#fff" stroke="#d9d9e2" stroke-width="15"/><circle cx="402" cy="177" r="45" fill="#fff" stroke="#d9d9e2" stroke-width="15"/></svg><span>산타 모자</span></button>
-<button class="sticker-btn" data-add="police_hat" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="경찰모"><path d="M95 290c20-125 300-125 322 0z" fill="#3159a8" stroke="#17336e" stroke-width="18"/><rect x="82" y="280" width="348" height="82" rx="28" fill="#274a91" stroke="#17336e" stroke-width="18"/><path d="M256 167l30 45 53 8-38 37 9 52-54-28-54 28 9-52-38-37 53-8z" fill="#ffd75a"/></svg><span>경찰모</span></button>
-<button class="sticker-btn" data-add="fire_helmet" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="소방 헬멧"><path d="M86 315c5-150 72-235 170-235s165 85 170 235z" fill="#ef4c3e" stroke="#9f201c" stroke-width="18"/><rect x="65" y="300" width="382" height="80" rx="28" fill="#ffd85a" stroke="#b57912" stroke-width="16"/><path d="M256 122l42 60-42 70-42-70z" fill="#fff3b0"/></svg><span>소방 헬멧</span></button>
-<button class="sticker-btn" data-add="space_helmet" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="우주 헬멧"><circle cx="256" cy="244" r="175" fill="#eef5ff" stroke="#7690ba" stroke-width="20"/><ellipse cx="256" cy="248" rx="125" ry="98" fill="#8dc8ef" stroke="#426f9d" stroke-width="16"/><path d="M170 225c55-35 126-38 184-5" stroke="#fff" stroke-width="16" stroke-linecap="round" opacity=".7"/><rect x="154" y="392" width="204" height="56" rx="26" fill="#d7e2f2" stroke="#7690ba" stroke-width="14"/></svg><span>우주 헬멧</span></button>
-<button class="sticker-btn" data-add="dino_hat" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="공룡 모자"><path d="M105 370V205c0-85 68-145 151-145s151 60 151 145v165z" fill="#63c98f" stroke="#268456" stroke-width="18"/><path d="M170 95l34-58 38 64 38-67 40 72 38-58 18 96" fill="#ffcf58" stroke="#a96d16" stroke-width="14" stroke-linejoin="round"/><circle cx="205" cy="220" r="15"/><circle cx="306" cy="220" r="15"/></svg><span>공룡 모자</span></button>
-<button class="sticker-btn" data-add="bunny_ears" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="토끼귀"><ellipse cx="177" cy="160" rx="64" ry="130" fill="#fff5fa" stroke="#d98eaf" stroke-width="16"/><ellipse cx="335" cy="160" rx="64" ry="130" fill="#fff5fa" stroke="#d98eaf" stroke-width="16"/><ellipse cx="177" cy="160" rx="25" ry="88" fill="#ffb2d1"/><ellipse cx="335" cy="160" rx="25" ry="88" fill="#ffb2d1"/><rect x="120" y="280" width="272" height="76" rx="36" fill="#fff" stroke="#d98eaf" stroke-width="16"/></svg><span>토끼귀</span></button>
-<button class="sticker-btn" data-add="cat_ears" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="고양이귀"><path d="M105 318l45-215 115 132 105-132 45 215z" fill="#6b547f" stroke="#352543" stroke-width="18"/><path d="M146 139l28 112 66-40zM366 139l-28 112-66-40z" fill="#ef91bc"/><rect x="106" y="302" width="300" height="70" rx="34" fill="#7b628e" stroke="#352543" stroke-width="16"/></svg><span>고양이귀</span></button>
-<button class="sticker-btn" data-add="bear_ears" data-paid="1" data-cat="head"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="곰귀"><circle cx="152" cy="170" r="90" fill="#9c6a3f" stroke="#5d351e" stroke-width="18"/><circle cx="360" cy="170" r="90" fill="#9c6a3f" stroke="#5d351e" stroke-width="18"/><circle cx="152" cy="170" r="48" fill="#d69a67"/><circle cx="360" cy="170" r="48" fill="#d69a67"/><rect x="110" y="270" width="292" height="90" rx="42" fill="#a8784d" stroke="#5d351e" stroke-width="18"/></svg><span>곰귀</span></button>
-<button class="sticker-btn" data-add="prince" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="왕자 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#6f8ee8" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/></svg><span>왕자 의상</span></button>
-<button class="sticker-btn" data-add="spacesuit" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="우주복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#e6edf7" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#7eb4e6" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#7eb4e6" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#7eb4e6" stroke-width="16" stroke-linecap="round"/><rect x="185" y="160" width="142" height="100" rx="22" fill="#1e3655"/><circle cx="222" cy="207" r="12" fill="#ef5f6c"/><circle cx="260" cy="207" r="12" fill="#ffd75a"/><circle cx="298" cy="207" r="12" fill="#69d09d"/></svg><span>우주복</span></button>
-<button class="sticker-btn" data-add="police_uniform" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="경찰복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#3159a8" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/><path d="M256 100l34 50 60 9-43 42 10 59-61-32-61 32 10-59-43-42 60-9z" fill="#ffd85a"/></svg><span>경찰복</span></button>
-<button class="sticker-btn" data-add="doctor_coat" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="의사 가운"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#ffffff" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#74b9ff" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#74b9ff" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#74b9ff" stroke-width="16" stroke-linecap="round"/><path d="M256 170v180M210 190l46 35 46-35" stroke="#4c7fa8" stroke-width="12"/><circle cx="315" cy="275" r="23" fill="none" stroke="#e34d5e" stroke-width="10"/></svg><span>의사 가운</span></button>
-<button class="sticker-btn" data-add="fairy_dress" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="요정 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#d995ef" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/><path d="M150 265C60 180 48 110 132 96c62-10 95 47 124 104M362 265c90-85 102-155 18-169-62-10-95 47-124 104" fill="#e7f8ff" stroke="#72b8df" stroke-width="14"/></svg><span>요정 의상</span></button>
-<button class="sticker-btn" data-add="hanbok" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="한복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#f36f9f" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd3e1" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd3e1" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd3e1" stroke-width="16" stroke-linecap="round"/></svg><span>한복</span></button>
-<button class="sticker-btn" data-add="santa_suit" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="산타 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#e94560" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#fff" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#fff" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/></svg><span>산타 의상</span></button>
-<button class="sticker-btn" data-add="dino_suit" data-paid="1" data-cat="outfit"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="공룡 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#63c98f" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffcf58" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffcf58" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffcf58" stroke-width="16" stroke-linecap="round"/></svg><span>공룡 의상</span></button>
-<button class="sticker-btn" data-add="flower" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="꽃"><circle cx="256" cy="256" r="62" fill="#ffd75a"/><circle cx="256" cy="120" r="78" fill="#ff89b8"/><circle cx="392" cy="256" r="78" fill="#ff89b8"/><circle cx="256" cy="392" r="78" fill="#ff89b8"/><circle cx="120" cy="256" r="78" fill="#ff89b8"/></svg><span>꽃</span></button>
-<button class="sticker-btn" data-add="rainbow" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="무지개"><path d="M70 390a186 186 0 0 1 372 0" fill="none" stroke="#f15b6c" stroke-width="46"/><path d="M105 390a151 151 0 0 1 302 0" fill="none" stroke="#ffd65a" stroke-width="42"/><path d="M140 390a116 116 0 0 1 232 0" fill="none" stroke="#63c98f" stroke-width="38"/><path d="M175 390a81 81 0 0 1 162 0" fill="none" stroke="#6f8ee8" stroke-width="34"/></svg><span>무지개</span></button>
-<button class="sticker-btn" data-add="balloon" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="풍선"><ellipse cx="256" cy="190" rx="125" ry="155" fill="#ff6f9f" stroke="#a62e5d" stroke-width="18"/><path d="M256 345l-22 34h44z" fill="#a62e5d"/><path d="M256 379c-70 40 70 70 0 115" fill="none" stroke="#7b5970" stroke-width="12"/></svg><span>풍선</span></button>
-<button class="sticker-btn" data-add="ribbon" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="리본"><path d="M256 240c-90-120-200-120-184 0 15 110 145 80 184 0z" fill="#ff7cad" stroke="#aa2e64" stroke-width="18"/><path d="M256 240c90-120 200-120 184 0-15 110-145 80-184 0z" fill="#ff7cad" stroke="#aa2e64" stroke-width="18"/><circle cx="256" cy="240" r="58" fill="#ffd85a" stroke="#a96d16" stroke-width="16"/><path d="M225 290l-75 150 92-46 14 70 14-70 92 46-75-150" fill="#f45e97" stroke="#aa2e64" stroke-width="16"/></svg><span>리본</span></button>
-<button class="sticker-btn" data-add="gem" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="보석"><path d="M256 60l150 115-60 235H166l-60-235z" fill="#6ed3ff" stroke="#2d6f9c" stroke-width="18"/><path d="M106 175h300M166 410l90-235 90 235M106 175l60 235M406 175l-60 235" fill="none" stroke="#dff7ff" stroke-width="14"/></svg><span>보석</span></button>
-<button class="sticker-btn" data-add="cloud" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="구름"><circle cx="176" cy="276" r="95" fill="#fff" stroke="#a9c9df" stroke-width="16"/><circle cx="276" cy="220" r="120" fill="#fff" stroke="#a9c9df" stroke-width="16"/><circle cx="370" cy="286" r="82" fill="#fff" stroke="#a9c9df" stroke-width="16"/><rect x="118" y="275" width="325" height="120" rx="58" fill="#fff" stroke="#a9c9df" stroke-width="16"/></svg><span>구름</span></button>
-<button class="sticker-btn" data-add="moon" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="달"><path d="M340 60c-125 30-190 176-120 288 48 77 144 112 232 69-158 12-226-170-112-357z" fill="#ffd85a" stroke="#a96d16" stroke-width="18"/><circle cx="317" cy="180" r="18" fill="#f1b83a"/><circle cx="340" cy="286" r="26" fill="#f1b83a"/></svg><span>달</span></button>
-<button class="sticker-btn" data-add="magic_wand" data-paid="1" data-cat="decor"><svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="마법봉"><path d="M128 410L330 208" stroke="#7c5bc5" stroke-width="34" stroke-linecap="round"/><path d="M354 60l34 69 76 11-55 54 13 75-68-36-68 36 13-75-55-54 76-11z" fill="#ffd85a" stroke="#a96d16" stroke-width="16"/><circle cx="155" cy="170" r="15" fill="#ff81b2"/><circle cx="394" cy="350" r="18" fill="#71c9f1"/></svg><span>마법봉</span></button>
+<button class="sticker-btn" data-add="santa_hat" data-paid="1" data-cat="head"><img src="./stickers_png/santa_hat.png?v=583" alt="산타 모자"><span>산타 모자</span></button>
+<button class="sticker-btn" data-add="police_hat" data-paid="1" data-cat="head"><img src="./stickers_png/police_hat.png?v=583" alt="경찰모"><span>경찰모</span></button>
+<button class="sticker-btn" data-add="fire_helmet" data-paid="1" data-cat="head"><img src="./stickers_png/fire_helmet.png?v=583" alt="소방 헬멧"><span>소방 헬멧</span></button>
+<button class="sticker-btn" data-add="space_helmet" data-paid="1" data-cat="head"><img src="./stickers_png/space_helmet.png?v=583" alt="우주 헬멧"><span>우주 헬멧</span></button>
+<button class="sticker-btn" data-add="dino_hat" data-paid="1" data-cat="head"><img src="./stickers_png/dino_hat.png?v=583" alt="공룡 모자"><span>공룡 모자</span></button>
+<button class="sticker-btn" data-add="bunny_ears" data-paid="1" data-cat="head"><img src="./stickers_png/bunny_ears.png?v=583" alt="토끼귀"><span>토끼귀</span></button>
+<button class="sticker-btn" data-add="cat_ears" data-paid="1" data-cat="head"><img src="./stickers_png/cat_ears.png?v=583" alt="고양이귀"><span>고양이귀</span></button>
+<button class="sticker-btn" data-add="bear_ears" data-paid="1" data-cat="head"><img src="./stickers_png/bear_ears.png?v=583" alt="곰귀"><span>곰귀</span></button>
+<button class="sticker-btn" data-add="prince" data-paid="1" data-cat="outfit"><img src="./stickers_png/prince.png?v=583" alt="왕자 의상"><span>왕자 의상</span></button>
+<button class="sticker-btn" data-add="spacesuit" data-paid="1" data-cat="outfit"><img src="./stickers_png/spacesuit.png?v=583" alt="우주복"><span>우주복</span></button>
+<button class="sticker-btn" data-add="police_uniform" data-paid="1" data-cat="outfit"><img src="./stickers_png/police_uniform.png?v=583" alt="경찰복"><span>경찰복</span></button>
+<button class="sticker-btn" data-add="doctor_coat" data-paid="1" data-cat="outfit"><img src="./stickers_png/doctor_coat.png?v=583" alt="의사 가운"><span>의사 가운</span></button>
+<button class="sticker-btn" data-add="fairy_dress" data-paid="1" data-cat="outfit"><img src="./stickers_png/fairy_dress.png?v=583" alt="요정 의상"><span>요정 의상</span></button>
+<button class="sticker-btn" data-add="hanbok" data-paid="1" data-cat="outfit"><img src="./stickers_png/hanbok.png?v=583" alt="한복"><span>한복</span></button>
+<button class="sticker-btn" data-add="santa_suit" data-paid="1" data-cat="outfit"><img src="./stickers_png/santa_suit.png?v=583" alt="산타 의상"><span>산타 의상</span></button>
+<button class="sticker-btn" data-add="dino_suit" data-paid="1" data-cat="outfit"><img src="./stickers_png/dino_suit.png?v=583" alt="공룡 의상"><span>공룡 의상</span></button>
+<button class="sticker-btn" data-add="flower" data-paid="1" data-cat="decor"><img src="./stickers_png/flower.png?v=583" alt="꽃"><span>꽃</span></button>
+<button class="sticker-btn" data-add="rainbow" data-paid="1" data-cat="decor"><img src="./stickers_png/rainbow.png?v=583" alt="무지개"><span>무지개</span></button>
+<button class="sticker-btn" data-add="balloon" data-paid="1" data-cat="decor"><img src="./stickers_png/balloon.png?v=583" alt="풍선"><span>풍선</span></button>
+<button class="sticker-btn" data-add="ribbon" data-paid="1" data-cat="decor"><img src="./stickers_png/ribbon.png?v=583" alt="리본"><span>리본</span></button>
+<button class="sticker-btn" data-add="gem" data-paid="1" data-cat="decor"><img src="./stickers_png/gem.png?v=583" alt="보석"><span>보석</span></button>
+<button class="sticker-btn" data-add="cloud" data-paid="1" data-cat="decor"><img src="./stickers_png/cloud.png?v=583" alt="구름"><span>구름</span></button>
+<button class="sticker-btn" data-add="moon" data-paid="1" data-cat="decor"><img src="./stickers_png/moon.png?v=583" alt="달"><span>달</span></button>
+<button class="sticker-btn" data-add="magic_wand" data-paid="1" data-cat="decor"><img src="./stickers_png/magic_wand.png?v=583" alt="마법봉"><span>마법봉</span></button>
 </div>
 <button class="primary" id="saveOutfit">꾸미기 저장</button>
 <button class="secondary" id="downloadImage">완성 이미지 저장</button>
@@ -1148,168 +1182,168 @@ font-weight:900
 </div>
 <div class="outfit" data-shop="santa_hat">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="산타 모자"><path d="M95 330c45-185 180-250 310-120l-62 110z" fill="#e94560" stroke="#9b1830" stroke-width="18"/><rect x="82" y="312" width="350" height="80" rx="38" fill="#fff" stroke="#d9d9e2" stroke-width="15"/><circle cx="402" cy="177" r="45" fill="#fff" stroke="#d9d9e2" stroke-width="15"/></svg>
+<img src="./stickers_png/santa_hat.png?v=583" alt="산타 모자">
 <strong>산타 모자</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="police_hat">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="경찰모"><path d="M95 290c20-125 300-125 322 0z" fill="#3159a8" stroke="#17336e" stroke-width="18"/><rect x="82" y="280" width="348" height="82" rx="28" fill="#274a91" stroke="#17336e" stroke-width="18"/><path d="M256 167l30 45 53 8-38 37 9 52-54-28-54 28 9-52-38-37 53-8z" fill="#ffd75a"/></svg>
+<img src="./stickers_png/police_hat.png?v=583" alt="경찰모">
 <strong>경찰모</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="fire_helmet">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="소방 헬멧"><path d="M86 315c5-150 72-235 170-235s165 85 170 235z" fill="#ef4c3e" stroke="#9f201c" stroke-width="18"/><rect x="65" y="300" width="382" height="80" rx="28" fill="#ffd85a" stroke="#b57912" stroke-width="16"/><path d="M256 122l42 60-42 70-42-70z" fill="#fff3b0"/></svg>
+<img src="./stickers_png/fire_helmet.png?v=583" alt="소방 헬멧">
 <strong>소방 헬멧</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="space_helmet">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="우주 헬멧"><circle cx="256" cy="244" r="175" fill="#eef5ff" stroke="#7690ba" stroke-width="20"/><ellipse cx="256" cy="248" rx="125" ry="98" fill="#8dc8ef" stroke="#426f9d" stroke-width="16"/><path d="M170 225c55-35 126-38 184-5" stroke="#fff" stroke-width="16" stroke-linecap="round" opacity=".7"/><rect x="154" y="392" width="204" height="56" rx="26" fill="#d7e2f2" stroke="#7690ba" stroke-width="14"/></svg>
+<img src="./stickers_png/space_helmet.png?v=583" alt="우주 헬멧">
 <strong>우주 헬멧</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="dino_hat">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="공룡 모자"><path d="M105 370V205c0-85 68-145 151-145s151 60 151 145v165z" fill="#63c98f" stroke="#268456" stroke-width="18"/><path d="M170 95l34-58 38 64 38-67 40 72 38-58 18 96" fill="#ffcf58" stroke="#a96d16" stroke-width="14" stroke-linejoin="round"/><circle cx="205" cy="220" r="15"/><circle cx="306" cy="220" r="15"/></svg>
+<img src="./stickers_png/dino_hat.png?v=583" alt="공룡 모자">
 <strong>공룡 모자</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="bunny_ears">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="토끼귀"><ellipse cx="177" cy="160" rx="64" ry="130" fill="#fff5fa" stroke="#d98eaf" stroke-width="16"/><ellipse cx="335" cy="160" rx="64" ry="130" fill="#fff5fa" stroke="#d98eaf" stroke-width="16"/><ellipse cx="177" cy="160" rx="25" ry="88" fill="#ffb2d1"/><ellipse cx="335" cy="160" rx="25" ry="88" fill="#ffb2d1"/><rect x="120" y="280" width="272" height="76" rx="36" fill="#fff" stroke="#d98eaf" stroke-width="16"/></svg>
+<img src="./stickers_png/bunny_ears.png?v=583" alt="토끼귀">
 <strong>토끼귀</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="cat_ears">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="고양이귀"><path d="M105 318l45-215 115 132 105-132 45 215z" fill="#6b547f" stroke="#352543" stroke-width="18"/><path d="M146 139l28 112 66-40zM366 139l-28 112-66-40z" fill="#ef91bc"/><rect x="106" y="302" width="300" height="70" rx="34" fill="#7b628e" stroke="#352543" stroke-width="16"/></svg>
+<img src="./stickers_png/cat_ears.png?v=583" alt="고양이귀">
 <strong>고양이귀</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="bear_ears">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="곰귀"><circle cx="152" cy="170" r="90" fill="#9c6a3f" stroke="#5d351e" stroke-width="18"/><circle cx="360" cy="170" r="90" fill="#9c6a3f" stroke="#5d351e" stroke-width="18"/><circle cx="152" cy="170" r="48" fill="#d69a67"/><circle cx="360" cy="170" r="48" fill="#d69a67"/><rect x="110" y="270" width="292" height="90" rx="42" fill="#a8784d" stroke="#5d351e" stroke-width="18"/></svg>
+<img src="./stickers_png/bear_ears.png?v=583" alt="곰귀">
 <strong>곰귀</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="prince">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="왕자 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#6f8ee8" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/></svg>
+<img src="./stickers_png/prince.png?v=583" alt="왕자 의상">
 <strong>왕자 의상</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="spacesuit">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="우주복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#e6edf7" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#7eb4e6" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#7eb4e6" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#7eb4e6" stroke-width="16" stroke-linecap="round"/><rect x="185" y="160" width="142" height="100" rx="22" fill="#1e3655"/><circle cx="222" cy="207" r="12" fill="#ef5f6c"/><circle cx="260" cy="207" r="12" fill="#ffd75a"/><circle cx="298" cy="207" r="12" fill="#69d09d"/></svg>
+<img src="./stickers_png/spacesuit.png?v=583" alt="우주복">
 <strong>우주복</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="police_uniform">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="경찰복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#3159a8" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/><path d="M256 100l34 50 60 9-43 42 10 59-61-32-61 32 10-59-43-42 60-9z" fill="#ffd85a"/></svg>
+<img src="./stickers_png/police_uniform.png?v=583" alt="경찰복">
 <strong>경찰복</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="doctor_coat">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="의사 가운"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#ffffff" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#74b9ff" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#74b9ff" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#74b9ff" stroke-width="16" stroke-linecap="round"/><path d="M256 170v180M210 190l46 35 46-35" stroke="#4c7fa8" stroke-width="12"/><circle cx="315" cy="275" r="23" fill="none" stroke="#e34d5e" stroke-width="10"/></svg>
+<img src="./stickers_png/doctor_coat.png?v=583" alt="의사 가운">
 <strong>의사 가운</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="fairy_dress">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="요정 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#d995ef" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd85a" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd85a" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd85a" stroke-width="16" stroke-linecap="round"/><path d="M150 265C60 180 48 110 132 96c62-10 95 47 124 104M362 265c90-85 102-155 18-169-62-10-95 47-124 104" fill="#e7f8ff" stroke="#72b8df" stroke-width="14"/></svg>
+<img src="./stickers_png/fairy_dress.png?v=583" alt="요정 의상">
 <strong>요정 의상</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="hanbok">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="한복"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#f36f9f" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffd3e1" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffd3e1" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffd3e1" stroke-width="16" stroke-linecap="round"/></svg>
+<img src="./stickers_png/hanbok.png?v=583" alt="한복">
 <strong>한복</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="santa_suit">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="산타 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#e94560" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#fff" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#fff" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/></svg>
+<img src="./stickers_png/santa_suit.png?v=583" alt="산타 의상">
 <strong>산타 의상</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="dino_suit">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="공룡 의상"><path d="M175 78h162l42 120-52 48 76 202H109l76-202-52-48z" fill="#63c98f" stroke="#4e3c59" stroke-width="18" stroke-linejoin="round"/><path d="M176 94l-72 122 56 48 76-108M336 94l72 122-56 48-76-108" fill="#ffcf58" stroke="#4e3c59" stroke-width="16"/><circle cx="256" cy="206" r="28" fill="#ffcf58" stroke="#8c6b20" stroke-width="8"/><path d="M150 388c72-36 140-36 212 0" fill="none" stroke="#ffcf58" stroke-width="16" stroke-linecap="round"/></svg>
+<img src="./stickers_png/dino_suit.png?v=583" alt="공룡 의상">
 <strong>공룡 의상</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="flower">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="꽃"><circle cx="256" cy="256" r="62" fill="#ffd75a"/><circle cx="256" cy="120" r="78" fill="#ff89b8"/><circle cx="392" cy="256" r="78" fill="#ff89b8"/><circle cx="256" cy="392" r="78" fill="#ff89b8"/><circle cx="120" cy="256" r="78" fill="#ff89b8"/></svg>
+<img src="./stickers_png/flower.png?v=583" alt="꽃">
 <strong>꽃</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="rainbow">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="무지개"><path d="M70 390a186 186 0 0 1 372 0" fill="none" stroke="#f15b6c" stroke-width="46"/><path d="M105 390a151 151 0 0 1 302 0" fill="none" stroke="#ffd65a" stroke-width="42"/><path d="M140 390a116 116 0 0 1 232 0" fill="none" stroke="#63c98f" stroke-width="38"/><path d="M175 390a81 81 0 0 1 162 0" fill="none" stroke="#6f8ee8" stroke-width="34"/></svg>
+<img src="./stickers_png/rainbow.png?v=583" alt="무지개">
 <strong>무지개</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="balloon">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="풍선"><ellipse cx="256" cy="190" rx="125" ry="155" fill="#ff6f9f" stroke="#a62e5d" stroke-width="18"/><path d="M256 345l-22 34h44z" fill="#a62e5d"/><path d="M256 379c-70 40 70 70 0 115" fill="none" stroke="#7b5970" stroke-width="12"/></svg>
+<img src="./stickers_png/balloon.png?v=583" alt="풍선">
 <strong>풍선</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="ribbon">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="리본"><path d="M256 240c-90-120-200-120-184 0 15 110 145 80 184 0z" fill="#ff7cad" stroke="#aa2e64" stroke-width="18"/><path d="M256 240c90-120 200-120 184 0-15 110-145 80-184 0z" fill="#ff7cad" stroke="#aa2e64" stroke-width="18"/><circle cx="256" cy="240" r="58" fill="#ffd85a" stroke="#a96d16" stroke-width="16"/><path d="M225 290l-75 150 92-46 14 70 14-70 92 46-75-150" fill="#f45e97" stroke="#aa2e64" stroke-width="16"/></svg>
+<img src="./stickers_png/ribbon.png?v=583" alt="리본">
 <strong>리본</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="gem">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="보석"><path d="M256 60l150 115-60 235H166l-60-235z" fill="#6ed3ff" stroke="#2d6f9c" stroke-width="18"/><path d="M106 175h300M166 410l90-235 90 235M106 175l60 235M406 175l-60 235" fill="none" stroke="#dff7ff" stroke-width="14"/></svg>
+<img src="./stickers_png/gem.png?v=583" alt="보석">
 <strong>보석</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="cloud">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="구름"><circle cx="176" cy="276" r="95" fill="#fff" stroke="#a9c9df" stroke-width="16"/><circle cx="276" cy="220" r="120" fill="#fff" stroke="#a9c9df" stroke-width="16"/><circle cx="370" cy="286" r="82" fill="#fff" stroke="#a9c9df" stroke-width="16"/><rect x="118" y="275" width="325" height="120" rx="58" fill="#fff" stroke="#a9c9df" stroke-width="16"/></svg>
+<img src="./stickers_png/cloud.png?v=583" alt="구름">
 <strong>구름</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="moon">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="달"><path d="M340 60c-125 30-190 176-120 288 48 77 144 112 232 69-158 12-226-170-112-357z" fill="#ffd85a" stroke="#a96d16" stroke-width="18"/><circle cx="317" cy="180" r="18" fill="#f1b83a"/><circle cx="340" cy="286" r="26" fill="#f1b83a"/></svg>
+<img src="./stickers_png/moon.png?v=583" alt="달">
 <strong>달</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
 </div>
 <div class="outfit" data-shop="magic_wand">
 <span class="badge"></span>
-<svg class="asset-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="마법봉"><path d="M128 410L330 208" stroke="#7c5bc5" stroke-width="34" stroke-linecap="round"/><path d="M354 60l34 69 76 11-55 54 13 75-68-36-68 36 13-75-55-54 76-11z" fill="#ffd85a" stroke="#a96d16" stroke-width="16"/><circle cx="155" cy="170" r="15" fill="#ff81b2"/><circle cx="394" cy="350" r="18" fill="#71c9f1"/></svg>
+<img src="./stickers_png/magic_wand.png?v=583" alt="마법봉">
 <strong>마법봉</strong>
 <span class="price">꾸미기에서 사용</span>
 <button type="button"></button>
@@ -1409,7 +1443,7 @@ font-weight:900
   }
   if(changed&&!sessionStorage.getItem('todayme-clean-reloaded')){
    sessionStorage.setItem('todayme-clean-reloaded','1');
-   location.replace(location.pathname+'?v=582&clean=1');
+   location.replace(location.pathname+'?v=583&clean=1');
   }
  }catch(e){}
 })();
