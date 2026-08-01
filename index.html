@@ -366,6 +366,16 @@ animation:sparkleFly 1.1s ease-out forwards
 button{transition:transform .14s ease,filter .14s ease}
 button:active{transform:scale(.97);filter:brightness(.97)}
 
+
+.reset-target-row{
+background:linear-gradient(135deg,#fff1f7,#eef4ff);
+border:2px solid rgba(224,205,218,.75);
+border-radius:24px;padding:17px!important
+}
+.reset-target-help{
+margin:9px 2px 0;color:#806c76;font-size:13px;font-weight:800;line-height:1.45
+}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -600,13 +610,14 @@ font-weight:900
 </div>
 </div>
 <div class="settings-list">
-<div class="settings-select-row">
-<label for="resetAlbumChild">📚 초기화할 성장앨범</label>
-<select id="resetAlbumChild">
-<option value="harin">박하린 성장앨범</option>
-<option value="seoyul">박서율 성장앨범</option>
-<option value="all">두 아이 성장앨범 전체</option>
+<div class="settings-select-row reset-target-row">
+<label for="resetTargetChild">👧👦 초기화할 아이</label>
+<select id="resetTargetChild">
+<option value="harin">박하린만 초기화</option>
+<option value="seoyul">박서율만 초기화</option>
+<option value="all">두 아이 모두 초기화</option>
 </select>
+<p class="reset-target-help">아래 초기화 버튼은 선택한 아이에게만 적용돼요.</p>
 </div>
 <button id="resetGrowthAlbum">📚 성장앨범 초기화</button>
 <button id="resetPhotos">📷 저장 사진 초기화</button>
@@ -1399,57 +1410,124 @@ function removeKeys(predicate){
  refresh();
 }
 
+function selectedResetTarget(){
+ const value=document.getElementById('resetTargetChild').value;
+ const targets=value==='all'?['harin','seoyul']:[value];
+ const label=value==='harin'?'하린이':value==='seoyul'?'서율이':'두 아이';
+ return {value,targets,label};
+}
+function removeChildKeys(prefixes,child){
+ Object.keys(localStorage).forEach(key=>{
+   const matched=prefixes.some(prefix=>
+     key===`${prefix}${child}`||
+     key.startsWith(`${prefix}${child}-`)||
+     key.startsWith(`${prefix}-${child}`)||
+     key.includes(`-${child}-`)
+   );
+   if(matched)localStorage.removeItem(key);
+ });
+}
 document.getElementById('resetGrowthAlbum').onclick=()=>{
- const target=document.getElementById('resetAlbumChild').value;
- const label=target==='harin'?'하린이':target==='seoyul'?'서율이':'두 아이';
+ const {targets,label}=selectedResetTarget();
  if(!confirm(`${label} 성장앨범의 사진과 월별 기록을 초기화할까요?`))return;
  if(!confirm('성장앨범 기록은 되돌릴 수 없어요. 정말 초기화할까요?'))return;
-
- const targets=target==='all'?['harin','seoyul']:[target];
  targets.forEach(c=>{
    localStorage.removeItem(`todayme-album-photos-${c}`);
    Object.keys(localStorage)
      .filter(k=>k.startsWith(`todayme-activity-${c}-`))
      .forEach(k=>localStorage.removeItem(k));
  });
+ refresh();
  say(`${label} 성장앨범을 초기화했어요`);
 };
+
 document.getElementById('resetPhotos').onclick=()=>{
- if(confirm('저장된 사진만 초기화할까요?')){
-   removeKeys(k=>k.startsWith('todayme-photo-')||k.startsWith('todayme-album-photos-')||k.includes('-photos'));
-   say('사진을 초기화했어요');
- }
+ const {targets,label}=selectedResetTarget();
+ if(!confirm(`${label}의 저장 사진을 기본 사진으로 되돌릴까요?`))return;
+ targets.forEach(c=>localStorage.removeItem(`todayme-photo-${c}`));
+ refresh();
+ say(`${label} 저장 사진을 초기화했어요`);
 };
+
 document.getElementById('resetStars').onclick=()=>{
- if(confirm('별, 미션, 출석 기록을 초기화할까요?')){
-   removeKeys(k=>k.startsWith('todayme-stars-')||k.startsWith('todayme-streak-')||k.startsWith('todayme-last-visit-')||k.startsWith('todayme-task-')||k.startsWith('todayme-chest-')||k.startsWith('todayme-activity-'));
-   refreshDailyRewards();say('별과 출석을 초기화했어요');
- }
+ const {targets,label}=selectedResetTarget();
+ if(!confirm(`${label}의 별, 미션, 출석 기록을 초기화할까요?`))return;
+ targets.forEach(c=>{
+   removeChildKeys([
+     'todayme-stars-',
+     'todayme-streak-',
+     'todayme-last-visit-',
+     'todayme-task-',
+     'todayme-chest-',
+     'todayme-activity-'
+   ],c);
+ });
+ refreshDailyRewards();
+ refresh();
+ updateHomeCards();
+ say(`${label} 별과 출석을 초기화했어요`);
 };
+
 document.getElementById('resetCloset').onclick=()=>{
- if(confirm('구입한 옷장 아이템을 초기화할까요?')){
-   removeKeys(k=>k.startsWith('todayme-owned-')||k.startsWith('todayme-unlocked-stickers-'));refresh();say('옷장을 초기화했어요');
- }
+ const {targets,label}=selectedResetTarget();
+ if(!confirm(`${label}의 열린 옷장 아이템을 초기화할까요?`))return;
+ targets.forEach(c=>{
+   localStorage.removeItem(`todayme-owned-${c}`);
+   localStorage.removeItem(`todayme-unlocked-stickers-${c}`);
+ });
+ refresh();
+ updateStickerUnlockUI();
+ say(`${label} 옷장을 초기화했어요`);
 };
+
 document.getElementById('resetDecorations').onclick=()=>{
- if(confirm('저장된 꾸미기를 초기화할까요?')){
-   removeKeys(k=>k.startsWith('todayme-outfit-'));say('꾸미기를 초기화했어요');
+ const {targets,label}=selectedResetTarget();
+ if(!confirm(`${label}의 저장된 꾸미기를 초기화할까요?`))return;
+ targets.forEach(c=>localStorage.removeItem(`todayme-outfit-${c}`));
+ if(targets.includes(activeChild)){
+   document.querySelectorAll('.sticker').forEach(el=>{
+     el.classList.remove('active','selected');
+     el.style.left='';
+     el.style.top='';
+     el.style.width='';
+     el.dataset.rotation='0';
+   });
+   selectedSticker=null;
  }
+ say(`${label} 꾸미기를 초기화했어요`);
 };
 
 document.getElementById('resetLetters').onclick=()=>{
- if(confirm('저장한 편지를 기본 문구로 되돌릴까요?')){
-   removeKeys(k=>k.startsWith('todayme-letter-'));
-   loadLetterEditor();
-   say('편지를 기본 문구로 되돌렸어요');
- }
+ const {targets,label}=selectedResetTarget();
+ if(!confirm(`${label}에게 저장한 편지를 기본 문구로 되돌릴까요?`))return;
+ targets.forEach(c=>localStorage.removeItem(`todayme-letter-${c}`));
+ loadLetterEditor();
+ say(`${label} 편지를 기본 문구로 되돌렸어요`);
 };
+
 document.getElementById('resetAll').onclick=()=>{
- if(confirm('사진, 별, 옷장, 꾸미기를 모두 초기화할까요?')){
-   if(confirm('정말 전체 초기화할까요? 되돌릴 수 없어요.')){
-     removeKeys(k=>k.startsWith('todayme-'));refreshDailyRewards();closePanels();say('전체 초기화했어요');
-   }
- }
+ const {targets,label}=selectedResetTarget();
+ if(!confirm(`${label}의 사진, 성장앨범, 별, 옷장, 꾸미기와 편지를 모두 초기화할까요?`))return;
+ if(!confirm('정말 초기화할까요? 되돌릴 수 없어요.'))return;
+ targets.forEach(c=>{
+   Object.keys(localStorage)
+     .filter(k=>k.startsWith('todayme-')&&(
+       k===`todayme-photo-${c}`||
+       k===`todayme-outfit-${c}`||
+       k===`todayme-letter-${c}`||
+       k===`todayme-owned-${c}`||
+       k===`todayme-unlocked-stickers-${c}`||
+       k===`todayme-album-photos-${c}`||
+       k.includes(`-${c}-`)||
+       k.endsWith(`-${c}`)
+     ))
+     .forEach(k=>localStorage.removeItem(k));
+ });
+ refreshDailyRewards();
+ refresh();
+ updateHomeCards();
+ updateStickerUnlockUI();
+ say(`${label} 기록을 모두 초기화했어요`);
 };
 
 function dismissUnlockModal(){
@@ -1519,7 +1597,7 @@ window.addEventListener('pageshow',bootTodayMe);
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible')bootTodayMe();
 });
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=542').catch(()=>{
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=543').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
