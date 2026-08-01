@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나 V5.8.1</title>
-<link rel="manifest" href="./manifest.json?v=581">
-<link rel="icon" href="./icon.svg?v=581" type="image/svg+xml">
+<link rel="manifest" href="./manifest.json?v=582">
+<link rel="icon" href="./icon.svg?v=582" type="image/svg+xml">
 <style>
 *{
 box-sizing:border-box;
@@ -425,7 +425,7 @@ font-weight:900
 
 @media(min-width:700px){.child-grid{grid-template-columns:1fr 1fr}}
 
-/* V5.8.0 item expansion */
+/* V5.8.2 item expansion */
 .emoji-preview{font-size:48px;line-height:1.1;display:block!important;margin:2px auto 6px!important;filter:drop-shadow(0 7px 7px rgba(66,44,61,.18))}
 .emoji-sticker{font-size:72px;line-height:1;text-align:center;filter:drop-shadow(0 7px 6px rgba(0,0,0,.28));white-space:nowrap}
 .emoji-outfit .emoji{font-size:72px;line-height:1.2;min-height:92px;display:grid;place-items:center;margin-bottom:8px;filter:drop-shadow(0 9px 9px rgba(54,36,48,.18))}
@@ -673,6 +673,9 @@ font-weight:900
 <circle cx="178" cy="187" r="9" fill="#FFF" opacity=".8"/>
 </g></svg></div>
 </div>
+<div class="controls controls-under-photo">
+<button id="bigger">크게 ＋</button><button id="smaller">작게 －</button><button id="rotateLeft">↶ 왼쪽 회전</button><button id="rotateRight">↷ 오른쪽 회전</button><button id="removeSticker">삭제</button>
+</div>
 <div class="sticker-tabs">
 <button class="sticker-tab active" data-category="all">전체</button>
 <button class="sticker-tab" data-category="head">모자</button>
@@ -688,9 +691,6 @@ font-weight:900
 <button class="sticker-btn" data-add="wings" data-paid="1" data-cat="outfit"><img class="sticker-preview-img" src="./wings.png?v=561" alt="" loading="eager" draggable="false"><span>날개</span></button>
 <button class="sticker-btn" data-add="heart" data-cat="decor"><img class="sticker-preview-img" src="./heart.png?v=561" alt="" loading="eager" draggable="false"><span>하트</span></button>
 <button class="sticker-btn" data-add="star" data-cat="decor"><img class="sticker-preview-img" src="./star.png?v=561" alt="" loading="eager" draggable="false"><span>별</span></button>
-</div>
-<div class="controls">
-<button id="bigger">크게 ＋</button><button id="smaller">작게 －</button><button id="rotateLeft">↶ 왼쪽 회전</button><button id="rotateRight">↷ 오른쪽 회전</button><button id="removeSticker">삭제</button>
 </div>
 <button class="primary" id="saveOutfit">꾸미기 저장</button>
 <button class="secondary" id="downloadImage">완성 이미지 저장</button>

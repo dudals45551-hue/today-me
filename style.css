@@ -213,3 +213,31 @@ button:active{transform:scale(.97)}
   .children{gap:10px}
   .action-button{min-height:48px}
 }
+
+
+/* V5.8.2: 사진 바로 아래에 스티커 조작 버튼 배치 */
+.controls-under-photo{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin:14px 0 4px;
+  padding:10px;
+  border:2px solid rgba(127,88,224,.18);
+  border-radius:20px;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.controls-under-photo button{
+  min-height:58px;
+  padding:8px 4px;
+  font-size:clamp(11px,3.1vw,15px);
+  line-height:1.2;
+}
+.controls-under-photo button:last-child{
+  grid-column:1/-1;
+  min-height:48px;
+}
+@media (max-width:380px){
+  .controls-under-photo{gap:6px;padding:8px}
+  .controls-under-photo button{font-size:11px;min-height:54px}
+}
