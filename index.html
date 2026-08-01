@@ -420,7 +420,7 @@ font-weight:900
 </head>
 <body>
 <div class="app">
-<header class="topbar"><button id="starsTop" class="child-only-star">⭐ <span id="starCount">0</span></button><button id="settings" aria-label="부모님 설정">⚙️</button></header>
+<header class="topbar"><button id="starsTop" class="child-only-star hidden-on-home">⭐ <span id="starCount">0</span></button><button id="settings" aria-label="부모님 설정">⚙️</button></header>
 
 
 <section id="selector" class="screen selector active">
@@ -905,7 +905,7 @@ function refresh(){
  document.getElementById('starCount').textContent=childStars(activeChild);
  updateHomeCards();
  updateShop();
- renderAllDailyMissions()
+ renderAllChildDailyMissions()
 }
 document.querySelectorAll('[data-open]').forEach(card=>card.onclick=e=>{
  if(e.target.closest('[data-quick]'))return;
@@ -930,16 +930,16 @@ const missionPool=[
  {id:'sleep',emoji:'🌙',text:'약속한 시간에 잠자기',stars:2}
 ];
 
-const missionPool=[{id:'brush',icon:'🪥',name:'양치하기',stars:1},{id:'book',icon:'📖',name:'책 읽기',stars:2},{id:'tidy',icon:'🧸',name:'장난감 정리',stars:2},{id:'photo',icon:'📷',name:'사진 남기기',stars:2},{id:'help',icon:'❤️',name:'부모님 도와주기',stars:3},{id:'wash',icon:'🫧',name:'손 깨끗이 씻기',stars:1},{id:'exercise',icon:'🤸',name:'몸 움직이기',stars:2},{id:'kind',icon:'😊',name:'고운 말 사용하기',stars:2}];
-function seededDailyMissions(c){const seed=[...(`${localDateKey()}-${c}`)].reduce((a,x)=>a+x.charCodeAt(0),0),p=[...missionPool];for(let i=p.length-1;i>0;i--){const j=(seed+i*17)%(i+1);[p[i],p[j]]=[p[j],p[i]]}return p.slice(0,3)}
-function missionStateKey(c){return `todayme-daily-missions-${c}-${localDateKey()}`}function treasureStateKey(c){return `todayme-treasure-opened-${c}-${localDateKey()}`}function bonusStateKey(c){return `todayme-mission-bonus-${c}-${localDateKey()}`}
-function loadMissionState(c){return JSON.parse(localStorage.getItem(missionStateKey(c))||'{}')}function saveMissionState(c,s){localStorage.setItem(missionStateKey(c),JSON.stringify(s))}
-function showMissionReward(i,t,x){document.getElementById('missionRewardIcon').textContent=i;document.getElementById('missionRewardTitle').textContent=t;document.getElementById('missionRewardText').textContent=x;document.getElementById('missionRewardModal').classList.add('active');if(navigator.vibrate)navigator.vibrate([70,40,100])}
-function completeMission(c,id){const s=loadMissionState(c);if(s[id])return;const m=seededDailyMissions(c).find(x=>x.id===id);if(!m)return;s[id]=true;saveMissionState(c,s);setChildStars(childStars(c)+m.stars,c);addActivity('missions',1,c);if(seededDailyMissions(c).every(x=>s[x.id])&&!localStorage.getItem(bonusStateKey(c))){localStorage.setItem(bonusStateKey(c),'1');setChildStars(childStars(c)+2,c);showMissionReward('🎉','오늘의 미션 완료!','보너스 별 2개를 받았어요!')}renderDailyMissions(c);refresh();updateHomeCards()}
-function renderDailyMissions(c){const list=document.getElementById(`missionList-${c}`);if(!list)return;const ms=seededDailyMissions(c),s=loadMissionState(c);list.innerHTML=ms.map(m=>`<button type="button" class="mission-item ${s[m.id]?'done':''}" data-complete-mission="${m.id}" data-child="${c}" ${s[m.id]?'disabled':''}><span class="mission-icon">${s[m.id]?'✅':m.icon}</span><span class="mission-name">${m.name}</span><span class="mission-reward">+${m.stars}⭐</span></button>`).join('');const done=ms.filter(m=>s[m.id]).length,opened=localStorage.getItem(treasureStateKey(c))==='1',ready=done===ms.length&&!opened;document.getElementById(`missionDone-${c}`).textContent=`${done}/${ms.length}`;const b=document.getElementById(`openTreasure-${c}`),msg=document.getElementById(`treasureMessage-${c}`);b.disabled=!ready;b.textContent=opened?'오늘은 이미 열었어요':ready?'보물상자 열기':'아직 열 수 없어요';msg.textContent=opened?'내일 새로운 보물상자가 나타나요.':ready?'지금 열 수 있어요!':'미션 3개를 모두 완료하면 열 수 있어요.'}
-function openDailyTreasure(c){if(localStorage.getItem(treasureStateKey(c))==='1')return;const s=loadMissionState(c);if(!seededDailyMissions(c).every(m=>s[m.id]))return;const locked=Object.keys(stickerUnlocks).filter(id=>!isStickerUnlocked(id,c));if(locked.length){const id=locked[Math.floor(Math.random()*locked.length)],saved=unlockedStickers(c);localStorage.setItem(unlockedKey(c),JSON.stringify([...new Set([...saved,id])]));showMissionReward(stickerUnlocks[id].icon,'새 아이템 획득!',`${stickerUnlocks[id].label}이 열렸어요!`)}else{setChildStars(childStars(c)+5,c);showMissionReward('⭐','별 보너스!','모든 아이템이 열려 있어서 별 5개를 받았어요!')}localStorage.setItem(treasureStateKey(c),'1');addActivity('chests',1,c);renderDailyMissions(c);refresh();updateHomeCards();updateStickerUnlockUI();updateShop()}
-function renderAllDailyMissions(){['harin','seoyul'].forEach(renderDailyMissions)}
-document.addEventListener('click',e=>{const m=e.target.closest('[data-complete-mission]');if(m){completeMission(m.dataset.child,m.dataset.completeMission);return}if(e.target.closest('#openTreasure-harin'))openDailyTreasure('harin');if(e.target.closest('#openTreasure-seoyul'))openDailyTreasure('seoyul');if(e.target.closest('#closeMissionReward')||e.target.id==='missionRewardModal')document.getElementById('missionRewardModal').classList.remove('active')});
+const childMissionPool=[{id:'brush',icon:'🪥',name:'양치하기',stars:1},{id:'book',icon:'📖',name:'책 읽기',stars:2},{id:'tidy',icon:'🧸',name:'장난감 정리',stars:2},{id:'photo',icon:'📷',name:'사진 남기기',stars:2},{id:'help',icon:'❤️',name:'부모님 도와주기',stars:3},{id:'wash',icon:'🫧',name:'손 깨끗이 씻기',stars:1},{id:'exercise',icon:'🤸',name:'몸 움직이기',stars:2},{id:'kind',icon:'😊',name:'고운 말 사용하기',stars:2}];
+function seededChildDailyMissions(c){const seed=[...(`${localDateKey()}-${c}`)].reduce((a,x)=>a+x.charCodeAt(0),0),p=[...childMissionPool];for(let i=p.length-1;i>0;i--){const j=(seed+i*17)%(i+1);[p[i],p[j]]=[p[j],p[i]]}return p.slice(0,3)}
+function childMissionStateKey(c){return `todayme-daily-missions-${c}-${localDateKey()}`}function childTreasureStateKey(c){return `todayme-treasure-opened-${c}-${localDateKey()}`}function childBonusStateKey(c){return `todayme-mission-bonus-${c}-${localDateKey()}`}
+function loadChildMissionState(c){return JSON.parse(localStorage.getItem(childMissionStateKey(c))||'{}')}function saveChildMissionState(c,s){localStorage.setItem(childMissionStateKey(c),JSON.stringify(s))}
+function showChildMissionReward(i,t,x){document.getElementById('missionRewardIcon').textContent=i;document.getElementById('missionRewardTitle').textContent=t;document.getElementById('missionRewardText').textContent=x;document.getElementById('missionRewardModal').classList.add('active');if(navigator.vibrate)navigator.vibrate([70,40,100])}
+function completeChildMission(c,id){const s=loadChildMissionState(c);if(s[id])return;const m=seededChildDailyMissions(c).find(x=>x.id===id);if(!m)return;s[id]=true;saveChildMissionState(c,s);setChildStars(childStars(c)+m.stars,c);addActivity('missions',1,c);if(seededChildDailyMissions(c).every(x=>s[x.id])&&!localStorage.getItem(childBonusStateKey(c))){localStorage.setItem(childBonusStateKey(c),'1');setChildStars(childStars(c)+2,c);showChildMissionReward('🎉','오늘의 미션 완료!','보너스 별 2개를 받았어요!')}renderChildDailyMissions(c);refresh();updateHomeCards()}
+function renderChildDailyMissions(c){const list=document.getElementById(`missionList-${c}`);if(!list)return;const ms=seededChildDailyMissions(c),s=loadChildMissionState(c);list.innerHTML=ms.map(m=>`<button type="button" class="mission-item ${s[m.id]?'done':''}" data-complete-mission="${m.id}" data-child="${c}" ${s[m.id]?'disabled':''}><span class="mission-icon">${s[m.id]?'✅':m.icon}</span><span class="mission-name">${m.name}</span><span class="mission-reward">+${m.stars}⭐</span></button>`).join('');const done=ms.filter(m=>s[m.id]).length,opened=localStorage.getItem(childTreasureStateKey(c))==='1',ready=done===ms.length&&!opened;document.getElementById(`missionDone-${c}`).textContent=`${done}/${ms.length}`;const b=document.getElementById(`openTreasure-${c}`),msg=document.getElementById(`treasureMessage-${c}`);b.disabled=!ready;b.textContent=opened?'오늘은 이미 열었어요':ready?'보물상자 열기':'아직 열 수 없어요';msg.textContent=opened?'내일 새로운 보물상자가 나타나요.':ready?'지금 열 수 있어요!':'미션 3개를 모두 완료하면 열 수 있어요.'}
+function openChildDailyTreasure(c){if(localStorage.getItem(childTreasureStateKey(c))==='1')return;const s=loadChildMissionState(c);if(!seededChildDailyMissions(c).every(m=>s[m.id]))return;const locked=Object.keys(stickerUnlocks).filter(id=>!isStickerUnlocked(id,c));if(locked.length){const id=locked[Math.floor(Math.random()*locked.length)],saved=unlockedStickers(c);localStorage.setItem(unlockedKey(c),JSON.stringify([...new Set([...saved,id])]));showChildMissionReward(stickerUnlocks[id].icon,'새 아이템 획득!',`${stickerUnlocks[id].label}이 열렸어요!`)}else{setChildStars(childStars(c)+5,c);showChildMissionReward('⭐','별 보너스!','모든 아이템이 열려 있어서 별 5개를 받았어요!')}localStorage.setItem(childTreasureStateKey(c),'1');addActivity('chests',1,c);renderChildDailyMissions(c);refresh();updateHomeCards();updateStickerUnlockUI();updateShop()}
+function renderAllChildDailyMissions(){['harin','seoyul'].forEach(renderDailyMissions)}
+document.addEventListener('click',e=>{const m=e.target.closest('[data-complete-mission]');if(m){completeChildMission(m.dataset.child,m.dataset.completeMission);return}if(e.target.closest('#openTreasure-harin'))openChildDailyTreasure('harin');if(e.target.closest('#openTreasure-seoyul'))openChildDailyTreasure('seoyul');if(e.target.closest('#closeMissionReward')||e.target.id==='missionRewardModal')document.getElementById('missionRewardModal').classList.remove('active')});
 function localDateKey(d=new Date()){
  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
  return `${y}-${m}-${day}`
@@ -1611,6 +1611,7 @@ function bootTodayMe(){
    refresh();
    updateHomeCards();
    updateStickerUnlockUI();
+   renderAllChildDailyMissions();
  }catch(err){
    console.error('오늘의 나 초기화 오류:',err);
  }
@@ -1625,7 +1626,7 @@ window.addEventListener('pageshow',bootTodayMe);
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible')bootTodayMe();
 });
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=550').catch(()=>{
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=551').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
