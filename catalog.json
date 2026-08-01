@@ -1,0 +1,194 @@
+[
+  {
+    "id": "santa_hat",
+    "label": "산타 모자",
+    "category": "head",
+    "stars": 12,
+    "icon": "🎅",
+    "src": "./assets/stickers/hats/santa_hat.svg"
+  },
+  {
+    "id": "police_hat",
+    "label": "경찰모",
+    "category": "head",
+    "stars": 14,
+    "icon": "👮",
+    "src": "./assets/stickers/hats/police_hat.svg"
+  },
+  {
+    "id": "fire_helmet",
+    "label": "소방 헬멧",
+    "category": "head",
+    "stars": 16,
+    "icon": "🧑‍🚒",
+    "src": "./assets/stickers/hats/fire_helmet.svg"
+  },
+  {
+    "id": "space_helmet",
+    "label": "우주 헬멧",
+    "category": "head",
+    "stars": 18,
+    "icon": "🧑‍🚀",
+    "src": "./assets/stickers/hats/space_helmet.svg"
+  },
+  {
+    "id": "dino_hat",
+    "label": "공룡 모자",
+    "category": "head",
+    "stars": 20,
+    "icon": "🦖",
+    "src": "./assets/stickers/hats/dino_hat.svg"
+  },
+  {
+    "id": "bunny_ears",
+    "label": "토끼귀",
+    "category": "head",
+    "stars": 22,
+    "icon": "🐰",
+    "src": "./assets/stickers/hats/bunny_ears.svg"
+  },
+  {
+    "id": "cat_ears",
+    "label": "고양이귀",
+    "category": "head",
+    "stars": 24,
+    "icon": "🐱",
+    "src": "./assets/stickers/hats/cat_ears.svg"
+  },
+  {
+    "id": "bear_ears",
+    "label": "곰귀",
+    "category": "head",
+    "stars": 26,
+    "icon": "🐻",
+    "src": "./assets/stickers/hats/bear_ears.svg"
+  },
+  {
+    "id": "prince",
+    "label": "왕자 의상",
+    "category": "outfit",
+    "stars": 13,
+    "icon": "🤴",
+    "src": "./assets/stickers/clothes/prince.svg"
+  },
+  {
+    "id": "spacesuit",
+    "label": "우주복",
+    "category": "outfit",
+    "stars": 15,
+    "icon": "🚀",
+    "src": "./assets/stickers/clothes/spacesuit.svg"
+  },
+  {
+    "id": "police_uniform",
+    "label": "경찰복",
+    "category": "outfit",
+    "stars": 17,
+    "icon": "👮",
+    "src": "./assets/stickers/clothes/police_uniform.svg"
+  },
+  {
+    "id": "doctor_coat",
+    "label": "의사 가운",
+    "category": "outfit",
+    "stars": 19,
+    "icon": "🩺",
+    "src": "./assets/stickers/clothes/doctor_coat.svg"
+  },
+  {
+    "id": "fairy_dress",
+    "label": "요정 의상",
+    "category": "outfit",
+    "stars": 21,
+    "icon": "🧚",
+    "src": "./assets/stickers/clothes/fairy_dress.svg"
+  },
+  {
+    "id": "hanbok",
+    "label": "한복",
+    "category": "outfit",
+    "stars": 23,
+    "icon": "🎎",
+    "src": "./assets/stickers/clothes/hanbok.svg"
+  },
+  {
+    "id": "santa_suit",
+    "label": "산타 의상",
+    "category": "outfit",
+    "stars": 25,
+    "icon": "🎅",
+    "src": "./assets/stickers/clothes/santa_suit.svg"
+  },
+  {
+    "id": "dino_suit",
+    "label": "공룡 의상",
+    "category": "outfit",
+    "stars": 27,
+    "icon": "🦕",
+    "src": "./assets/stickers/clothes/dino_suit.svg"
+  },
+  {
+    "id": "flower",
+    "label": "꽃",
+    "category": "decor",
+    "stars": 12,
+    "icon": "🌸",
+    "src": "./assets/stickers/decorations/flower.svg"
+  },
+  {
+    "id": "rainbow",
+    "label": "무지개",
+    "category": "decor",
+    "stars": 14,
+    "icon": "🌈",
+    "src": "./assets/stickers/decorations/rainbow.svg"
+  },
+  {
+    "id": "balloon",
+    "label": "풍선",
+    "category": "decor",
+    "stars": 16,
+    "icon": "🎈",
+    "src": "./assets/stickers/decorations/balloon.svg"
+  },
+  {
+    "id": "ribbon",
+    "label": "리본",
+    "category": "decor",
+    "stars": 18,
+    "icon": "🎀",
+    "src": "./assets/stickers/decorations/ribbon.svg"
+  },
+  {
+    "id": "gem",
+    "label": "보석",
+    "category": "decor",
+    "stars": 20,
+    "icon": "💎",
+    "src": "./assets/stickers/decorations/gem.svg"
+  },
+  {
+    "id": "cloud",
+    "label": "구름",
+    "category": "decor",
+    "stars": 22,
+    "icon": "☁️",
+    "src": "./assets/stickers/decorations/cloud.svg"
+  },
+  {
+    "id": "moon",
+    "label": "달",
+    "category": "decor",
+    "stars": 24,
+    "icon": "🌙",
+    "src": "./assets/stickers/decorations/moon.svg"
+  },
+  {
+    "id": "magic_wand",
+    "label": "마법봉",
+    "category": "decor",
+    "stars": 26,
+    "icon": "🪄",
+    "src": "./assets/stickers/decorations/magic_wand.svg"
+  }
+]
