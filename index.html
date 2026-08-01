@@ -325,6 +325,47 @@ color:transparent;
 }
 .child-select img:not([src]),.child-select img[src=""]{visibility:hidden}
 
+
+.save-celebration{
+position:fixed;inset:0;z-index:10000;display:none;
+align-items:center;justify-content:center;pointer-events:none
+}
+.save-celebration.active{display:flex}
+.save-celebration::before{
+content:"";position:absolute;inset:0;background:rgba(38,26,45,.22);
+backdrop-filter:blur(3px)
+}
+.save-bubble{
+position:relative;z-index:2;background:white;border-radius:30px;
+padding:26px 28px;text-align:center;min-width:min(78vw,330px);
+box-shadow:0 24px 60px rgba(0,0,0,.24);
+animation:savePop .45s cubic-bezier(.2,.8,.2,1)
+}
+.save-bubble .save-icon{font-size:64px;animation:saveSpin .7s ease}
+.save-bubble h3{margin:8px 0 4px;font-size:28px}
+.save-bubble p{margin:0;color:#745f6a;font-weight:800}
+.sparkle{
+position:fixed;z-index:10001;font-size:28px;pointer-events:none;
+animation:sparkleFly 1.1s ease-out forwards
+}
+@keyframes savePop{
+0%{transform:scale(.65);opacity:0}
+70%{transform:scale(1.06);opacity:1}
+100%{transform:scale(1)}
+}
+@keyframes saveSpin{
+0%{transform:rotate(-20deg) scale(.5)}
+70%{transform:rotate(12deg) scale(1.2)}
+100%{transform:rotate(0) scale(1)}
+}
+@keyframes sparkleFly{
+0%{transform:translate(0,0) scale(.4) rotate(0);opacity:0}
+20%{opacity:1}
+100%{transform:translate(var(--dx),var(--dy)) scale(1.25) rotate(220deg);opacity:0}
+}
+button{transition:transform .14s ease,filter .14s ease}
+button:active{transform:scale(.97);filter:brightness(.97)}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -736,6 +777,31 @@ function setChildStars(value,c=activeChild){
  }
 
  if(c===activeChild)checkNewUnlocks(c);
+}
+
+function showSaveCelebration(){
+ const layer=document.getElementById('saveCelebration');
+ if(!layer)return;
+ layer.classList.add('active');
+ const symbols=['✨','⭐','💖','🌟','🎉','✨','⭐','💫'];
+ const centerX=window.innerWidth/2;
+ const centerY=window.innerHeight/2;
+ symbols.forEach((symbol,i)=>{
+   const s=document.createElement('div');
+   s.className='sparkle';
+   s.textContent=symbol;
+   const angle=(Math.PI*2/symbols.length)*i;
+   const distance=110+Math.random()*110;
+   s.style.left=(centerX-14)+'px';
+   s.style.top=(centerY-14)+'px';
+   s.style.setProperty('--dx',Math.cos(angle)*distance+'px');
+   s.style.setProperty('--dy',Math.sin(angle)*distance+'px');
+   document.body.appendChild(s);
+   setTimeout(()=>s.remove(),1200);
+ });
+ if(navigator.vibrate)navigator.vibrate([40,35,70]);
+ clearTimeout(showSaveCelebration.timer);
+ showSaveCelebration.timer=setTimeout(()=>layer.classList.remove('active'),1250);
 }
 function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2200)}
 let handlingPopState=false;
@@ -1169,7 +1235,7 @@ const ratio=(vb&&vb.width)?vb.height/vb.width:1;
 const displayH=displayW*ratio;
 ctx.save();ctx.translate(cx,cy);ctx.rotate(rotationOf(e)*Math.PI/180);
 ctx.drawImage(stickerImg,-displayW/2,-displayH/2,displayW,displayH);ctx.restore()}
-const a=document.createElement('a');a.download='오늘의나-'+names[activeChild]+'.png';a.href=canvas.toDataURL('image/png');a.click();say('완성 이미지를 저장했어요')
+const a=document.createElement('a');a.download='오늘의나-'+names[activeChild]+'.png';a.href=canvas.toDataURL('image/png');a.click();say('완성 이미지를 저장했어요');showSaveCelebration()
 };
 
 document.querySelectorAll('[data-shop] button').forEach(btn=>btn.onclick=()=>{
@@ -1364,7 +1430,7 @@ window.addEventListener('pageshow',bootTodayMe);
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible')bootTodayMe();
 });
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=536').catch(()=>{
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=540').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
@@ -1394,6 +1460,15 @@ document.addEventListener('pointerdown',tryPortraitLock,{once:true});}));
     <h3 id="unlockModalTitle">새로운 꾸미기!</h3>
     <p id="unlockModalText"></p>
     <button id="closeUnlockModal" type="button" data-close-unlock>확인</button>
+  </div>
+</div>
+
+
+<div id="saveCelebration" class="save-celebration" aria-live="polite">
+  <div class="save-bubble">
+    <div class="save-icon">✨</div>
+    <h3>저장 완료!</h3>
+    <p>오늘의 모습이 예쁘게 저장됐어요.</p>
   </div>
 </div>
 
