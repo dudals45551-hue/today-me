@@ -5,7 +5,7 @@
     "category": "head",
     "stars": 12,
     "icon": "🎅",
-    "src": "./assets/stickers/hats/santa_hat.svg"
+    "src": "./santa_hat.svg"
   },
   {
     "id": "police_hat",
@@ -13,7 +13,7 @@
     "category": "head",
     "stars": 14,
     "icon": "👮",
-    "src": "./assets/stickers/hats/police_hat.svg"
+    "src": "./police_hat.svg"
   },
   {
     "id": "fire_helmet",
@@ -21,7 +21,7 @@
     "category": "head",
     "stars": 16,
     "icon": "🧑‍🚒",
-    "src": "./assets/stickers/hats/fire_helmet.svg"
+    "src": "./fire_helmet.svg"
   },
   {
     "id": "space_helmet",
@@ -29,7 +29,7 @@
     "category": "head",
     "stars": 18,
     "icon": "🧑‍🚀",
-    "src": "./assets/stickers/hats/space_helmet.svg"
+    "src": "./space_helmet.svg"
   },
   {
     "id": "dino_hat",
@@ -37,7 +37,7 @@
     "category": "head",
     "stars": 20,
     "icon": "🦖",
-    "src": "./assets/stickers/hats/dino_hat.svg"
+    "src": "./dino_hat.svg"
   },
   {
     "id": "bunny_ears",
@@ -45,7 +45,7 @@
     "category": "head",
     "stars": 22,
     "icon": "🐰",
-    "src": "./assets/stickers/hats/bunny_ears.svg"
+    "src": "./bunny_ears.svg"
   },
   {
     "id": "cat_ears",
@@ -53,7 +53,7 @@
     "category": "head",
     "stars": 24,
     "icon": "🐱",
-    "src": "./assets/stickers/hats/cat_ears.svg"
+    "src": "./cat_ears.svg"
   },
   {
     "id": "bear_ears",
@@ -61,7 +61,7 @@
     "category": "head",
     "stars": 26,
     "icon": "🐻",
-    "src": "./assets/stickers/hats/bear_ears.svg"
+    "src": "./bear_ears.svg"
   },
   {
     "id": "prince",
@@ -69,7 +69,7 @@
     "category": "outfit",
     "stars": 13,
     "icon": "🤴",
-    "src": "./assets/stickers/clothes/prince.svg"
+    "src": "./prince.svg"
   },
   {
     "id": "spacesuit",
@@ -77,7 +77,7 @@
     "category": "outfit",
     "stars": 15,
     "icon": "🚀",
-    "src": "./assets/stickers/clothes/spacesuit.svg"
+    "src": "./spacesuit.svg"
   },
   {
     "id": "police_uniform",
@@ -85,7 +85,7 @@
     "category": "outfit",
     "stars": 17,
     "icon": "👮",
-    "src": "./assets/stickers/clothes/police_uniform.svg"
+    "src": "./police_uniform.svg"
   },
   {
     "id": "doctor_coat",
@@ -93,7 +93,7 @@
     "category": "outfit",
     "stars": 19,
     "icon": "🩺",
-    "src": "./assets/stickers/clothes/doctor_coat.svg"
+    "src": "./doctor_coat.svg"
   },
   {
     "id": "fairy_dress",
@@ -101,7 +101,7 @@
     "category": "outfit",
     "stars": 21,
     "icon": "🧚",
-    "src": "./assets/stickers/clothes/fairy_dress.svg"
+    "src": "./fairy_dress.svg"
   },
   {
     "id": "hanbok",
@@ -109,7 +109,7 @@
     "category": "outfit",
     "stars": 23,
     "icon": "🎎",
-    "src": "./assets/stickers/clothes/hanbok.svg"
+    "src": "./hanbok.svg"
   },
   {
     "id": "santa_suit",
@@ -117,7 +117,7 @@
     "category": "outfit",
     "stars": 25,
     "icon": "🎅",
-    "src": "./assets/stickers/clothes/santa_suit.svg"
+    "src": "./santa_suit.svg"
   },
   {
     "id": "dino_suit",
@@ -125,7 +125,7 @@
     "category": "outfit",
     "stars": 27,
     "icon": "🦕",
-    "src": "./assets/stickers/clothes/dino_suit.svg"
+    "src": "./dino_suit.svg"
   },
   {
     "id": "flower",
@@ -133,7 +133,7 @@
     "category": "decor",
     "stars": 12,
     "icon": "🌸",
-    "src": "./assets/stickers/decorations/flower.svg"
+    "src": "./flower.svg"
   },
   {
     "id": "rainbow",
@@ -141,7 +141,7 @@
     "category": "decor",
     "stars": 14,
     "icon": "🌈",
-    "src": "./assets/stickers/decorations/rainbow.svg"
+    "src": "./rainbow.svg"
   },
   {
     "id": "balloon",
@@ -149,7 +149,7 @@
     "category": "decor",
     "stars": 16,
     "icon": "🎈",
-    "src": "./assets/stickers/decorations/balloon.svg"
+    "src": "./balloon.svg"
   },
   {
     "id": "ribbon",
@@ -157,7 +157,7 @@
     "category": "decor",
     "stars": 18,
     "icon": "🎀",
-    "src": "./assets/stickers/decorations/ribbon.svg"
+    "src": "./ribbon.svg"
   },
   {
     "id": "gem",
@@ -165,7 +165,7 @@
     "category": "decor",
     "stars": 20,
     "icon": "💎",
-    "src": "./assets/stickers/decorations/gem.svg"
+    "src": "./gem.svg"
   },
   {
     "id": "cloud",
@@ -173,7 +173,7 @@
     "category": "decor",
     "stars": 22,
     "icon": "☁️",
-    "src": "./assets/stickers/decorations/cloud.svg"
+    "src": "./cloud.svg"
   },
   {
     "id": "moon",
@@ -181,7 +181,7 @@
     "category": "decor",
     "stars": 24,
     "icon": "🌙",
-    "src": "./assets/stickers/decorations/moon.svg"
+    "src": "./moon.svg"
   },
   {
     "id": "magic_wand",
@@ -189,6 +189,6 @@
     "category": "decor",
     "stars": 26,
     "icon": "🪄",
-    "src": "./assets/stickers/decorations/magic_wand.svg"
+    "src": "./magic_wand.svg"
   }
 ]
