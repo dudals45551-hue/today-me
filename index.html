@@ -261,19 +261,19 @@ font-size:11px;font-weight:900;color:#785c13
 
 
 .unlock-modal{
-display:none;position:fixed;inset:0;z-index:120;
+display:none;position:fixed;inset:0;z-index:9999;pointer-events:auto;
 background:rgba(54,38,49,.48);align-items:center;justify-content:center;padding:24px
 }
 .unlock-modal.active{display:flex}
 .unlock-card{
-width:min(88vw,380px);background:white;border-radius:28px;padding:24px;text-align:center;
+width:min(88vw,380px);background:white;pointer-events:auto;position:relative;z-index:2;border-radius:28px;padding:24px;text-align:center;
 box-shadow:0 22px 55px rgba(0,0,0,.22)
 }
 .unlock-icon{font-size:68px;margin-bottom:8px}
 .unlock-card h3{margin:0 0 8px;font-size:26px}
 .unlock-card p{margin:0 0 16px;line-height:1.55;color:#735f69;font-weight:800}
 .unlock-card button{
-border:0;border-radius:18px;min-height:52px;width:100%;
+border:0;border-radius:18px;min-height:52px;width:100%;pointer-events:auto;touch-action:manipulation;position:relative;z-index:3;
 background:linear-gradient(135deg,#ed6097,#6d8fe3);color:white;font-weight:900;font-size:17px
 }
 .unlock-pop{animation:unlockPop .45s ease}
@@ -645,9 +645,9 @@ function showUnlockModal(id,isNew=false){
   document.getElementById('unlockModalText').textContent=isNew
     ? `${info.label}이 열렸어요! 이제 꾸미기에서 사용할 수 있어요.`
     : `별 ${info.stars}개를 모으면 ${info.label}이 열려요!`;
-  document.getElementById('unlockModal').classList.add('active');
+  document.getElementById('unlockModal').classList.add('active');document.body.style.overflow='hidden';
 }
-function closeUnlockModal(){document.getElementById('unlockModal').classList.remove('active')}
+function closeUnlockModal(){document.getElementById('unlockModal').classList.remove('active');document.body.style.overflow=''}
 function checkNewUnlocks(c=activeChild){
   const before=JSON.parse(localStorage.getItem(unlockedKey(c))||'[]');
   const stars=childStars(c);
@@ -1268,9 +1268,19 @@ document.getElementById('resetAll').onclick=()=>{
  }
 };
 
-document.getElementById('closeUnlockModal').onclick=closeUnlockModal;
-document.getElementById('unlockModal').onclick=e=>{if(e.target.id==='unlockModal')closeUnlockModal()};
-migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();updateStickerUnlockUI();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=531').catch(()=>{
+const unlockConfirmButton=document.getElementById('closeUnlockModal');
+const unlockModalElement=document.getElementById('unlockModal');
+function handleUnlockConfirm(e){
+ if(e){e.preventDefault();e.stopPropagation()}
+ closeUnlockModal();
+}
+['click','pointerup','touchend'].forEach(type=>{
+ unlockConfirmButton.addEventListener(type,handleUnlockConfirm,{passive:false});
+});
+unlockModalElement.addEventListener('click',e=>{
+ if(e.target===unlockModalElement)handleUnlockConfirm(e);
+});
+migrateSharedData();document.getElementById('starsTop').classList.add('hidden-on-home');refresh();updateHomeCards();updateStickerUnlockUI();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=534').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
@@ -1299,7 +1309,7 @@ document.addEventListener('pointerdown',tryPortraitLock,{once:true});}));
     <div id="unlockModalIcon" class="unlock-icon">🎁</div>
     <h3 id="unlockModalTitle">새로운 꾸미기!</h3>
     <p id="unlockModalText"></p>
-    <button id="closeUnlockModal">확인</button>
+    <button id="closeUnlockModal" type="button" data-close-unlock>확인</button>
   </div>
 </div>
 
