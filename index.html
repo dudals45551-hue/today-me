@@ -935,7 +935,7 @@ async function saveAlbumPhoto(c,dataUrl){
    const key=`todayme-album-photos-${c}`;
    const arr=JSON.parse(localStorage.getItem(key)||'[]');
    arr.unshift({date:localDateKey(),month:monthKey(),src:thumb});
-   localStorage.setItem(key,JSON.stringify(arr.slice(0,12)));
+   localStorage.setItem(key,JSON.stringify(arr.slice(0,30)));
    addActivity('photos',1,c);
  }catch(e){}
 }
@@ -1219,23 +1219,107 @@ document.getElementById('rotateLeft').onclick=()=>{if(selectedSticker){selectedS
 document.getElementById('rotateRight').onclick=()=>{if(selectedSticker){selectedSticker.dataset.rotation=String(rotationOf(selectedSticker)+15);applyRotation(selectedSticker)}};
 document.getElementById('removeSticker').onclick=()=>{if(selectedSticker){selectedSticker.className='sticker';selectedSticker.dataset.rotation='0';applyRotation(selectedSticker);selectedSticker=null}};
 function currentOutfit(){return stickerIds.map(id=>{const e=stickerEl(id);if(!e.classList.contains('active'))return null;return{id,left:e.style.left||'50%',top:e.style.top||'50%',size:e.style.width||'96px',rotation:rotationOf(e)}}).filter(Boolean)}
-document.getElementById('saveOutfit').onclick=()=>{localStorage.setItem('todayme-outfit-'+activeChild,JSON.stringify(currentOutfit()));say('꾸미기를 저장했어요 ✨')};
+
+async function svgElementToImage(svgElement){
+ const svgText=new XMLSerializer().serializeToString(svgElement);
+ const svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svgText);
+ const img=new Image();
+ await new Promise((resolve,reject)=>{
+   img.onload=resolve;
+   img.onerror=reject;
+   img.src=svgUrl;
+ });
+ return img;
+}
+async function renderDecoratedPhotoDataUrl(){
+ const stage=document.getElementById('dressStage');
+ const rect=stage.getBoundingClientRect();
+ if(!rect.width||!rect.height)throw new Error('꾸미기 화면 크기를 확인할 수 없어요.');
+ const outputWidth=900;
+ const outputHeight=Math.max(900,Math.round(outputWidth*(rect.height/rect.width)));
+ const canvas=document.createElement('canvas');
+ canvas.width=outputWidth;
+ canvas.height=outputHeight;
+ const ctx=canvas.getContext('2d');
+ const photo=document.getElementById('dressPhoto');
+ if(!photo.complete||!photo.naturalWidth){
+   await new Promise((resolve,reject)=>{
+     photo.addEventListener('load',resolve,{once:true});
+     photo.addEventListener('error',reject,{once:true});
+   });
+ }
+ // The editor photo uses object-fit: cover, so reproduce the same crop.
+ const imageRatio=photo.naturalWidth/photo.naturalHeight;
+ const stageRatio=rect.width/rect.height;
+ let sx=0,sy=0,sw=photo.naturalWidth,sh=photo.naturalHeight;
+ if(imageRatio>stageRatio){
+   sw=photo.naturalHeight*stageRatio;
+   sx=(photo.naturalWidth-sw)/2;
+ }else{
+   sh=photo.naturalWidth/stageRatio;
+   sy=(photo.naturalHeight-sh)/2;
+ }
+ ctx.drawImage(photo,sx,sy,sw,sh,0,0,outputWidth,outputHeight);
+
+ for(const item of currentOutfit()){
+   const element=stickerEl(item.id);
+   if(!element||!element.classList.contains('active'))continue;
+   const stickerSvg=element.querySelector('svg');
+   if(!stickerSvg)continue;
+   const stickerImg=await svgElementToImage(stickerSvg);
+   const cx=(element.offsetLeft/rect.width)*outputWidth;
+   const cy=(element.offsetTop/rect.height)*outputHeight;
+   const displayW=(parseFloat(getComputedStyle(element).width)/rect.width)*outputWidth;
+   const vb=stickerSvg.viewBox.baseVal;
+   const ratio=(vb&&vb.width)?vb.height/vb.width:1;
+   const displayH=displayW*ratio;
+   ctx.save();
+   ctx.translate(cx,cy);
+   ctx.rotate(rotationOf(element)*Math.PI/180);
+   ctx.drawImage(stickerImg,-displayW/2,-displayH/2,displayW,displayH);
+   ctx.restore();
+ }
+ // JPEG keeps localStorage size manageable and is ideal for album/home photos.
+ return canvas.toDataURL('image/jpeg',0.88);
+}
+document.getElementById('saveOutfit').onclick=async()=>{
+ const button=document.getElementById('saveOutfit');
+ if(button.disabled)return;
+ button.disabled=true;
+ const oldText=button.textContent;
+ button.textContent='저장 중...';
+ try{
+   const child=activeChild;
+   localStorage.setItem('todayme-outfit-'+child,JSON.stringify(currentOutfit()));
+   const decoratedPhoto=await renderDecoratedPhotoDataUrl();
+   localStorage.setItem('todayme-photo-'+child,decoratedPhoto);
+   await saveAlbumPhoto(child,decoratedPhoto);
+   markActivity(child);
+   refresh();
+   renderGrowthAlbum(monthKey());
+   showSaveCelebration();
+   say('꾸민 사진을 홈과 성장앨범에 저장했어요 ✨');
+ }catch(error){
+   console.error('꾸민 사진 저장 실패:',error);
+   say('저장에 실패했어요. 다시 시도해 주세요.');
+ }finally{
+   button.disabled=false;
+   button.textContent=oldText;
+ }
+};
 document.getElementById('downloadImage').onclick=async()=>{
-const stage=document.getElementById('dressStage'), rect=stage.getBoundingClientRect(), canvas=document.createElement('canvas');canvas.width=900;canvas.height=1200;const ctx=canvas.getContext('2d');
-const img=document.getElementById('dressPhoto');ctx.drawImage(img,0,0,900,1200);
-for(const s of currentOutfit()){const e=stickerEl(s.id),er=e.getBoundingClientRect();const cx=(e.offsetLeft/rect.width)*900,cy=(e.offsetTop/rect.height)*1200;
-const displayW=parseFloat(getComputedStyle(e).width)/rect.width*900;
-const stickerSvg=e.querySelector('svg');
-const svgText=new XMLSerializer().serializeToString(stickerSvg);
-const svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svgText);
-const stickerImg=new Image();
-await new Promise((resolve,reject)=>{stickerImg.onload=resolve;stickerImg.onerror=reject;stickerImg.src=svgUrl});
-const vb=stickerSvg.viewBox.baseVal;
-const ratio=(vb&&vb.width)?vb.height/vb.width:1;
-const displayH=displayW*ratio;
-ctx.save();ctx.translate(cx,cy);ctx.rotate(rotationOf(e)*Math.PI/180);
-ctx.drawImage(stickerImg,-displayW/2,-displayH/2,displayW,displayH);ctx.restore()}
-const a=document.createElement('a');a.download='오늘의나-'+names[activeChild]+'.png';a.href=canvas.toDataURL('image/png');a.click();say('완성 이미지를 저장했어요');showSaveCelebration()
+ try{
+   const dataUrl=await renderDecoratedPhotoDataUrl();
+   const a=document.createElement('a');
+   a.download='오늘의나-'+names[activeChild]+'.jpg';
+   a.href=dataUrl;
+   a.click();
+   say('완성 이미지를 저장했어요');
+   showSaveCelebration();
+ }catch(error){
+   console.error('이미지 다운로드 실패:',error);
+   say('이미지 저장에 실패했어요.');
+ }
 };
 
 document.querySelectorAll('[data-shop] button').forEach(btn=>btn.onclick=()=>{
@@ -1430,7 +1514,7 @@ window.addEventListener('pageshow',bootTodayMe);
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible')bootTodayMe();
 });
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=540').catch(()=>{
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=541').catch(()=>{
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
