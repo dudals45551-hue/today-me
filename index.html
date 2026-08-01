@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f6b5ce">
 <title>오늘의 나</title>
 
-<link rel="manifest" href="./manifest-v571.json">
+<link rel="manifest" href="./manifest-v572.json">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmOGZiYyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3NzBlOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8cGF0aCBkPSJNMjU2IDU0bDQ0IDg5IDk4IDE0LTcxIDY5IDE3IDk4LTg4LTQ2LTg4IDQ2IDE3LTk4LTcxLTY5IDk4LTE0eiIgZmlsbD0iI2ZmZGU0NiIvPgo8Y2lyY2xlIGN4PSIxOTAiIGN5PSIyODYiIHI9IjM0IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzIyIiBjeT0iMjg2IiByPSIzNCIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTUwIDQxOGwxOC05Nmg0NGwyMCA5NnpNMjgwIDQxOGwyMC05Nmg0NGwxOCA5NnoiIGZpbGw9IiNmZmYiLz4KPHBhdGggZD0iTTE5MCAzMjJsNDItODZNMzIyIDMyMmwtNDItODYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icons/icon-180-v564.png">
 
@@ -584,6 +584,30 @@ animation:none!important;
 }
 }
 
+
+/* V5.7.2 visible animation fix */
+#dressStage .sticker > svg{
+transform-box:fill-box!important;
+transform-origin:center!important;
+-webkit-transform-origin:center!important;
+}
+#dressStage .sticker.anim-heart.active > svg{animation:heartSvgBeatVisible 1.25s ease-in-out infinite!important}
+#dressStage .sticker.anim-star.active > svg{animation:starSvgTwinkleVisible 1.35s ease-in-out infinite!important}
+#dressStage .sticker.anim-wings.active > svg{animation:wingsSvgFloatVisible 1.7s ease-in-out infinite!important}
+#dressStage .sticker.anim-crown.active > svg{animation:crownSvgGlowVisible 1.55s ease-in-out infinite!important}
+#dressStage .sticker.anim-hat.active > svg{animation:hatSvgMagicVisible 2s ease-in-out infinite!important}
+#dressStage .sticker.anim-glasses.active > svg{animation:glassesSvgShineVisible 1.8s ease-in-out infinite!important}
+#dressStage .sticker.anim-dress.active > svg{animation:dressSvgShimmerVisible 2s ease-in-out infinite!important}
+#dressStage .sticker.anim-cape.active > svg{animation:capeSvgPulseVisible 1.8s ease-in-out infinite!important}
+@keyframes heartSvgBeatVisible{0%,100%{transform:scale(1)}20%{transform:scale(1.16)}38%{transform:scale(.97)}55%{transform:scale(1.11)}72%{transform:scale(1)}}
+@keyframes starSvgTwinkleVisible{0%,100%{transform:scale(1) rotate(0deg);opacity:1}50%{transform:scale(1.16) rotate(8deg);opacity:.72}}
+@keyframes wingsSvgFloatVisible{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(3deg)}}
+@keyframes crownSvgGlowVisible{0%,100%{transform:scale(1) rotate(-1deg)}50%{transform:scale(1.10) rotate(2deg)}}
+@keyframes hatSvgMagicVisible{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes glassesSvgShineVisible{0%,100%{transform:translateX(-2px) scale(1)}50%{transform:translateX(3px) scale(1.06)}}
+@keyframes dressSvgShimmerVisible{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.04)}}
+@keyframes capeSvgPulseVisible{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.08) rotate(2deg)}}
+
 .toast{position:fixed;z-index:100;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:#342b30;color:white;padding:12px 16px;border-radius:999px;font-weight:900;white-space:nowrap;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -1124,7 +1148,7 @@ font-weight:900
   }
   if(changed&&!sessionStorage.getItem('todayme-clean-reloaded')){
    sessionStorage.setItem('todayme-clean-reloaded','1');
-   location.replace(location.pathname+'?v=571&clean=1');
+   location.replace(location.pathname+'?v=572&clean=1');
   }
  }catch(e){}
 })();
@@ -1639,7 +1663,15 @@ function rotationOf(el){return Number(el.dataset.rotation||0)}
 function applyRotation(el){el.style.transform='translate(-50%,-50%) rotate('+rotationOf(el)+'deg)'}
 function pointerDistance(a,b){return Math.hypot(b.x-a.x,b.y-a.y)}
 function pointerAngle(a,b){return Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI}
-function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{const el=stickerEl(id);el.className='sticker';el.style.cssText='';});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.width=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
+function openDress(){document.getElementById('dressPhoto').src=photoFor(activeChild);stickerIds.forEach(id=>{
+ const el=stickerEl(id);
+ const animationClass={
+  crown:'anim-crown',star:'anim-star',heart:'anim-heart',wings:'anim-wings',
+  hat:'anim-hat',glasses:'anim-glasses',dress:'anim-dress',cape:'anim-cape'
+ }[id]||'';
+ el.className=('sticker '+animationClass).trim();
+ el.style.cssText='';
+});selectedSticker=null;const saved=JSON.parse(localStorage.getItem('todayme-outfit-'+activeChild)||'[]');saved.forEach(s=>{const el=stickerEl(s.id);el.classList.add('active');el.style.left=s.left;el.style.top=s.top;el.style.width=s.size;el.dataset.rotation=String(s.rotation||0);applyRotation(el);});openPanel('decoratePanel')}
 function selectSticker(el){document.querySelectorAll('.sticker').forEach(x=>x.classList.remove('selected'));selectedSticker=el;el.classList.add('selected')}
 
 document.querySelectorAll('[data-category]').forEach(tab=>tab.onclick=()=>{
