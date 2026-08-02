@@ -1,0 +1,31 @@
+{
+  "id": "./today-me-v592",
+  "name": "오늘의 나",
+  "short_name": "오늘의 나",
+  "start_url": "./?v=564",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faeef3",
+  "theme_color": "#f6b5ce",
+  "icons": [
+    {
+      "src": "./icons/icon-192-v592.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512-v592.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512-v592.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
