@@ -1,7 +1,7 @@
-const CACHE='harin-seoyul-v622';
+const CACHE='harin-seoyul-v623';
 const CORE=['./','./index.html','./style.css','./manifest.json',
-'./icons/app-photo-192-v621.png','./icons/app-photo-512-v621.png',
-'./icons/app-photo-maskable-512-v621.png'];
+'./icons/app-photo-192-v623.png','./icons/app-photo-512-v623.png',
+'./icons/app-photo-maskable-512-v623.png'];
 
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
