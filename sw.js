@@ -1,4 +1,4 @@
-const CACHE='harin-seoyul-v621';
+const CACHE='harin-seoyul-v622';
 const CORE=['./','./index.html','./style.css','./manifest.json',
 './icons/app-photo-192-v621.png','./icons/app-photo-512-v621.png',
 './icons/app-photo-maskable-512-v621.png'];

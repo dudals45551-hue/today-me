@@ -1,9 +1,9 @@
 {
-  "id": "./harin-seoyul-v621",
+  "id": "./harin-seoyul-v622",
   "name": "하린서율♥︎",
   "short_name": "하린서율♥︎",
   "description": "하린이와 서율이의 오늘을 사진과 꾸미기로 기록하는 성장앨범",
-  "start_url": "./?v=621",
+  "start_url": "./?v=622",
   "scope": "./",
   "display": "standalone",
   "display_override": [
