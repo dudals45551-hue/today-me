@@ -1,4 +1,4 @@
-const CACHE='harin-seoyul-v624';
+const CACHE='harin-seoyul-v625';
 const OFFLINE='/today-me/index.html';
 
 self.addEventListener('install',event=>{

@@ -2,8 +2,8 @@
   "id": "/today-me/",
   "name": "하린서율♥︎",
   "short_name": "하린서율♥︎",
-  "description": "하린이와 서율이의 오늘을 사진과 꾸미기로 기록하는 성장앨범",
-  "start_url": "/today-me/?v=624",
+  "description": "하린이와 서율이의 사진과 아빠의 편지를 함께 기록하는 성장앨범",
+  "start_url": "/today-me/?v=625",
   "scope": "/today-me/",
   "display": "standalone",
   "display_override": [
